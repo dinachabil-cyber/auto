@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Assurance loueur de voiture - RC PRO location{% endblock %}
+
+{% block meta %}
+<meta name="description" content="Devis assurance pour loueur de voiture rapide, un comparatif pour RC PRO location de voiture.">
+<meta name="keywords" content="Assurance loueur de voiture, RC PRO loueur voiture, Devis assurance loueur véhicule">
+{% endblock %}
+
+{% block body %}
+    {{ include('partials/header.html.twig') }}
+    
+    <main id="main-content" class="flex-1">
+        {# Hero Section with Form #}
+        <section class="py-12 lg:py-20 bg-white hero-pattern relative overflow-hidden">
+            <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+            <div class="absolute top-6 left-6 sm:top-10 sm:left-10 floating-animation"><i class="fas fa-car text-orange-400 text-4xl sm:text-6xl opacity-30"></i></div>
+            <div class="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 floating-animation"><i class="fas fa-shield-alt text-orange-500 text-6xl sm:text-8xl opacity-25"></i></div>
+
+            <div class="max mx-auto sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 lg:items-stretch">
+                    <div class="w-full lg:w-1/2 order-2 lg:order-1 flex">
+                        <div class="relative w-full h-full min-h-[250px] sm:min-h-[350px] md:min-h-[400px] rounded-2xl shadow-2xl overflow-hidden">
+                            <img src="https://assurance-professionnels-auto.fr/image/loueur-voiture.jpg" alt="Assurance loueur de voiture" class="absolute inset-0 w-full h-full object-cover" />
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-1/2 order-1 lg:order-2 flex">
+                        {{ include('partials/form_partial.html.twig', {'form': form, 'title': 'Obtenez un devis gratuit', 'subtitle': 'Complétez en 2 minutes'}) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# Sections Content #}
+        <section class="py-20 md:py-28 bg-white">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        Assurance loueur de véhicules
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">🚗</span>
+                            <h3 class="text-lg font-bold text-gray-800">Une couverture sur-mesure pour votre entreprise de location de véhicules</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-600 leading-relaxed">Vous êtes loueur de véhicules courte ou longue durée et recherchez une assurance fiable et compétitive ?</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">Ne laissez rien au hasard !</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">Protégez votre flotte et votre activité avec une assurance spécialement conçue pour les professionnels de la location automobile.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">🏗️</span>
+                            <h3 class="text-lg font-bold text-gray-800">Garantie RC PRO location voiture</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-600 leading-relaxed"><strong>Les garanties principales incluent souvent :</strong></p>
+                            <p class="text-sm text-gray-600 leading-relaxed">✔ Assurance complète : couverture tous risques, responsabilité civile, dommages aux véhicules</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">✔ Protection financière : garantie perte d’exploitation, vol, vandalisme</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">⭐</span>
+                            <h3 class="text-lg font-bold text-gray-800">Pourquoi choisir notre assurance pour loueurs de véhicules ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-600 leading-relaxed">Spécialiste du secteur automobile : nous connaissons les besoins spécifiques des professionnels de la location</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">Tarifs compétitifs : des solutions sur-mesure adaptées à votre budget</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">Accompagnement personnalisé : un expert dédié pour vous conseiller et gérer vos contrats</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">Gestion rapide des sinistres : réactivité et efficacité pour assurer la continuité de votre activité</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">📄</span>
+                            <h3 class="text-lg font-bold text-gray-800">Obtenez votre devis gratuit en quelques clics !</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-600 leading-relaxed">Pour obtenir un devis assurance pour loueur automobile, veuillez compléter le formulaire à droite de la page.</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">Simple et rapide : obtenez votre devis en ligne en quelques clics.</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">✔ Un conseiller dédié à votre écoute</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">✔ Réponse et devis en ligne</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">✔ Comparez & souscrivez rapidement pour protéger votre flotte en toute sérénité</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# Devis Info Section #}
+        <section class="max-w-3xl mx-auto sm:px-6 lg:px-8 my-16 text-center">
+            <h2 class="text-2xl font-bold mb-4">Devis assurance loueur de voiture</h2>
+            <p class="text-base">Pour obtenir un devis RC PRO loueur de voiture, complétez le formulaire en haut de la page. Simple et rapide, obtenez votre devis en ligne et en quelques clics.</p>
+        </section>
+
+        {# Back to Home Button #}
+        <div class="flex justify-center my-8 sm:my-12">
+            <a href="{{ path('app_home') }}" class="inline-flex items-center gap-2 sm:gap-3 bg-white text-[#312a8b] font-bold py-3 sm:py-4 px-6 sm:px-10 rounded-2xl hover:bg-indigo-50 transition-all transform hover:scale-105 shadow-2xl cursor-pointer">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 10H5M5 10L10 5M5 10L10 15" stroke="#312a8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Retour à l'accueil
+            </a>
+        </div>
+
+        {{ include('partials/cookie_banner.html.twig') }}
+    </main>
+
+    {{ include('partials/footer.html.twig') }}
+{% endblock %}

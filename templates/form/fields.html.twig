@@ -1,0 +1,40 @@
+{# Custom form theme to match React styling #}
+{% block form_row %}
+{% spaceless %}
+    <div>
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block form_label %}
+{% spaceless %}
+    {% if label is not same as(false) %}
+        <label{% if label_attr %}{% for key, value in label_attr %} {{ key }}="{{ value }}"{% endfor %}{% endif %}{{ block('translation_domain_attribute') }}{% if required %} class="required"{% endif %}{% if label is not same as(null) %} for="{{ id }}"{% endif %}>
+            {% if label is not same as(null) %}{{ label|trans({}, translation_domain) }}{% endif %}
+            {% if required %} <span class="required" aria-hidden="true">*</span>{% endif %}
+        </label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value %}value="{{ value }}"{% endif %} />
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block choice_widget_options %}
+{% spaceless %}
+    {% for group_label, options in options if options is iterable and options is not same as('') %}
+        <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+            {{ block('choice_widget_options') }}
+        </optgroup>
+    {% else %}
+        <option value="{{ value|e }}" {% if selected %}selected="selected"{% endif %} {{ block('attr') }}>{{ label|trans({}, translation_domain) }}</option>
+    {% endfor %}
+{% endspaceless %}
+{% endblock choice_widget_options %}

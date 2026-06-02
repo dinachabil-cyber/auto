@@ -1,0 +1,45 @@
+{# Reusable form partial - form is passed as a parameter #}
+{% set showActivity = showActivity ?? true %}
+{% set showPostalCode = showPostalCode ?? true %}
+{% set title = title|default('Obtenez un devis gratuit') %}
+{% set subtitle = subtitle|default('Complétez en 2 minutes') %}
+
+<div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 h-full flex flex-col">
+    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">{{ title }}</h2>
+    <p class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">{{ subtitle }}</p>
+    {{ form_errors(form) }}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'space-y-4 flex-1 flex flex-col'}}) }}
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>{{ form_row(form.nom) }}</div>
+            <div>{{ form_row(form.prenom) }}</div>
+        </div>
+        
+        <div>{{ form_row(form.raison_sociale) }}</div>
+        
+        {% if showActivity %}
+        <div>{{ form_row(form.activite) }}</div>
+        {% endif %}
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>{{ form_row(form.demarrage) }}</div>
+            <div>{{ form_row(form.assure) }}</div>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>{{ form_row(form.ancienne) }}</div>
+            <div>{{ form_row(form.motif_resiliation) }}</div>
+        </div>
+        
+        {% if showPostalCode %}
+        <div>{{ form_row(form.code_postal) }}</div>
+        {% endif %}
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>{{ form_row(form.telephone) }}</div>
+            <div>{{ form_row(form.email) }}</div>
+        </div>
+        
+        {{ form_row(form.save) }}
+    {{ form_end(form) }}
+</div>

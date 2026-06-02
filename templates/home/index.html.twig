@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aksam Assurance — Assurance Professionnels Auto{% endblock %}
+
+{% block body %}
+{{ include('partials/header.html.twig') }}    
+    <main id="main-content" class="flex-1">
+        {# Hero Section with Form #}
+     <section class="py-12 lg:py-20 bg-white hero-pattern relative overflow-hidden">
+    <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+
+    <div class="absolute top-6 left-6 sm:top-10 sm:left-10 floating-animation">
+        <i class="fas fa-car text-orange-400 text-4xl sm:text-6xl opacity-30"></i>
+    </div>
+
+    <div class="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 floating-animation">
+        <i class="fas fa-shield-alt text-orange-500 text-6xl sm:text-8xl opacity-25"></i>
+    </div>
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 relative z-10">
+
+        <!-- 🔥 CRITICAL: stretch both columns -->
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
+
+            {# ================= IMAGE ================= #}
+            <div class="order-2 lg:order-1 slide-in-left flex-1 lg:flex-[7]">
+
+                <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl">
+
+                    <img
+                        src="https://assurance-professionnels-auto.fr/image/photo.jpg"
+                        alt="Conducteur professionnel"
+                        class="w-full h-full object-cover object-center"
+                        loading="lazy"
+                    />
+
+                </div>
+            </div>
+
+            {# ================= FORM ================= #}
+            <div class="order-1 lg:order-2 flex-1 lg:flex-[5] flex h-full">
+
+                <!-- 🔥 IMPORTANT: form container must stretch -->
+                <div class="w-full h-full bg-white rounded-xl lg:rounded-3xl shadow-2xl border border-gray-100 flex flex-col justify-between p-6 lg:p-8">
+
+                    <!-- HEADER -->
+                    <div class="text-center mb-6">
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 mx-auto mb-3 flex items-center justify-center rounded-xl bg-orange-50">
+                            <i class="fas fa-calculator text-orange-500 text-xl lg:text-2xl"></i>
+                        </div>
+
+                        <h2 class="text-lg lg:text-2xl font-bold text-gray-900">
+                            Obtenez un devis gratuit
+                        </h2>
+
+                        <p class="text-sm text-gray-500 mt-1">
+                            Complétez en 2 minutes
+                        </p>
+                    </div>
+
+                    <!-- FORM -->
+                    <div class="flex-1">
+                        {{ include('partials/form_partial.html.twig', {
+                            'form': form,
+                            'title': null,
+                            'subtitle': null,
+                            'showActivity': true,
+                            'showPostalCode': true
+                        }) }}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        {# Insurance Info Section #}
+        <section class="py-20 max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Assurance des professionnels de l'automobile
+            </h2>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                L'assurance des professionnels de l'automobile fait référence à une forme d'assurance conçue spécialement pour les entreprises et les professionnels travaillant dans le secteur automobile. Cette assurance appelée aussi assurance multirisque professionnelle, vise à protéger les professionnels de l'automobile contre les risques spécifiques liés à leurs activités.
+            </p>
+        </section>
+
+        {# Activity Section #}
+        {% include 'partials/activity_section.html.twig' %}
+
+        {# Guarantee Section #}
+        {% include 'partials/guarantee_section.html.twig' %}
+
+        {# CTA Section #}
+        {% include 'partials/cta_section.html.twig' %}
+
+        {# Cookie Banner #}
+        {% include 'partials/cookie_banner.html.twig' %}
+    </main>
+
+    {{ include('partials/footer.html.twig') }}
+{% endblock %}
