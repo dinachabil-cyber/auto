@@ -184,30 +184,28 @@
 </section>
 
     {# ================= CTA ================= #}
-    <section class="py-16">
+    
 
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal opacity-0 translate-y-6 transition-all duration-700">
-
-            <div class="glass-effect rounded-2xl p-8 md:p-10 shadow-xl hover:scale-[1.02] transition-transform duration-300">
-
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                    II- Devis assurance garagiste
-                </h2>
-
-                <p class="text-base text-gray-600 mb-5">
-                    Pour obtenir un devis RCPRO garagiste veuillez compléter le formulaire en haut de la page.
-                </p>
-
-                <a href="{{ path('app_home') }}"
-                   class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-base font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300">
-                    Retour à l'accueil
-                </a>
-
-            </div>
-
+    <div class="py-12">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-[#312a8b] rounded-2xl p-6 md:p-8 shadow-xl text-center">
+            <h2 class="text-xl md:text-2xl font-bold text-white mb-2">                    II- Devis assurance garagiste
+</h2>
+            <p class="text-sm text-white/80 mb-5 max-w-2xl mx-auto">                    Pour obtenir un devis RCPRO garagiste veuillez compléter le formulaire en haut de la page.
+</p>
+            <a href="{{ path('app_home') }}" class="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-[#312a8b] text-sm font-semibold rounded-xl hover:bg-gray-50 transition-all shadow-lg">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                    <rect x="9" y="3" width="6" height="4" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h4" />
+                </svg>
+                <span>                    Retour à l'accueil
+</span>
+            </a>
         </div>
-
-    </section>
+    </div>
+</div>
 
     {{ include('partials/cookie_banner.html.twig') }}
 
@@ -217,9 +215,9 @@
 
 {# ================= ANIMATION SCRIPT ================= #}
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+function initRevealAnimations() {
     const elements = document.querySelectorAll(".reveal");
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -230,9 +228,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, {
         threshold: 0.1
     });
-
+    
     elements.forEach(el => observer.observe(el));
-});
+}
+
+document.addEventListener("DOMContentLoaded", initRevealAnimations);
+document.addEventListener("turbo:load", initRevealAnimations);
 </script>
 
 {% endblock %}

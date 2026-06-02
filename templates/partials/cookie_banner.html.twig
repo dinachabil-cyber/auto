@@ -22,25 +22,39 @@
 </section>
 
 <script>
-function setCookieConsent(analytics, marketing) {
-    const prefs = JSON.stringify({ analytics, marketing });
-    const expiry = new Date();
-    expiry.setMonth(expiry.getMonth() + 6);
-    document.cookie = 'aksamConsent=' + encodeURIComponent(prefs) + '; path=/; expires=' + expiry.toUTCString() + '; SameSite=Lax';
-    document.getElementById('cookie-banner').style.display = 'none';
-}
+window.analyticsValue = typeof window.analyticsValue === 'boolean' ? window.analyticsValue : true;
+window.marketingValue = typeof window.marketingValue === 'boolean' ? window.marketingValue : true;
 
-function showCookiePreferences() {
-    document.getElementById('cookie-preferences').classList.remove('hidden');
-    document.getElementById('cookie-banner').classList.add('hidden');
-}
-
-document.addEventListener('DOMContentLoaded', function() {
+function checkCookieConsent() {
     const consent = document.cookie.match(/aksamConsent=([^;]+)/);
     if (consent) {
+        const banner = document.getElementById('cookie-banner');
+        if (banner) banner.style.display = 'none';
+    }
+}
+
+if (typeof window.cookieBannerInitialized === 'undefined') {
+    window.cookieBannerInitialized = true;
+    document.addEventListener('DOMContentLoaded', checkCookieConsent);
+    document.addEventListener('turbo:load', checkCookieConsent);
+}
+
+if (typeof window.setCookieConsent !== 'function') {
+    window.setCookieConsent = function(analytics, marketing) {
+        const prefs = JSON.stringify({ analytics, marketing });
+        const expiry = new Date();
+        expiry.setMonth(expiry.getMonth() + 6);
+        document.cookie = 'aksamConsent=' + encodeURIComponent(prefs) + '; path=/; expires=' + expiry.toUTCString() + '; SameSite=Lax';
         document.getElementById('cookie-banner').style.display = 'none';
     }
-});
+}
+
+if (typeof window.showCookiePreferences !== 'function') {
+    window.showCookiePreferences = function() {
+        document.getElementById('cookie-preferences').classList.remove('hidden');
+        document.getElementById('cookie-banner').classList.add('hidden');
+    }
+}
 </script>
 
 <div id="cookie-preferences" class="hidden fixed inset-0 bg-black/50 z-[99]" onclick="hideCookiePreferences()">
@@ -78,43 +92,48 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <script>
-let analyticsValue = true;
-let marketingValue = true;
-
-function hideCookiePreferences() {
-    document.getElementById('cookie-preferences').classList.add('hidden');
-}
-
-function toggleAnalytics() {
-    analyticsValue = !analyticsValue;
-    const toggle = document.getElementById('analytics-toggle');
-    if (analyticsValue) {
-        toggle.classList.add('bg-orange-500');
-        toggle.classList.remove('bg-gray-300');
-        toggle.querySelector('span').classList.add('translate-x-6');
-    } else {
-        toggle.classList.remove('bg-orange-500');
-        toggle.classList.add('bg-gray-300');
-        toggle.querySelector('span').classList.remove('translate-x-6');
+if (typeof window.hideCookiePreferences !== 'function') {
+    window.hideCookiePreferences = function() {
+        document.getElementById('cookie-preferences').classList.add('hidden');
     }
 }
 
-function toggleMarketing() {
-    marketingValue = !marketingValue;
-    const toggle = document.getElementById('marketing-toggle');
-    if (marketingValue) {
-        toggle.classList.add('bg-orange-500');
-        toggle.classList.remove('bg-gray-300');
-        toggle.querySelector('span').classList.add('translate-x-6');
-    } else {
-        toggle.classList.remove('bg-orange-500');
-        toggle.classList.add('bg-gray-300');
-        toggle.querySelector('span').classList.remove('translate-x-6');
+if (typeof window.toggleAnalytics !== 'function') {
+    window.toggleAnalytics = function() {
+        window.analyticsValue = !window.analyticsValue;
+        const toggle = document.getElementById('analytics-toggle');
+        if (window.analyticsValue) {
+            toggle.classList.add('bg-orange-500');
+            toggle.classList.remove('bg-gray-300');
+            toggle.querySelector('span').classList.add('translate-x-6');
+        } else {
+            toggle.classList.remove('bg-orange-500');
+            toggle.classList.add('bg-gray-300');
+            toggle.querySelector('span').classList.remove('translate-x-6');
+        }
     }
 }
 
-function saveCookieConsent() {
-    setCookieConsent(analyticsValue, marketingValue);
-    hideCookiePreferences();
+if (typeof window.toggleMarketing !== 'function') {
+    window.toggleMarketing = function() {
+        window.marketingValue = !window.marketingValue;
+        const toggle = document.getElementById('marketing-toggle');
+        if (window.marketingValue) {
+            toggle.classList.add('bg-orange-500');
+            toggle.classList.remove('bg-gray-300');
+            toggle.querySelector('span').classList.add('translate-x-6');
+        } else {
+            toggle.classList.remove('bg-orange-500');
+            toggle.classList.add('bg-gray-300');
+            toggle.querySelector('span').classList.remove('translate-x-6');
+        }
+    }
+}
+
+if (typeof window.saveCookieConsent !== 'function') {
+    window.saveCookieConsent = function() {
+        setCookieConsent(window.analyticsValue, window.marketingValue);
+        hideCookiePreferences();
+    }
 }
 </script>

@@ -14,6 +14,7 @@ use App\Form\LoueurDeviType;
 use App\Form\NegociantsDeviType;
 use App\Service\DevisService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route; 
@@ -36,7 +37,7 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Votre demande de devis a bien été enregistrée.');
 
-            return $this->redirectToRoute('app_home');
+            return new RedirectResponse($this->generateUrl('app_home'));
         }
 
         return $this->render('home/index.html.twig', [
@@ -60,7 +61,7 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Votre demande de devis négociant a bien été enregistrée.');
 
-            return $this->redirectToRoute('app_negociants');
+            return new RedirectResponse($this->generateUrl('app_negociants'));
         }
 
         return $this->render('negociants/index.html.twig', [
@@ -84,7 +85,7 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Votre demande de devis auto-école a bien été enregistrée.');
 
-            return $this->redirectToRoute('app_auto_ecole');
+            return new RedirectResponse($this->generateUrl('app_auto_ecole'));
         }
 
         return $this->render('autoecole/index.html.twig', [
@@ -108,7 +109,7 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Votre demande de devis loueur a bien été enregistrée.');
 
-            return $this->redirectToRoute('app_loueur');
+            return new RedirectResponse($this->generateUrl('app_loueur'));
         }
 
         return $this->render('loueur/index.html.twig', [
@@ -132,7 +133,7 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Votre demande de devis garage a bien été enregistrée.');
 
-            return $this->redirectToRoute('app_garage');
+            return new RedirectResponse($this->generateUrl('app_garage'));
         }
 
         return $this->render('garage/index.html.twig', [

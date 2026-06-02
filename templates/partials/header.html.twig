@@ -43,24 +43,29 @@
 </header>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+function initHeaderTypewriter() {
     const textRef = document.getElementById('header-text');
     const cursorRef = document.getElementById('header-cursor');
-    const fullText = "Quels que soient vos antécédents, obtenez un devis d'assurance pour professionnels auto en quelques clics";
+    if (!textRef || !cursorRef) return;
     
-    if (textRef && cursorRef) {
-        textRef.textContent = '';
-        cursorRef.style.display = 'inline';
-        let i = 0;
-        
-        const interval = setInterval(() => {
-            textRef.textContent += fullText[i];
-            i++;
-            if (i >= fullText.length) {
-                clearInterval(interval);
-                setTimeout(() => { cursorRef.style.display = 'none'; }, 800);
-            }
-        }, 35);
-    }
-});
+    if (textRef.dataset.initialized) return;
+    textRef.dataset.initialized = 'true';
+    
+    const fullText = "Quels que soient vos antécédents, obtenez un devis d'assurance pour professionnels auto en quelques clics";
+    textRef.textContent = '';
+    cursorRef.style.display = 'inline';
+    let i = 0;
+    
+    const interval = setInterval(() => {
+        textRef.textContent += fullText[i];
+        i++;
+        if (i >= fullText.length) {
+            clearInterval(interval);
+            setTimeout(() => { cursorRef.style.display = 'none'; }, 800);
+        }
+    }, 35);
+}
+
+document.addEventListener('DOMContentLoaded', initHeaderTypewriter);
+document.addEventListener('turbo:load', initHeaderTypewriter);
 </script>
