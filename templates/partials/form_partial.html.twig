@@ -2,14 +2,10 @@
 {% set showActivity = showActivity ?? true %}
 {% set showPostalCode = showPostalCode ?? true %}
 
+{% set formAttr = form.vars.attr|merge({'novalidate': 'novalidate', 'class': 'space-y-5 flex-1 flex flex-col', 'data-turbo': 'false'}) %}
 <div class="h-full flex flex-col">
     {{ form_errors(form) }}
-    {% if form is defined %}
-    <form method="post" action="{{ form_action_url|default(path(app.request.attributes.get('_route'))) }}" class="space-y-5 flex-1 flex flex-col" novalidate data-turbo="false">
-        {{ form_widget(form) }}
-    </form>
-    {% endif %}
-</div>
+    {{ form_start(form, {'attr': formAttr}) }}
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>{{ form_row(form.nom) }}</div>
