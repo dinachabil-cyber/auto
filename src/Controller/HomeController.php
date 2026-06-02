@@ -16,14 +16,13 @@ use App\Service\DevisService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route; 
+use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    // ============================================================================
-    // HOMEPAGE
-    // ============================================================================
-    
+    // =========================
+    // HOME
+    // =========================
     #[Route('/', name: 'app_home')]
     public function index(Request $request, DevisService $devisService): Response
     {
@@ -32,11 +31,14 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $devisService->createDevi($form);
 
-            $this->addFlash('success', 'Votre demande de devis a bien été enregistrée.');
+            $entity = $devisService->createDevi($form);
 
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('success', 'Demande envoyée avec succès');
+
+            return $this->redirectToRoute('app_confirmation', [
+                'id' => $entity->getId()
+            ]);
         }
 
         return $this->render('home/index.html.twig', [
@@ -44,23 +46,25 @@ class HomeController extends AbstractController
         ]);
     }
 
-    // ============================================================================
-    // NÉGOCIANTS AUTOMOBILE
-    // ============================================================================
-    
+    // =========================
+    // NEGOCIANTS
+    // =========================
     #[Route('/negociants-auto', name: 'app_negociants')]
-    public function négociants(Request $request, DevisService $devisService): Response
+    public function negociants(Request $request, DevisService $devisService): Response
     {
-        $negociantsDevi = new NegociantsDevi();
-        $form = $this->createForm(NegociantsDeviType::class, $negociantsDevi);
+        $entity = new NegociantsDevi();
+        $form = $this->createForm(NegociantsDeviType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $devisService->createNegociantsDevi($form);
 
-            $this->addFlash('success', 'Votre demande de devis négociant a bien été enregistrée.');
+            $entity = $devisService->createNegociantsDevi($form);
 
-            return $this->redirectToRoute('app_negociants');
+            $this->addFlash('success', 'Demande négociant envoyée');
+
+            return $this->redirectToRoute('app_confirmation', [
+                'id' => $entity->getId()
+            ]);
         }
 
         return $this->render('negociants/index.html.twig', [
@@ -68,23 +72,25 @@ class HomeController extends AbstractController
         ]);
     }
 
-    // ============================================================================
-    // AUTO-ÉCOLE
-    // ============================================================================
-    
+    // =========================
+    // AUTO ECOLE
+    // =========================
     #[Route('/auto-ecole', name: 'app_auto_ecole')]
     public function autoEcole(Request $request, DevisService $devisService): Response
     {
-        $autoEcoleDevi = new AutoEcoleDevi();
-        $form = $this->createForm(AutoEcoleDeviType::class, $autoEcoleDevi);
+        $entity = new AutoEcoleDevi();
+        $form = $this->createForm(AutoEcoleDeviType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $devisService->createAutoEcoleDevi($form);
 
-            $this->addFlash('success', 'Votre demande de devis auto-école a bien été enregistrée.');
+            $entity = $devisService->createAutoEcoleDevi($form);
 
-            return $this->redirectToRoute('app_auto_ecole');
+            $this->addFlash('success', 'Demande auto-école envoyée');
+
+            return $this->redirectToRoute('app_confirmation', [
+                'id' => $entity->getId()
+            ]);
         }
 
         return $this->render('autoecole/index.html.twig', [
@@ -92,23 +98,25 @@ class HomeController extends AbstractController
         ]);
     }
 
-    // ============================================================================
-    // LOUEUR DE VÉHICULES
-    // ============================================================================
-    
+    // =========================
+    // LOUEUR
+    // =========================
     #[Route('/loueur-voiture', name: 'app_loueur')]
     public function loueur(Request $request, DevisService $devisService): Response
     {
-        $loueurDevi = new LoueurDevi();
-        $form = $this->createForm(LoueurDeviType::class, $loueurDevi);
+        $entity = new LoueurDevi();
+        $form = $this->createForm(LoueurDeviType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $devisService->createLoueurDevi($form);
 
-            $this->addFlash('success', 'Votre demande de devis loueur a bien été enregistrée.');
+            $entity = $devisService->createLoueurDevi($form);
 
-            return $this->redirectToRoute('app_loueur');
+            $this->addFlash('success', 'Demande loueur envoyée');
+
+            return $this->redirectToRoute('app_confirmation', [
+                'id' => $entity->getId()
+            ]);
         }
 
         return $this->render('loueur/index.html.twig', [
@@ -116,23 +124,25 @@ class HomeController extends AbstractController
         ]);
     }
 
-    // ============================================================================
-    // GARAGE AUTOMOBILE
-    // ============================================================================
-    
+    // =========================
+    // GARAGE
+    // =========================
     #[Route('/garage-automobile', name: 'app_garage')]
     public function garage(Request $request, DevisService $devisService): Response
     {
-        $garageDevi = new GarageDevi();
-        $form = $this->createForm(GarageDeviType::class, $garageDevi);
+        $entity = new GarageDevi();
+        $form = $this->createForm(GarageDeviType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $devisService->createGarageDevi($form);
 
-            $this->addFlash('success', 'Votre demande de devis garage a bien été enregistrée.');
+            $entity = $devisService->createGarageDevi($form);
 
-            return $this->redirectToRoute('app_garage');
+            $this->addFlash('success', 'Demande garage envoyée');
+
+            return $this->redirectToRoute('app_confirmation', [
+                'id' => $entity->getId()
+            ]);
         }
 
         return $this->render('garage/index.html.twig', [
@@ -140,22 +150,20 @@ class HomeController extends AbstractController
         ]);
     }
 
-    // ============================================================================
+    // =========================
     // CONFIRMATION PAGE
-    // ============================================================================
-    
+    // =========================
     #[Route('/devis/{id}/confirmation', name: 'app_confirmation')]
     public function confirmation(int $id): Response
     {
         return $this->render('confirmation/index.html.twig', [
-            'id' => $id,
+            'id' => $id
         ]);
     }
 
-    // ============================================================================
-    // PAGES LÉGALES
-    // ============================================================================
-    
+    // =========================
+    // LEGAL PAGES
+    // =========================
     #[Route('/mentions-legales', name: 'app_mentions_legales')]
     public function mentionsLegales(): Response
     {
@@ -167,7 +175,4 @@ class HomeController extends AbstractController
     {
         return $this->render('politique_confidentialite/index.html.twig');
     }
-
-
-
 }

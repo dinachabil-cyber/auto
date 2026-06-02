@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
@@ -112,6 +114,15 @@ class LoueurDeviType extends AbstractType
                 'label' => 'Comparer maintenant',
                 'attr' => ['class' => 'w-full px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-all'],
             ]);
+
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $form = $event->getForm();
+            $data = $event->getData();
+            
+            if ($data->getAncienne() === 'OUI' && ($data->getMotifResiliation() === null || $data->getMotifResiliation() === '')) {
+                $form->get('motif_resiliation')->addConstraint(new NotBlank(message: 'Le motif de résiliation est obligatoire.'));
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -17,128 +17,185 @@
             <div class="absolute top-6 left-6 sm:top-10 sm:left-10 floating-animation"><i class="fas fa-car text-orange-400 text-4xl sm:text-6xl opacity-30"></i></div>
             <div class="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 floating-animation"><i class="fas fa-shield-alt text-orange-500 text-6xl sm:text-8xl opacity-25"></i></div>
 
-            <div class="max mx-auto sm:px-6 lg:px-8 relative z-10">
-                <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 lg:items-stretch">
-                    <div class="w-full lg:w-1/2 order-2 lg:order-1 flex">
-                        <div class="relative w-full h-full min-h-[250px] sm:min-h-[350px] md:min-h-[400px] rounded-2xl shadow-2xl overflow-hidden">
-                            <img src="https://assurance-professionnels-auto.fr/image/negocie-auto.jpg" alt="Assurance négociant automobile" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 relative z-10">
+
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
+
+            {# ================= IMAGE ================= #}
+            <div class="order-2 lg:order-1 slide-in-left flex-1 lg:flex-[6]">
+
+                <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl">
+                    <img
+                        src="https://assurance-professionnels-auto.fr/image/negocie-auto.jpg"
+                        alt="Assurance négociant automobile"
+                        class="w-full h-full object-cover object-center"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+
+            {# ================= FORM ================= #}
+            <div class="order-1 lg:order-2 flex-1 lg:flex-[6] flex h-full">
+                <div class="w-full h-full bg-white rounded-xl lg:rounded-3xl shadow-2xl border border-gray-100 flex flex-col justify-between p-6 lg:p-8">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 mx-auto mb-3 flex items-center justify-center rounded-xl bg-orange-50">
+                            <i class="fas fa-calculator text-orange-500 text-xl lg:text-2xl"></i>
                         </div>
                     </div>
 
-                    <div class="w-full lg:w-1/2 order-1 lg:order-2 flex">
-                        {{ include('partials/form_partial.html.twig', {'form': form, 'title': 'Obtenez un devis gratuit', 'subtitle': 'Complétez en 2 minutes'}) }}
+                    <div class="flex-1">
+                        {{ include('partials/form_partial.html.twig', {
+                            'form': form,
+                            'title': 'Obtenez un devis gratuit',
+                            'subtitle': 'Complétez en 2 minutes',
+                            'showActivity': true,
+                            'showPostalCode': true
+                        }) }}
                     </div>
                 </div>
             </div>
+
+        </div>
+    </div>
         </section>
 
         {# Section 1 - Définition #}
-        <section class="py-20 bg-gray-50">
-             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 text-center">
-                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Assurance négociants automobiles</h2>
-                 <h3 class="text-xl font-semibold text-gray-700 mb-4">Définition</h3>
-                 <p class="text-gray-600 text-lg leading-relaxed">
-                    Une assurance pour négociant automobile est une police d'assurance spécialement conçue pour couvrir les besoins et les risques associés à l'activité des professionnels du commerce de véhicules automobiles. Les négociants automobiles achètent, vendent ou importent des véhicules, souvent en grande quantité, et nécessitent une couverture adaptée à leur activité.
-                </p>
-            </div>
-        </section>
+       {# Section 1 - Définition #}
+         <section class="py-16 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal opacity-0 translate-y-6 transition-all duration-700">
 
-        {# Section 2 - Garanties #}
-        <section class="py-20 md:py-28 bg-white" id="garanties">
-             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                 <div class="text-center mb-16">
-                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Garanties assurance RC négociants automobiles</h2>
-                     <p class="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                        Les garanties incluses dans une assurance négociants automobiles peuvent couvrir :
-                    </p>
-                </div>
-             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-    <div class="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:border-orange-400/50 shadow-lg hover:shadow-2xl hover:shadow-orange-100/20 transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🛡️</div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">Responsabilité Civile Professionnelle</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Covers damage caused to third parties (customers, suppliers, visitors, etc.) in connection with the company's activities.</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-5">
+                I- Assurance négociants automobiles
+            </h2>
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                1- Définition
+            </h3>
+
+            <p class="text-base text-gray-600 leading-relaxed">
+                Une assurance pour négociant automobile est une police d'assurance spécialement conçue pour couvrir les besoins et les risques associés à l'activité des professionnels du commerce de véhicules automobiles. Les négociants automobiles achètent, vendent ou importent des véhicules, souvent en grande quantité, et nécessitent une couverture adaptée à leur activité.
+            </p>
+
         </div>
-    </div>
-    
-    <div class="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:border-orange-400/50 shadow-lg hover:shadow-2xl hover:shadow-orange-100/20 transition-all duration-500 transform hover:-translate-y-2 hover:-rotate-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🏢</div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">Garantie des locaux</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Protects business premises such as showrooms, workshops, and offices against risks including fire, theft, vandalism, and water damage.</p>
+
+    </section>
+
+    {# ================= GARANTIES ================= #}
+    <section class="py-16 bg-gray-50" id="garanties">
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-12 reveal opacity-0 translate-y-6 transition-all duration-700">
+
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                2- Garanties assurance RC négociants automobiles
+            </h2>
+
+            <p class="text-gray-600">
+                Les garanties principales incluent souvent :
+            </p>
+
         </div>
-    </div>
-    
-    <div class="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:border-orange-400/50 shadow-lg hover:shadow-2xl hover:shadow-orange-100/20 transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🚗</div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">Assurance des véhicules en stock</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Covers vehicles held for sale against losses resulting from theft, fire, vandalism, or other covered incidents.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🛡️</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Responsabilité Civile Professionnelle</h3>
+                <p class="text-sm text-gray-500">Couvre les dommages causés à des tiers (clients, fournisseurs, visiteurs) dans le cadre de l'activité.</p>
+            </div>
+
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🏢</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Garantie des locaux</h3>
+                <p class="text-sm text-gray-500">Protège les locaux professionnels (showroom, atelier, bureaux) contre l'incendie, le vol, le vandalisme et les dégâts des eaux.</p>
+            </div>
+
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🚗</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Assurance des véhicules en stock</h3>
+                <p class="text-sm text-gray-500">Couvre les véhicules destinés à la vente contre le vol, l'incendie, le vandalisme et autres sinistres.</p>
+            </div>
+
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🚛</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Assurance flotte automobile</h3>
+                <p class="text-sm text-gray-500">Couverture pour les véhicules utilisés pour le transport, les essais, les livraisons et les démonstrations.</p>
+            </div>
+
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">⚖️</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Protection juridique</h3>
+                <p class="text-sm text-gray-500">Assistance et couverture financière en cas de litige avec clients, fournisseurs, employés ou administrations.</p>
+            </div>
+
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🛣️</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Essais et démonstrations</h3>
+                <p class="text-sm text-gray-500">Couverture des risques lors des essais clients et démonstrations de véhicules.</p>
+            </div>
+
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">💰</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Perte d'exploitation</h3>
+                <p class="text-sm text-gray-500">Indemnise les pertes financières dues à une interruption temporaire d'activité après un sinistre.</p>
+            </div>
+
         </div>
+
     </div>
+</section>
+
+        {# Section 3 - Devis #}
     
-    <div class="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:border-orange-400/50 shadow-lg hover:shadow-2xl hover:shadow-orange-100/20 transition-all duration-500 transform hover:-translate-y-2 hover:-rotate-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🚛</div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">Assurance flotte automobile</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Provides coverage for company vehicles used for transportation, test drives, deliveries, demonstrations, or after-sales services.</p>
-        </div>
-    </div>
-    
-    <div class="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:border-orange-400/50 shadow-lg hover:shadow-2xl hover:shadow-orange-100/20 transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">⚖️</div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">Protection juridique</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Offers legal assistance and financial support in the event of disputes with customers, suppliers, employees, or public authorities.</p>
-        </div>
-    </div>
-    
-    <div class="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:border-orange-400/50 shadow-lg hover:shadow-2xl hover:shadow-orange-100/20 transition-all duration-500 transform hover:-translate-y-2 hover:-rotate-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🛣️</div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">Essais et démonstrations</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Covers risks arising during customer test drives and vehicle demonstrations.</p>
-        </div>
-    </div>
-    
-    <div class="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 hover:border-orange-400/50 shadow-lg hover:shadow-2xl hover:shadow-orange-100/20 transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-            <div class="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">💰</div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">Perte d'exploitation</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Compensates for financial losses and loss of income resulting from a temporary interruption of business activities caused by a covered claim.</p>
+
+    <div class="py-12">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-[#312a8b] rounded-2xl p-6 md:p-8 shadow-xl text-center">
+            <h2 class="text-xl md:text-2xl font-bold text-white mb-2">                    II- Devis assurance RC PRO négociant
+</h2>
+            <p class="text-sm text-white/80 mb-5 max-w-2xl mx-auto">                    Pour obtenir un devis RC PRO négociant automobile, veuillez compléter le formulaire en haut de la page.
+</p>
+            <a href="{{ path('app_home') }}" class="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-[#312a8b] text-sm font-semibold rounded-xl hover:bg-gray-50 transition-all shadow-lg">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                    <rect x="9" y="3" width="6" height="4" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h4" />
+                </svg>
+                <span>                    Retour à l'accueil
+</span>
+            </a>
         </div>
     </div>
 </div>
-            </div>
-        </section>
-
-        {# Section 3 - Devis #}
-        <section class="max-w-3xl mx-auto sm:px-6 lg:px-8 my-16 text-center">
-            <h2 className="text-2xl font-bold mb-4">Devis assurance négociants automobiles</h2>
-            <p className="text-base text-gray-600">
-                Pour obtenir un devis assurance négociants automobiles, veuillez compléter le formulaire en haut de la page. Simple et rapide, obtenez votre devis en ligne et en quelques clics.
-            </p>
-        </section>
-
-        {# Back to Home Button #}
-        <div class="flex justify-center my-8 sm:my-12">
-            <a href="{{ path('app_home') }}" class="inline-flex items-center gap-2 sm:gap-3 bg-white text-[#312a8b] font-bold py-3 sm:py-4 px-6 sm:px-10 rounded-2xl hover:bg-indigo-50 transition-all transform hover:scale-105 shadow-2xl cursor-pointer">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 10H5M5 10L10 5M5 10L10 15" stroke="#312a8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Retour à l'accueil
-            </a>
-        </div>
 
         {{ include('partials/cookie_banner.html.twig') }}
     </main>
 
     {{ include('partials/footer.html.twig') }}
+
+    {# ================= ANIMATION SCRIPT ================= #}
+    <script>
+    function initRevealAnimations() {
+        const elements = document.querySelectorAll(".reveal");
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("opacity-100", "translate-y-0");
+                    entry.target.classList.remove("opacity-0", "translate-y-6");
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        elements.forEach(el => observer.observe(el));
+    }
+
+    document.addEventListener("DOMContentLoaded", initRevealAnimations);
+    document.addEventListener("turbo:load", initRevealAnimations);
+    </script>
+
 {% endblock %}

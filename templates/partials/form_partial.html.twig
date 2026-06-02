@@ -1,12 +1,8 @@
 {# Reusable form partial - form is passed as a parameter #}
 {% set showActivity = showActivity ?? true %}
 {% set showPostalCode = showPostalCode ?? true %}
-{% set title = title|default('Obtenez un devis gratuit') %}
-{% set subtitle = subtitle|default('Complétez en 2 minutes') %}
 
-<div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 h-full flex flex-col">
-    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-1">{{ title }}</h2>
-    <p class="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">{{ subtitle }}</p>
+<div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 h-full flex flex-col text-left">
     {{ form_errors(form) }}
     {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'space-y-4 flex-1 flex flex-col'}}) }}
         
@@ -28,7 +24,7 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>{{ form_row(form.ancienne) }}</div>
-            <div>{{ form_row(form.motif_resiliation) }}</div>
+            <div class="motif-container">{{ form_row(form.motif_resiliation) }}</div>
         </div>
         
         {% if showPostalCode %}
@@ -43,3 +39,49 @@
         {{ form_row(form.save) }}
     {{ form_end(form) }}
 </div>
+
+<style>
+.hidden {
+    display: none !important;
+}
+</style>
+
+<script>
+(function() {
+    function initMotifResiliation() {
+        var ancienneSelect = null;
+        var motifContainer = null;
+        
+        document.querySelectorAll('select').forEach(function(select) {
+            if ((select.getAttribute('name') || '').indexOf('[ancienne]') !== -1) {
+                ancienneSelect = select;
+            }
+        });
+        
+        motifContainer = document.querySelector('.motif-container');
+        
+        if (!ancienneSelect || !motifContainer) return;
+        
+        var motifSelect = motifContainer.querySelector('select');
+        
+        function toggleMotif() {
+            if (ancienneSelect.value === 'NON' || ancienneSelect.value === '') {
+                motifContainer.classList.add('hidden');
+                motifSelect.value = '';
+            } else if (ancienneSelect.value === 'OUI') {
+                motifContainer.classList.remove('hidden');
+            }
+        }
+        
+        ancienneSelect.addEventListener('change', toggleMotif);
+        toggleMotif();
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMotifResiliation);
+    } else {
+        initMotifResiliation();
+    }
+    document.addEventListener('turbo:load', initMotifResiliation);
+})();
+</script>

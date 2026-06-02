@@ -1,6 +1,6 @@
 <section class="py-20 md:py-28 bg-gradient-to-b from-slate-50 to-white" id="activites">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 reveal opacity-0 translate-y-6 transition-all duration-700">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Assurance MRP automobile
             </h2>
@@ -10,18 +10,11 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <a href="{{ path('app_garage') }}" class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block cursor-pointer">
-                <div class="absolute top-0 right-0 w-24 h-24 -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="48" cy="48" r="47" stroke="#312a8b" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.3"/>
-                        <circle cx="48" cy="48" r="35" stroke="#312a8b" stroke-width="0.5" opacity="0.15"/>
-                        <circle cx="48" cy="48" r="22" fill="#312a8b" opacity="0.06"/>
-                    </svg>
-                </div>
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🏠</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Garagistes</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Ateliers de réparation, entretien et maintenance automobile.</p>
-                <div class="flex items-center text-sm font-medium text-[#312a8b] mt-2">
+            <a href="{{ path('app_garage') }}" class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1 block cursor-pointer">
+                <div class="text-2xl mb-3">🏠</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Garagistes</h3>
+                <p class="text-sm text-gray-500">Ateliers de réparation, entretien et maintenance automobile.</p>
+                <div class="flex items-center text-sm font-medium text-indigo-600 mt-2">
                     <span class="group-hover:underline">En savoir plus</span>
                     <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -29,17 +22,17 @@
                 </div>
             </a>
 
-            <div class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block">
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🏢</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Concessionnaires</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Vente de véhicules neufs et occasions.</p>
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🏢</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Concessionnaires</h3>
+                <p class="text-sm text-gray-500">Vente de véhicules neufs et occasions.</p>
             </div>
 
-            <a href="{{ path('app_loueur') }}" class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block cursor-pointer">
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🚗</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Loueurs de véhicules</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Location courte et longue durée.</p>
-                <div class="flex items-center text-sm font-medium text-[#312a8b] mt-2">
+            <a href="{{ path('app_loueur') }}" class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1 block cursor-pointer">
+                <div class="text-2xl mb-3">🚗</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Loueurs de véhicules</h3>
+                <p class="text-sm text-gray-500">Location courte et longue durée.</p>
+                <div class="flex items-center text-sm font-medium text-indigo-600 mt-2">
                     <span class="group-hover:underline">En savoir plus</span>
                     <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -47,29 +40,29 @@
                 </div>
             </a>
 
-            <div class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block">
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🚛</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Dépanneurs</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Remorquage et assistance routière.</p>
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🚛</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Dépanneurs</h3>
+                <p class="text-sm text-gray-500">Remorquage et assistance routière.</p>
             </div>
 
-            <div class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block">
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">⛽</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Stations-services</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Distribution de carburant et services.</p>
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">⛽</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Stations-services</h3>
+                <p class="text-sm text-gray-500">Distribution de carburant et services.</p>
             </div>
 
-            <div class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block">
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🔬</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Centres techniques</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Contrôle technique et diagnostics.</p>
+            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
+                <div class="text-2xl mb-3">🔬</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Centres techniques</h3>
+                <p class="text-sm text-gray-500">Contrôle technique et diagnostics.</p>
             </div>
 
-            <a href="{{ path('app_negociants') }}" class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block cursor-pointer">
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">🤝</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Négociants auto</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Achat et revente de véhicules.</p>
-                <div class="flex items-center text-sm font-medium text-[#312a8b] mt-2">
+            <a href="{{ path('app_negociants') }}" class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1 block cursor-pointer">
+                <div class="text-2xl mb-3">🤝</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Négociants auto</h3>
+                <p class="text-sm text-gray-500">Achat et revente de véhicules.</p>
+                <div class="flex items-center text-sm font-medium text-indigo-600 mt-2">
                     <span class="group-hover:underline">En savoir plus</span>
                     <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -77,32 +70,17 @@
                 </div>
             </a>
 
-            <a href="{{ path('app_auto_ecole') }}" class="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#312a8b]/30 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 transform hover:-translate-y-1 block cursor-pointer">
-                <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">📚</div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#312a8b] transition-colors">Auto-écoles</h3>
-                <p class="text-sm text-gray-500 leading-relaxed">Enseignement de la conduite.</p>
-                <div class="flex items-center text-sm font-medium text-[#312a8b] mt-2">
+            <a href="{{ path('app_auto_ecole') }}" class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 group relative bg-white rounded-2xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1 block cursor-pointer">
+                <div class="text-2xl mb-3">📚</div>
+                <h3 class="text-base font-bold text-gray-900 mb-1">Auto-écoles</h3>
+                <p class="text-sm text-gray-500">Enseignement de la conduite.</p>
+                <div class="flex items-center text-sm font-medium text-indigo-600 mt-2">
                     <span class="group-hover:underline">En savoir plus</span>
                     <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </div>
             </a>
-        </div>
-
-        <div class="text-center mt-12 sm:mt-16">
-            <button
-                onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-                class="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-[#312a8b] hover:bg-[#261f6e] text-white rounded-2xl text-base sm:text-lg font-bold transition-all shadow-lg hover:shadow-2xl transform hover:-translate-y-1"
-            >
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-                    <rect x="9" y="3" width="6" height="4" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h4" />
-                </svg>
-                Obtenir un devis personnalisé
-            </button>
         </div>
     </div>
 </section>

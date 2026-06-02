@@ -44,7 +44,6 @@ class Devi
     private ?string $ancienne = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Choice(choices: ['Sinistre', 'Non paiement', 'Amiable', 'Échéance'], message: 'Motif invalide.')]
     private ?string $motif_resiliation = null;
 
     #[ORM\Column(length: 10, nullable: true)]

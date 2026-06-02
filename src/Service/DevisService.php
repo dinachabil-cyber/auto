@@ -21,6 +21,7 @@ class DevisService
     public function createDevi(FormInterface $form): mixed
     {
         $devi = $form->getData();
+        $this->handleAncienneAssurance($devi);
         $this->entityManager->persist($devi);
         $this->entityManager->flush();
         return $devi;
@@ -64,8 +65,22 @@ class DevisService
     private function createDeviCommon(FormInterface $form): mixed
     {
         $entity = $form->getData();
+        $this->handleAncienneAssurance($entity);
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
         return $entity;
+    }
+
+    /**
+     * Set motif_resiliation to NULL when ancienne assurance is not résiliée (NON)
+     */
+    private function handleAncienneAssurance(object $entity): void
+    {
+        if (method_exists($entity, 'getAncienne') && method_exists($entity, 'setMotifResiliation')) {
+            $ancienne = $entity->getAncienne();
+            if ($ancienne !== 'OUI') {
+                $entity->setMotifResiliation(null);
+            }
+        }
     }
 }
