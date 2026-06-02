@@ -1,39 +1,62 @@
-<footer class="bg-[#312a8b] text-gray-300" role="contentinfo">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer class="bg-[#312a8b] text-gray-300 relative overflow-hidden" role="contentinfo">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+    
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
             <div class="lg:col-span-1">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-lg font-bold text-white">Aksam Assurance</span>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                        <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 8L50 14L50 32C50 41 42 49 32 53C22 49 14 41 14 32L14 14Z" fill="white"/>
+                            <path d="M20 37L20 33L23 27L29 26L35 26L41 27L44 33L44 37Z" fill="#312a8b"/>
+                            <path d="M24 27L25.5 31L38.5 31L40 27Z" fill="rgba(49,42,139,0.25)"/>
+                            <circle cx="26" cy="37" r="3" fill="#312a8b"/>
+                            <circle cx="38" cy="37" r="3" fill="#312a8b"/>
+                            <circle cx="26" cy="37" r="1.3" fill="white"/>
+                            <circle cx="38" cy="37" r="1.3" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white font-display">
+                            Aksam <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">Assurance</span>
+                        </h3>
+                        <p class="text-sm text-gray-400">Professionnels Auto</p>
+                    </div>
                 </div>
-                <p class="text-sm leading-relaxed text-gray-400">
-                    Spécialiste de l'assurance des professionnels de l'automobile.
-                    Comparez et obtenez votre devis en ligne.
+                
+                <p class="text-sm leading-relaxed text-gray-400 max-w-xs">
+                    Spécialiste de l'assurance des professionnels de l'automobile. Comparez et obtenez votre devis en ligne.
                 </p>
+                
+               
             </div>
+
+            
 
             <div>
                 <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Informations</h4>
                 <ul class="space-y-3">
-                    <li><a href="{{ path('app_mentions_legales') }}" class="text-sm hover:text-[#5a4fbf] transition-colors">Mentions légales</a></li>
-                    <li><a href="{{ path('app_politique_confidentialite') }}" class="text-sm hover:text-[#5a4fbf] transition-colors">Politique de confidentialité</a></li>
+                    <li><a href="{{ path('app_mentions_legales') }}" class="text-sm text-gray-300 hover:text-white transition-colors">Mentions légales</a></li>
+                    <li><a href="{{ path('app_politique_confidentialite') }}" class="text-sm text-gray-300 hover:text-white transition-colors">Politique de confidentialité</a></li>
                 </ul>
             </div>
 
             <div>
                 <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Contact</h4>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li>10 rue de Penthièvre</li>
-                    <li>75008 Paris</li>
-                    <li><a href="tel:0182834800" class="hover:text-[#5a4fbf] transition-colors">01 82 83 48 00</a></li>
-                    <li><a href="mailto:contact@aksam-assurances.fr" class="hover:text-[#5a4fbf] transition-colors">contact@aksam-assurances.fr</a></li>
-                </ul>
+                <address class="space-y-3 text-sm text-gray-300 not-italic">
+                    <p>10 rue de Penthièvre</p>
+                    <p>75008 Paris</p>
+                    <p class="pt-2">
+                        <a href="tel:0182834800" class="text-white hover:text-indigo-300 transition-colors">01 82 83 48 00</a>
+                    </p>
+                    <p><a href="mailto:contact@aksam-assurances.fr" class="hover:text-indigo-300 transition-colors">contact@aksam-assurances.fr</a></p>
+                </address>
             </div>
         </div>
 
-        <div class="border-t border-[#312a8b]/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <div class="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
             <p>© {{ 'now'|date('Y') }} Aksam Assurance — Tous droits réservés</p>
-            <div class="flex items-center gap-4">
-            </div>
+         
         </div>
     </div>
 </footer>

@@ -1,7 +1,7 @@
-{# Custom form theme to match React styling #}
+{# Custom form theme to match modern styling #}
 {% block form_row %}
 {% spaceless %}
-    <div>
+    <div class="flex flex-col gap-1.5">
         {{ form_label(form) }}
         {{ form_widget(form) }}
         {{ form_errors(form) }}
@@ -14,7 +14,7 @@
     {% if label is not same as(false) %}
         <label{% if label_attr %}{% for key, value in label_attr %} {{ key }}="{{ value }}"{% endfor %}{% endif %}{{ block('translation_domain_attribute') }}{% if required %} class="required"{% endif %}{% if label is not same as(null) %} for="{{ id }}"{% endif %}>
             {% if label is not same as(null) %}{{ label|trans({}, translation_domain) }}{% endif %}
-            {% if required %} <span class="required" aria-hidden="true">*</span>{% endif %}
+            {% if required %} <span class="text-red-500 ml-0.5" aria-hidden="true">*</span>{% endif %}
         </label>
     {% endif %}
 {% endspaceless %}
@@ -23,18 +23,65 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value %}value="{{ value }}"{% endif %} />
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value %}value="{{ value }}"{% endif %} 
+           class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200" />
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
-{% block choice_widget_options %}
+{% block textarea_widget %}
 {% spaceless %}
-    {% for group_label, options in options if options is iterable and options is not same as('') %}
-        <optgroup label="{{ group_label|trans({}, translation_domain) }}">
-            {{ block('choice_widget_options') }}
-        </optgroup>
-    {% else %}
-        <option value="{{ value|e }}" {% if selected %}selected="selected"{% endif %} {{ block('attr') }}>{{ label|trans({}, translation_domain) }}</option>
-    {% endfor %}
+    <textarea {{ block('widget_attributes') }} 
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none" 
+              rows="4">{{ value }}</textarea>
 {% endspaceless %}
-{% endblock choice_widget_options %}
+{% endblock textarea_widget %}
+
+{% block choice_widget_collapsible %}
+{% spaceless %}
+    <select {{ block('widget_attributes') }} 
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 appearance-none cursor-pointer">
+        <option value="">Sélectionner...</option>
+        {% for group_label, options in options if options is iterable and options is not same as('') %}
+            <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                {{ block('choice_widget_options') }}
+            </optgroup>
+        {% else %}
+            {{ block('choice_widget_options') }}
+        {% endfor %}
+    </select>
+{% endspaceless %}
+{% endblock choice_widget_collapsible %}
+
+{% block button_widget %}
+{% spaceless %}
+    <button type="{{ type|default('submit') }}" {{ block('widget_attributes') }} 
+            class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transform hover:-translate-y-1 transition-all duration-300 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        {% if 'save' in id %}
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                <rect x="9" y="3" width="6" height="4" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h4" />
+            </svg>
+            <span>Obtenir mon devis gratuit</span>
+        {% else %}
+            {{ value|trans({}) }}
+        {% endif %}
+    </button>
+{% endspaceless %}
+{% endblock button_widget %}
+
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+        <ul class="mt-2 space-y-1">
+            {% for error in errors %}
+                <li class="text-sm text-red-600 flex items-start gap-1">
+                    <i class="fas fa-exclamation-circle text-xs mt-0.5"></i>
+                    <span>{{ error.message }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
