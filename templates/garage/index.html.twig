@@ -8,236 +8,653 @@
 {% endblock %}
 
 {% block body %}
-    {{ include('partials/header.html.twig') }}
-    
-    <main id="main-content" class="flex-1">
-        {# Hero Section with Form #}
-        <section class="py-12 lg:py-20 bg-white hero-pattern relative overflow-hidden">
-            <div class="absolute inset-0 scanlines-bg opacity-30"></div>
-            <div class="absolute top-6 left-6 sm:top-10 sm:left-10 floating-animation"><i class="fas fa-car text-orange-400 text-4xl sm:text-6xl opacity-30"></i></div>
-            <div class="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 floating-animation"><i class="fas fa-shield-alt text-orange-500 text-6xl sm:text-8xl opacity-25"></i></div>
+{{ include('partials/header.html.twig') }}
 
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 relative z-10">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-        <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
-            <div class="order-2 lg:order-1 slide-in-left flex-1 lg:flex-[6]">
+/* ── Design tokens ──────────────────────────────────────── */
+:root {
+  --brand:        #0b3dff;
+  --brand-dark:   #0028c4;
+  --brand-light:  #dde5ff;
+  --brand-xlight: #eef1ff;
+  --accent:       #ff7a18;
+  --accent-dark:  #e05e00;
+  --surface:      #f6f7fb;
+  --text-primary: #0d1117;
+  --text-muted:   #5a6478;
+  --border:       #e4e7f0;
+  --white:        #ffffff;
+  --radius-sm:    10px;
+  --radius-md:    16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+}
 
-                <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl">
-                    <img
-                        src="https://assurance-professionnels-auto.fr/image/proauto-garage.jpg"
-                        alt="Assurance garage automobile"
-                        class="w-full h-full object-cover object-center"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-            <div class="order-1 lg:order-2 flex-1 lg:flex-[6] flex h-full">
-                <div class="w-full h-full bg-white rounded-xl lg:rounded-3xl shadow-2xl border border-gray-100 flex flex-col justify-between p-6 lg:p-8">
-                   
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-primary);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
 
-                    <div class="flex-1">
-                        {{ include('partials/form_partial.html.twig', {
-                            'form': form,
-                            'title': 'Obtenez un devis gratuit',
-                            'subtitle': 'Complétez en 2 minutes',
-                            'showActivity': true,
-                            'showPostalCode': true
-                        }) }}
-                    </div>
-                </div>
-            </div>
+h1, h2, h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -.02em;
+}
 
+/* ── Utility: section tag pill ──────────────────────────── */
+.stag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--brand-xlight);
+  padding: .3rem .85rem;
+  border-radius: 999px;
+  border: 1px solid var(--brand-light);
+  margin-bottom: 1rem;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  background: var(--surface);
+  overflow: hidden;
+  padding: 5rem 0 0;
+}
+
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero::before {
+  width: 700px; height: 700px;
+  top: -200px; right: -120px;
+  background: radial-gradient(circle, rgba(11,61,255,.07) 0%, transparent 70%);
+}
+.hero::after {
+  width: 400px; height: 400px;
+  bottom: -80px; left: 5%;
+  background: radial-gradient(circle, rgba(255,122,24,.08) 0%, transparent 70%);
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-text  { order: 1; }
+  .hero-form  { order: 2; }
+}
+
+.hero-text { padding-bottom: 4rem; }
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--brand);
+}
+
+/* ── Hero form panel ────────────────────────────────────── */
+.hero-form {
+  position: relative;
+  z-index: 1;
+}
+.hero-form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: 0 -4px 40px rgba(11,61,255,.08), 0 0 0 1px rgba(11,61,255,.04);
+  padding: 2.25rem 2rem 2rem;
+}
+.hero-form-eyebrow {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: .5rem;
+}
+.hero-form-card h2 {
+  font-size: 1.35rem;
+  margin-bottom: .35rem;
+  color: var(--text-primary);
+}
+.hero-form-card p {
+  font-size: .84rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Form fields overrides ─────────────────────────────── */
+.form-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 12px;
+}
+.field-full { grid-column: 1 / -1; }
+
+.field-row {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--white);
+  transition: border-color .18s, box-shadow .18s;
+}
+.field-row:focus-within {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(11,61,255,.1);
+}
+.field-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-height: 42px;
+  background: var(--brand-xlight);
+  border-right: 1.5px solid var(--brand-light);
+  flex-shrink: 0;
+  color: var(--brand);
+  font-size: 12px;
+  transition: background .18s;
+}
+.field-row:focus-within .field-icon {
+  background: var(--brand-light);
+}
+.field-input { flex: 1; min-width: 0; }
+.field-input .mb-3, .field-input div { margin: 0 !important; padding: 0 !important; }
+.field-input label { display: none; }
+.field-input input,
+.field-input select,
+.field-input textarea {
+  display: block; width: 100%; height: 42px;
+  padding: 0 12px; background: transparent;
+  border: none; outline: none; border-radius: 0;
+  font-size: .84rem; font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-primary); -webkit-appearance: none; appearance: none;
+}
+.field-input select {
+  background-image: url("data:image/svg+w3c,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath fill='%230b3dff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  background-color: transparent;
+  padding-right: 30px;
+  cursor: pointer;
+}
+.field-input input::placeholder { color: #b2bacc; }
+
+.form-footer { margin-top: 14px; }
+.form-footer button,
+.form-footer input[type="submit"] {
+  display: block; width: 100%;
+  height: 46px;
+  background: var(--brand);
+  color: #fff; border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .9rem; font-weight: 700;
+  letter-spacing: .02em; cursor: pointer;
+  transition: background .18s, transform .12s, box-shadow .18s;
+  box-shadow: 0 4px 14px rgba(11,61,255,.35);
+}
+.form-footer button:hover,
+.form-footer input[type="submit"]:hover {
+  background: var(--brand-dark);
+  box-shadow: 0 6px 20px rgba(11,61,255,.45);
+  transform: translateY(-1px);
+}
+
+/* ── Section base ───────────────────────────────────────── */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.section-head { text-align: center; margin-bottom: 4rem; }
+.section-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: .75rem; }
+.section-head p  { font-size: 1rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+/* ── Intro strip ────────────────────────────────────────── */
+.intro-strip {
+  padding: 5rem 0;
+  background: var(--white);
+}
+.intro-strip .section-head { max-width: 700px; margin-inline: auto; margin-bottom: 0; }
+.intro-strip .section-head p { font-size: 1.05rem; line-height: 1.8; }
+
+/* ── Guarantees — flip cards ────────────────────────────── */
+.guarantees-section {
+  padding: 5rem 0 6rem;
+  background: var(--surface);
+}
+
+.g-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) { .g-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .g-grid { grid-template-columns: 1fr; } }
+
+.g-card {
+  perspective: 900px;
+  height: 230px;
+  cursor: pointer;
+}
+@media (max-width: 560px) { .g-card { height: 210px; } }
+
+.g-card-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .55s cubic-bezier(.4, 0, .2, 1);
+  border-radius: var(--radius-md);
+}
+.g-card:hover .g-card-inner { transform: rotateY(180deg); }
+
+.g-front, .g-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.g-front {
+  background: var(--white);
+  border: 1px solid var(--border);
+  justify-content: flex-start;
+  gap: .65rem;
+}
+.g-icon-wrap {
+  width: 44px; height: 44px;
+  background: var(--brand-xlight);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.g-front h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+.g-front-hint {
+  margin-top: auto;
+  font-size: .72rem;
+  color: var(--brand);
+  font-weight: 600;
+  letter-spacing: .04em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.g-front-hint svg { opacity: .6; }
+
+.g-back {
+  background: var(--brand);
+  border: 1px solid var(--brand-dark);
+  transform: rotateY(180deg);
+  justify-content: center;
+  gap: .75rem;
+}
+.g-back-icon {
+  font-size: 1.6rem;
+}
+.g-back h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.g-back p {
+  font-size: .78rem;
+  color: rgba(255,255,255,.82);
+  line-height: 1.65;
+}
+
+/* ── CTA banner ─────────────────────────────────────────── */
+.cta-wrap {
+  padding: 4rem 0 5rem;
+  background: var(--white);
+}
+.cta-box {
+  background: var(--brand);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -60%; right: -5%;
+  width: 60%; height: 220%;
+  background: rgba(255,255,255,.04);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cta-box h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--white);
+  margin-bottom: .85rem;
+}
+.cta-box p { color: rgba(255,255,255,.7); font-size: 1rem; line-height: 1.7; max-width: 520px; margin: 0 auto 2rem; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  padding: .85rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background .2s, transform .18s;
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+/* ── Reveal ─────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-text { padding-bottom: 2rem; }
+  .hero-form-card { border-radius: var(--radius-lg); }
+  .form-grid { grid-template-columns: 1fr; }
+  .field-full { grid-column: 1; }
+}
+</style>
+
+<main id="main-content" class="flex-1">
+  {# ── Hero Section with Form ── #}
+  <section class="hero">
+    <div class="hero-inner">
+      
+      {# Form Column - Responsive placement #}
+      <div class="hero-form reveal order-1 lg:order-2" style="transition-delay:.15s">
+        <div class="hero-form-card">
+          <div class="hero-form-eyebrow">Votre devis</div>
+          <h2>Obtenez votre tarif en 2 minutes</h2>
+          <p>Nos conseillers étudient votre dossier et vous répondent rapidement.</p>
+          
+          {{ include('partials/form_partial.html.twig', {
+              'form': form,
+              'showActivity': true,
+              'showPostalCode': true
+          }) }}
         </div>
+      </div>
+
+      {# Image Column #}
+      <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1">
+        <img
+          src="https://assurance-professionnels-auto.fr/image/proauto-garage.jpg"
+          alt="Assurance garage automobile"
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      </div>
+
     </div>
-</section>
+  </section>
 
-        {# Definition Section #}
-        <section class="py-16 bg-white">
-
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal opacity-0 translate-y-6 transition-all duration-700">
-
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-5">
-                I- Assurance garage automobile
-            </h2>
-
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">
-                1- Définition
-            </h3>
-
-            <p class="text-base text-gray-600 leading-relaxed">
-                Une assurance pour l’activité de garagiste est une couverture spécialement conçue pour les professionnels du secteur automobile qui exploitent des garages ou tout autre établissement proposant des services liés à la réparation des véhicules. Elle vise à protéger le garagiste contre les risques spécifiques à son activité et à couvrir les responsabilités, les biens, ainsi que les véhicules confiés par ses clients.
-            </p>
-
-        </div>
-
-    </section>
-
-    {# ================= GUARANTEES ================= #}
-   <section class="py-16 bg-gray-50" id="garanties">
-
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-12 reveal opacity-0 translate-y-6 transition-all duration-700">
-
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                2- Garantie RC PRO garage automobile
-            </h2>
-
-            <p class="text-gray-600">
-                Les garanties principales incluent souvent :
-            </p>
-
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">🛡️</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Responsabilité Civile Professionnelle (RC Pro)
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Couvre les dommages matériels, immatériels et corporels causés à des tiers (clients, fournisseurs, visiteurs) dans le cadre de l'activité.
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">🏗️</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Responsabilité Civile Exploitation
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Protège le garagiste contre les dommages causés dans le cadre de l'exploitation de l'entreprise (ex : client glisse dans le garage).
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">🚗</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Responsabilité Civile après Livraison
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Couvre les conséquences d'un sinistre lié à une intervention sur un véhicule (ex : réparation défectueuse causant un accident).
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">🔧</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Garantie des biens professionnels
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Protège les locaux, équipements et outils du garage contre incendie, vol ou dégâts des eaux.
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">⚖️</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Assurance des véhicules confiés
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Couvre les véhicules des clients lorsqu’ils sont sous la garde du garagiste pour réparation ou entretien.
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">💰</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Assurance essais et déplacements / perte d’exploitation
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Protège les véhicules clients lors d’essais routiers ou déplacements effectués par les employés.
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">🛡️</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Protection juridique
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Offre une assistance et une couverture financière en cas de litige avec un client, fournisseur ou administration.
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">📉</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Perte d’exploitation
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Indemnise les pertes financières liées à une interruption d’activité causée par un sinistre.
-                </p>
-            </div>
-
-            <div class="reveal opacity-0 translate-y-6 transition-all duration-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                <div class="text-2xl mb-3">🚗</div>
-                <h3 class="text-base font-bold text-gray-900 mb-1">
-                    Flotte automobile (si applicable)
-                </h3>
-                <p class="text-sm text-gray-500">
-                    Couvre les véhicules appartenant au garage (prêt ou remplacement).
-                </p>
-            </div>
-
-        </div>
-
+  {# ── Section 1 - Définition ── #}
+  <section class="intro-strip">
+    <div class="section">
+      <div class="section-head reveal">
+        <span class="stag">
+          <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+          I - Assurance garage automobile
+        </span>
+        <h2>1 - Définition de la couverture</h2>
+        <p>
+          Une assurance pour l’activité de garagiste est une couverture spécialement conçue pour les professionnels du secteur automobile qui exploitent des garages ou tout autre établissement proposant des services liés à la réparation des véhicules. Elle vise à protéger le garagiste contre les risques spécifiques à son activité et à couvrir les responsabilités, les biens, ainsi que les véhicules confiés par ses clients.
+        </p>
+      </div>
     </div>
-</section>
+  </section>
 
-    {# ================= CTA ================= #}
-    
+  {# ── Section 2 - Garanties (3D Flip Grid) ── #}
+  <section class="guarantees-section" id="garanties">
+    <div class="section">
+      
+      <div class="section-head reveal">
+        <span class="stag">Couvertures</span>
+        <h2>2 - Garantie RC PRO garage automobile</h2>
+        <p>Les principales garanties indispensables pour protéger et sécuriser l'ensemble de vos interventions quotidiennes.</p>
+      </div>
 
-    <div class="py-12">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-[#312a8b] rounded-2xl p-6 md:p-8 shadow-xl text-center">
-            <h2 class="text-xl md:text-2xl font-bold text-white mb-2">                    II- Devis assurance garagiste
-</h2>
-            <p class="text-sm text-white/80 mb-5 max-w-2xl mx-auto">                    Pour obtenir un devis RCPRO garagiste veuillez compléter le formulaire en haut de la page.
-</p>
-            <a href="{{ path('app_home') }}" class="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-[#312a8b] text-sm font-semibold rounded-xl hover:bg-gray-50 transition-all shadow-lg">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-                    <rect x="9" y="3" width="6" height="4" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h4" />
-                </svg>
-                <span>                    Retour à l'accueil
-</span>
-            </a>
+      <div class="g-grid">
+
+        {# Card 1 #}
+        <div class="g-card reveal" style="transition-delay:.05s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🛡️</div>
+              <h3>Responsabilité Civile Professionnelle</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">🛡️</div>
+              <h3>RC Professionnelle</h3>
+              <p>Couvre les dommages matériels, immatériels et corporels causés à des tiers (clients, fournisseurs, visiteurs) dans le cadre direct de vos activités mécaniques.</p>
+            </div>
+          </div>
         </div>
+
+        {# Card 2 #}
+        <div class="g-card reveal" style="transition-delay:.1s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🏗️</div>
+              <h3>Responsabilité Civile Exploitation</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">🏗️</div>
+              <h3>RC Exploitation</h3>
+              <p>Protège le garagiste contre les incidents involontaires survenant au sein des locaux hors intervention technique (par exemple, un client qui glisse dans l'atelier).</p>
+            </div>
+          </div>
+        </div>
+
+        {# Card 3 #}
+        <div class="g-card reveal" style="transition-delay:.15s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🚗</div>
+              <h3>Responsabilité Civile après Livraison</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">🚗</div>
+              <h3>RC Après Livraison</h3>
+              <p>Couvre les conséquences d’un sinistre ou d'un accident routier causé directement par un défaut de montage ou une intervention mécanique défectueuse.</p>
+            </div>
+          </div>
+        </div>
+
+        {# Card 4 #}
+        <div class="g-card reveal" style="transition-delay:.2s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🔧</div>
+              <h3>Garantie des biens professionnels</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">🔧</div>
+              <h3>Biens & Matériels</h3>
+              <p>Protège l’infrastructure de vos locaux, vos ponts élévateurs, vos outils de diagnostic et équipements contre l'incendie, le vol ou le dégât des eaux.</p>
+            </div>
+          </div>
+        </div>
+
+        {# Card 5 #}
+        <div class="g-card reveal" style="transition-delay:.25s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">⚖️</div>
+              <h3>Assurance des véhicules confiés</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">⚖️</div>
+              <h3>Véhicules Confiés</h3>
+              <p>Couvre intégralement les dommages subis par les véhicules de vos clients lorsqu'ils sont sous votre garde pour maintenance ou réparation.</p>
+            </div>
+          </div>
+        </div>
+
+        {# Card 6 #}
+        <div class="g-card reveal" style="transition-delay:.3s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">💰</div>
+              <h3>Assurance essais et déplacements</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">💰</div>
+              <h3>Essais Routiers</h3>
+              <p>Assure une couverture complète sur la route lorsque vos employés effectuent des essais techniques ou déplacent les véhicules clients.</p>
+            </div>
+          </div>
+        </div>
+
+        {# Card 7 #}
+        <div class="g-card reveal" style="transition-delay:.35s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🛡️</div>
+              <h3>Protection juridique</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">🛡️</div>
+              <h3>Protection Juridique</h3>
+              <p>Offre une assistance et prend en charge les frais financiers en cas de litige juridique avec un tiers, un fournisseur ou une administration.</p>
+            </div>
+          </div>
+        </div>
+
+        {# Card 8 #}
+        <div class="g-card reveal" style="transition-delay:.4s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">📉</div>
+              <h3>Perte d’exploitation</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">📉</div>
+              <h3>Perte d’Exploitation</h3>
+              <p>Indemnise vos pertes financières et charges fixes si un sinistre majeur vous contraint à une interruption totale ou partielle d'activité.</p>
+            </div>
+          </div>
+        </div>
+
+        {# Card 9 #}
+        <div class="g-card reveal" style="transition-delay:.45s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🚗</div>
+              <h3>Flotte automobile</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">🚗</div>
+              <h3>Flotte Interne</h3>
+              <p>Couvre l'ensemble des véhicules appartenant à votre entité commerciale, qu'ils soient dédiés au dépannage ou aux véhicules de courtoisie.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-</div>
+  </section>
 
-    {{ include('partials/cookie_banner.html.twig') }}
+  {# ── Section 3 - CTA Banner ── #}
+  <section class="cta-wrap">
+    <div class="section">
+      <div class="cta-box reveal">
+        <p style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.75rem">Devis assurance en ligne</p>
+        <h2>II - Devis assurance garagiste</h2>
+        <p>
+          Pour obtenir un devis RCPRO garagiste personnalisé, veuillez compléter notre formulaire en haut de la page.
+        </p>
+        <a href="{{ path('app_home') }}" class="btn-primary">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </section>
 
+  {{ include('partials/cookie_banner.html.twig') }}
 </main>
 
 {{ include('partials/footer.html.twig') }}
 
-{# ================= ANIMATION SCRIPT ================= #}
 <script>
-function initRevealAnimations() {
-    const elements = document.querySelectorAll(".reveal");
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("opacity-100", "translate-y-0");
-                entry.target.classList.remove("opacity-0", "translate-y-6");
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-    
-    elements.forEach(el => observer.observe(el));
+function initReveal() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 }
-
-document.addEventListener("DOMContentLoaded", initRevealAnimations);
-document.addEventListener("turbo:load", initRevealAnimations);
+document.addEventListener('DOMContentLoaded', initReveal);
+document.addEventListener('turbo:load', initReveal);
 </script>
-
 {% endblock %}

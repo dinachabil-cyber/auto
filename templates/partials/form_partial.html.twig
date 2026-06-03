@@ -1,8 +1,17 @@
 {# Reusable form partial - form is passed as a parameter #}
-{% set showActivity = showActivity ?? true %}
-{% set showPostalCode = showPostalCode ?? true %}
+{% set showActivity = showActivity|default(true) %}
+{% set showPostalCode = showPostalCode|default(true) %}
+{% set title = title|default('') %}
+{% set subtitle = subtitle|default('') %}
 
 <div class="form-card">
+
+{% if title %}
+    <h2 class="text-xl font-bold text-gray-900 mb-3">{{ title }}</h2>
+{% endif %}
+{% if subtitle %}
+    <p class="text-sm text-gray-500 mb-6">{{ subtitle }}</p>
+{% endif %}
 
     {{ form_errors(form) }}
 <div style="color:red">

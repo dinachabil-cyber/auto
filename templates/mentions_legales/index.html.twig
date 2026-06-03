@@ -8,157 +8,241 @@
 
 {% block body %}
 {{ include('partials/header.html.twig') }}    
-    <!-- Hero Section -->
-    <section class="py-12 lg:py-20 bg-white hero-pattern relative overflow-hidden">
-        <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/* ── Design Tokens & Base Theme ────────────────────────── */
+:root {
+  --brand-primary: #312a8b;
+  --brand-gradient: linear-gradient(135deg, #312a8b 0%, #4f46e5 100%);
+  --text-dark: #1f2937;
+  --text-muted: #4b5563;
+  --bg-light: #f9fafb;
+  --accent-gold: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+.legal-body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+}
+
+/* ── Custom Pattern & Background Effects ────────────────── */
+.hero-pattern {
+  background-color: #ffffff;
+  background-image: radial-gradient(#4f46e5 0.5px, transparent 0.5px), radial-gradient(#4f46e5 0.5px, #ffffff 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  background-opacity: 0.02;
+}
+
+.scanlines-bg {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.03) 50%
+  );
+  background-size: 100% 4px;
+}
+
+/* ── Typography & Gradients ────────────────────────────── */
+.text-gradient {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* ── Article / Prose Layout Fixes ──────────────────────── */
+.legal-prose h2 {
+  color: var(--brand-primary);
+  border-left: 4px solid #f59e0b;
+  padding-left: 12px;
+  margin-top: 2.5rem;
+}
+
+.legal-prose h3 {
+  color: #374151;
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+.legal-prose p {
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.legal-prose ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  list-style-type: none;
+}
+
+.legal-prose ul li::before {
+  content: "•";
+  color: #f59e0b;
+  font-weight: bold;
+  font-size: 1.25rem;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+</style>
+
+<div class="legal-body">
+    <section class="py-12 lg:py-20 hero-pattern relative overflow-hidden border-b border-gray-100">
+        <div class="absolute inset-0 scanlines-bg opacity-20"></div>
         
-        <div class="max-w mx-auto sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center">
-              
-                <h1 class="text-4xl lg:text-3xl font-bold text-gradient mb-4">Mentions légales</h1>
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-gradient mb-4">Mentions légales</h1>
                 <div class="w-20 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 mx-auto rounded-full"></div>
             </div>
         </div>
     </section>
 
-    <!-- Content Section -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
-        <div class="bg-white rounded-xl shadow-xl p-8">
-        <article class="prose prose-lg max-w-none">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10 md:p-12 transition-all">
+            <article class="legal-prose space-y-6">
          
-          <section class="mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Conditions juridiques</h2>
-            <p class="text-gray-600 leading-relaxed">
-              En envoyant un courrier électronique à la société ou en accédant et/ou utilisant le Site Internet www.assurance-professionnels-auto.fr, chaque personne physique (ci-après « l'Utilisateur ») déclare et garantit qu'elle a pris préalablement connaissance des présentes conditions juridiques, c'est-à-dire des informations légales, des règles applicables à la protection des données à caractère personnel et des conditions d'utilisation et qu'elle en accepte les termes et conditions sans réserve, modification ou restriction.
-            </p>
-          </section>
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">Conditions juridiques</h2>
+                    <p class="leading-relaxed">
+                        En envoyant un courrier électronique à la société ou en accédant et/ou utilisant le Site Internet <span class="font-medium text-indigo-600">www.assurance-professionnels-auto.fr</span>, chaque personne physique (ci-après « l'Utilisateur ») déclare et garantit qu'elle a pris préalablement connaissance des présentes conditions juridiques, c'est-à-dire des informations légales, des règles applicables à la protection des données à caractère personnel et des conditions d'utilisation et qu'elle en accepte les termes et conditions sans réserve, modification ou restriction.
+                    </p>
+                </section>
 
-          <section class="mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Éditeur</h2>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              <strong>AKSAM ASSURANCES SARL AU</strong><br />
-              Capital : 10 000 €<br />
-              Siège social : 10 Rue de Penthièvre, 75008 Paris<br />
-              SIRET : 84065346300033<br />
-              RCS Paris : 840 653 463<br />
-              Garantie financière et assurance de responsabilité civile et professionnelle conforme aux articles L.530-1 et L.530-2 du Code des assurances<br />
-              Immatriculation ORIAS : 180 074 24 - <a href="https://www.orias.fr" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">www.orias.fr</a>
-            </p>
+                <section class="mb-10 bg-gray-50 rounded-xl p-6 border border-gray-200/60">
+                    <h2 class="text-2xl font-bold mb-4" style="border: none; padding-left: 0; margin-top: 0;">Éditeur</h2>
+                    <p class="leading-relaxed mb-6">
+                        <strong class="text-gray-900 text-lg">AKSAM ASSURANCES SARL AU</strong><br />
+                        <span class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-sm">
+                            <span>• <strong>Capital :</strong> 10 000 €</span>
+                            <span>• <strong>Siège social :</strong> 10 Rue de Penthièvre, 75008 Paris</span>
+                            <span>• <strong>SIRET :</strong> 84065346300033</span>
+                            <span>• <strong>RCS Paris :</strong> 840 653 463</span>
+                        </span>
+                        <span class="block mt-4 pt-4 border-t border-gray-200 text-sm">
+                            Garantie financière et assurance de responsabilité civile et professionnelle conforme aux articles L.530-1 et L.530-2 du Code des assurances.
+                        </span>
+                        <span class="block mt-2 text-sm">
+                            <strong>Immatriculation ORIAS :</strong> 180 074 24 - <a href="https://www.orias.fr" class="text-indigo-600 font-medium hover:underline" target="_blank" rel="noreferrer">www.orias.fr</a>
+                        </span>
+                    </p>
 
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Hébergeur</h3>
-            <p class="text-gray-600">
-              NAMECHEAP - EU Data Center, Amsterdam, Netherlands.
-            </p>
-          </section>
+                    <h3 class="text-lg font-semibold mb-2">Hébergeur</h3>
+                    <p class="text-sm">
+                        <strong class="text-gray-800">NAMECHEAP</strong> - EU Data Center, Amsterdam, Netherlands.
+                    </p>
+                </section>
 
-          <section class="mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Liens hypertextes</h2>
-            <p class="text-gray-600 leading-relaxed">
-              Leur contenu et/ou les documents accessibles à partir des liens hypertextes publiés sur le Site Web ou dans les documents téléchargeables à partir de ce dernier sont la responsabilité exclusive de leur(s) auteur(s) et ne sauraient engager la responsabilité de la société. L'Utilisateur n'est pas autorisé à créer un lien hypertexte vers le Site et/ou une page quelconque du Site et/ou d'un fichier s'y trouvant, sans l'accord préalable et express de la société.
-            </p>
-          </section>
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">Liens hypertextes</h2>
+                    <p class="leading-relaxed">
+                        Leur contenu et/ou les documents accessibles à partir des liens hypertextes publiés sur le Site Web ou dans les documents téléchargeables à partir de ce dernier sont la responsabilité exclusive de leur(s) auteur(s) et ne sauraient engager la responsabilité de la société. L'Utilisateur n'est pas autorisé à créer un lien hypertexte vers le Site avant accord préalable et express de la société.
+                    </p>
+                </section>
 
-          <section class="mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Utilisations des cookies</h2>
-            <p class="text-gray-600 mb-4">
-              <strong>Qu'est-ce qu'un cookie ?</strong><br />
-              Un cookie est un petit fichier texte déposé lors de la consultation d'un site internet.
-            </p>
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">Utilisations des cookies</h2>
+                    <p class="mb-4">
+                        <strong class="text-gray-900">Qu'est-ce qu'un cookie ?</strong><br />
+                        Un cookie est un petit fichier texte déposé lors de la consultation d'un site internet.
+                    </p>
 
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">A. Les cookies fonctionnels</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Les cookies fonctionnels permettent au site de se souvenir des choix que vous faites sur nos sites Internet et de vous proposer des fonctions optimisées et plus personnelles. Ces cookies ne sont pas indispensables à la navigation mais permettent d'afficher de manière optimal le site, d'améliorer votre navigation et le fonctionnement du site. Ces cookies nous permettent également d'adapter l'affichage de nos sites aux préférences d'affichage de votre terminal (ordinateur, tablette ou smartphone). L'utilisation de ces cookies nous permet d'améliorer votre expérience utilisateur et de personnaliser votre visite sur nos sites. Ces cookies ont une durée de vie courte, pour la majorité, le temps de la session, et au maximum, de 13 mois.
-            </p>
+                    <h3 class="text-lg font-semibold mb-2">A. Les cookies fonctionnels</h3>
+                    <p class="leading-relaxed mb-4">
+                        Les cookies fonctionnels permettent au site de se souvenir des choix que vous faites sur nos sites Internet et de vous proposer des fonctions optimisées et plus personnelles. Ces cookies ne sont pas indispensables à la navigation mais permettent d'afficher de manière optimale le site, d'améliorer votre navigation et le fonctionnement du site. Ces cookies ont une durée de vie courte, pour la majorité, le temps de la session, et au maximum, de 13 mois.
+                    </p>
 
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">B. Les cookies de mesure d'audience (statistiques)</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Ces cookies recueillent des informations nous permettant d'étudier la façon dont les visiteurs naviguent sur nos sites Internet : nombre de visites, pages les plus visitées, provenance des visiteurs (moteurs de recherches, liens depuis des sites tiers…), durée des visites, localisation des visiteurs, etc. Ces données nous permettent notamment d'étudier les habitudes des internautes et d'améliorer l'ergonomie de nos sites. Nos outils de statistiques génèrent un cookie dont l'identifiant est unique et dont la durée de conservation est de maximum 13 mois. Les informations collectées, telles que l'adresse IP permettant d'identifier la ville de provenance des internautes et ne permettent en aucun cas d'identifier une personne physique.
-            </p>
+                    <h3 class="text-lg font-semibold mb-2">B. Les cookies de mesure d'audience (statistiques)</h3>
+                    <p class="leading-relaxed mb-4">
+                        Ces cookies recueillent des informations nous permettant d'étudier la façon dont les visiteurs naviguent sur nos sites Internet : nombre de visites, pages les plus visitées, provenance des visiteurs, etc. Les données collectées, telles que l'adresse IP permettant d'identifier la ville de provenance des internautes, ne permettent en aucun cas d'identifier une personne physique. Durée de conservation : maximum 13 mois.
+                    </p>
 
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">C. Les cookies de partage sur réseaux sociaux</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Les sites de la société AKSAM ASSURANCES peuvent contenir des liens de partage vers différents réseaux sociaux : LinkedIn, Viadeo et autre réseau social similaire. Ces liens de partage vous permettent de partager des contenus issus de nos sites avec vos contacts sur les différents réseaux sociaux mentionnés. Lorsque vous utilisez ces boutons de partage, un cookie tiers est installé. Si vous êtes connectés au réseau social lors de votre navigation sur notre site, le bouton de partage permet de relier les contenus consultés à votre compte utilisateur.
-            </p>
+                    <h3 class="text-lg font-semibold mb-2">C. Les cookies de partage sur réseaux sociaux</h3>
+                    <p class="leading-relaxed mb-4">
+                        Les sites de la société AKSAM ASSURANCES peuvent contenir des liens de partage vers différents réseaux sociaux (LinkedIn, Viadeo...). Lorsque vous utilisez ces boutons de partage, un cookie tiers est installé permettant de relier les contenus consultés à votre compte utilisateur.
+                    </p>
 
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Comment paramétrer l'utilisation des cookies ?</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              L'utilisation des cookies peut être paramétrée depuis les options de votre logiciel de navigation Internet (navigateur). Tout paramétrage que vous pouvez entreprendre sera susceptible de modifier votre navigation sur Internet et vos conditions d'accès à certains services nécessitant l'utilisation de Cookies. Vous pouvez à tout moment configurer votre navigateur Internet de façon à accepter, refuser ou désactiver les cookies.
-            </p>
+                    <h3 class="text-lg font-semibold mb-2">Comment paramétrer l'utilisation des cookies ?</h3>
+                    <p class="leading-relaxed mb-4">
+                        Vous pouvez à tout moment configurer votre navigateur Internet de façon à accepter, refuser ou désactiver les cookies depuis ses options ou sa rubrique d'aide :
+                    </p>
 
-            <p class="text-gray-600 mb-2">Pour paramétrer vos choix rendez-vous dans la rubrique aide de votre navigateur :</p>
-            <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
-              <li>Firefox : <a href="https://support.mozilla.org" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">https://support.mozilla.org</a></li>
-              <li>Internet Explorer : <a href="http://windows.microsoft.com" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">http://windows.microsoft.com</a></li>
-              <li>Google Chrome : <a href="https://support.google.com" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">https://support.google.com</a></li>
-              <li>Safari : <a href="http://www.commentcamarche.net" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">http://www.commentcamarche.net</a></li>
-              <li>Opéra : <a href="http://help.opera.com" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">http://help.opera.com</a></li>
-            </ul>
+                    <ul class="space-y-2 mb-6 bg-gray-50 p-4 rounded-xl border border-gray-100 text-sm">
+                        <li><strong>Firefox :</strong> <a href="https://support.mozilla.org" class="text-indigo-600 hover:underline" target="_blank" rel="noreferrer">https://support.mozilla.org</a></li>
+                        <li><strong>Internet Explorer :</strong> <a href="http://windows.microsoft.com" class="text-indigo-600 hover:underline" target="_blank" rel="noreferrer">http://windows.microsoft.com</a></li>
+                        <li><strong>Google Chrome :</strong> <a href="https://support.google.com" class="text-indigo-600 hover:underline" target="_blank" rel="noreferrer">https://support.google.com</a></li>
+                        <li><strong>Safari :</strong> <a href="http://www.commentcamarche.net" class="text-indigo-600 hover:underline" target="_blank" rel="noreferrer">http://www.commentcamarche.net</a></li>
+                        <li><strong>Opéra :</strong> <a href="http://help.opera.com" class="text-indigo-600 hover:underline" target="_blank" rel="noreferrer">http://help.opera.com</a></li>
+                    </ul>
 
-            <p class="text-gray-600 leading-relaxed">
-              Nous utilisons Google Analytics. Les fonctionnalités de Google Analytics pour les annonceurs display sont activées sur ce site (Remarketing). Google utilise des cookies pour diffuser nos annonces sur les sites de son réseau Display. Grâce au cookie DoubleClick, Google adapte les annonces diffusées aux utilisateurs en fonction de leur navigation sur notre site. Vous pouvez désactiver, à tout moment, l'utilisation de cette fonctionnalité en vous rendant sur le gestionnaire de préférences pour les annonces, qui se trouve à l'adresse suivante : <a href="https://www.google.com/settings/u/0/ads" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">https://www.google.com/settings/u/0/ads</a>
-            </p>
-          </section>
+                    <p class="leading-relaxed text-sm bg-indigo-50/50 rounded-xl p-4 border border-indigo-100">
+                        Nous utilisons Google Analytics (Remarketing). Google utilise des cookies pour diffuser nos annonces sur son réseau Display. Vous pouvez désactiver à tout moment cette fonctionnalité en paramétrant vos préférences sur : <a href="https://www.google.com/settings/u/0/ads" class="text-indigo-600 font-medium hover:underline" target="_blank" rel="noreferrer">https://www.google.com/settings/u/0/ads</a>
+                    </p>
+                </section>
 
-          <section class="mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Protection des données personnelles</h2>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Les informations personnelles recueillies feront l'objet d'un traitement automatisé ; elles seront utilisées pour répondre aux différents services proposés par le site et pourront être transmises aux sociétés du groupe dans un but de prospection. Conformément à la loi française n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, les internautes bénéficient d'un droit d'accès, de rectification et d'opposition ; ce droit peut être exercé en adressant un courrier auprès de : AKSAM ASSURANCES 10 Rue de Penthièvre 75008 Paris ou en s'adressant par mail : contact@aksam-assurances.fr.
-            </p>
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">Protection des données personnelles</h2>
+                    <p class="leading-relaxed mb-4">
+                        Conformément à la loi française n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, les internautes bénéficient d'un droit d'accès, de rectification et d'opposition en s'adressant à : AKSAM ASSURANCES, 10 Rue de Penthièvre 75008 Paris ou par e-mail : <a href="mailto:contact@aksam-assurances.fr" class="text-indigo-600 hover:underline">contact@aksam-assurances.fr</a>.
+                    </p>
 
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Les droits de l'utilisateur</h3>
-            <p class="text-gray-600 leading-relaxed mb-2">Chaque Utilisateur justifiant de son identité a le droit de demander à la société :</p>
-            <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
-              <li>La confirmation que des Données à caractère personnel font ou ne font pas l'objet d'un traitement par la société ou pour son compte.</li>
-              <li>Des informations relatives aux finalités du ou des traitements, aux catégories de données à caractère personnel traitées et aux destinataires de ces données au sein de la société.</li>
-              <li>La communication, sous une forme accessible, des données à caractère personnel qui le concernent ainsi que toute information disponible quant à l'origine de celles-ci.</li>
-              <li>La possibilité de modifier, compléter, mettre à jour ou effacer les données à caractère personnel le concernant, qui sont inexactes, incomplètes, équivoques, périmées, ou dont l'utilisation ou la conservation serait interdite.</li>
-              <li>La possibilité de s'opposer au traitement de ses données à caractère personnel.</li>
-            </ul>
-            <p class="text-gray-600">
-              Chaque Utilisateur peut exercer ses droits en écrivant soit un e-mail à <a href="mailto:contact@aksam-assurances.fr" class="text-orange-600 hover:underline">contact@aksam-assurances.fr</a>, soit un courrier à l'adresse postale suivante : 10 Rue de Penthièvre 75008 Paris.
-            </p>
-          </section>
+                    <h3 class="text-lg font-semibold mb-2">Les droits de l'utilisateur</h3>
+                    <p class="mb-3">Chaque Utilisateur justifiant de son identité a le droit de demander :</p>
+                    <ul class="space-y-2 mb-4">
+                        <li>La confirmation que des Données font ou ne font pas l'objet d'un traitement.</li>
+                        <li>Des informations relatives aux finalités du traitement et aux catégories de données.</li>
+                        <li>La communication, sous une forme accessible, des données qui le concernent.</li>
+                        <li>La modification, mise à jour ou suppression des données inexactes ou périmées.</li>
+                        <li>La possibilité de s'opposer de plein droit au traitement de ses données.</li>
+                    </ul>
+                </section>
 
-          <section class="mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Droit d'auteur et propriété intellectuelle</h2>
-            <p class="text-gray-600 leading-relaxed">
-              Les produits et services présentés sur le site sont destinés aux résidents français. Le site et son contenu font l'objet d'une protection légale au titre de la propriété littéraire et artistique (droits d'auteurs, des interprètes, etc.) et de la propriété industrielle (marques, dessins, etc.). Il est interdit à tout internaute de copier ou reproduire, par numérisation et tout autre moyen, sur quelque support que ce soit, tout ou partie du contenu du site, qu'il soit textuel, graphique ou sonore, sauf pour son usage propre. Le site indique en particulier à l'internaute les parties du contenu du site qu'il est autorisé à télécharger pour les besoins de sa relation avec AKSAM ASSURANCES. Le non-respect de ces règles peut engager la responsabilité civile et pénale du contrevenant. Les logos et marques cités dans le site sont la propriété de leurs sociétés respectives.
-            </p>
-          </section>
+                <section class="mb-10">
+                    <h2 class="text-2xl font-bold mb-4">Droit d'auteur et propriété intellectuelle</h2>
+                    <p class="leading-relaxed">
+                        Le site et son contenu font l'objet d'une protection légale au titre de la propriété littéraire, artistique et industrielle. Il est formellement interdit de copier ou reproduire, par numérisation et tout autre moyen, sur quelque support que ce soit, tout ou partie du contenu du site sauf pour un usage strictement personnel. Le non-respect de ces règles peut engager la responsabilité civile et pénale du contrevenant.
+                    </p>
+                </section>
 
-          <section class="mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Réclamations</h2>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Une réclamation est une déclaration par laquelle vous manifestez votre mécontentement envers notre société, sur un ou des sujets clairement identifiés, dans le cadre de notre mandat de courtage. La réclamation peut se faire soit téléphoniquement auprès du Responsable Conformité (<a href="tel:0182834800" class="text-orange-600 hover:underline">01 82 83 48 00</a>), soit sur la base du formulaire ci-dessous, adressé par voie postale ou par mail à : AKSAM Assurances A l'attention du Responsable Conformité 10 rue de Penthièvre 75008 Paris Email : contact@aksam-assurances.fr
-            </p>
+                <section class="mb-6">
+                    <h2 class="text-2xl font-bold mb-4">Réclamations</h2>
+                    <p class="leading-relaxed mb-4">
+                        La réclamation peut se faire téléphoniquement auprès du Responsable Conformité (<a href="tel:0182834800" class="text-indigo-600 font-semibold hover:underline">01 82 83 48 00</a>), par voie postale ou par courriel à : AKSAM Assurances, À l'attention du Responsable Conformité, 10 rue de Penthièvre 75008 Paris. Email : <a href="mailto:contact@aksam-assurances.fr" class="text-indigo-600 hover:underline">contact@aksam-assurances.fr</a>.
+                    </p>
 
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Nous nous engageons à accuser réception de votre réclamation dans un délai maximum de 10 jours ouvrés à compter de sa réception. Nous nous engageons à vous apporter une réponse positive ou négative dans un délai de deux mois à compter de la réception de la totalité des éléments de votre réclamation si la réponse est de notre fait. Si nous ne sommes pas en mesure de donner une suite favorable à votre demande, nous vous rappelons que si vous le souhaitez vous pouvez contacter le Médiateur de l'Assurance dont les coordonnées sont mentionnées ci-dessous.
-            </p>
+                    <p class="leading-relaxed mb-6">
+                        Nous nous engageons à accuser réception de votre réclamation sous 10 jours ouvrés et à y répondre sous un délai de deux mois maximum. Si aucune solution amiable n'est trouvée, vous pouvez contacter gratuitement le Médiateur de l'Assurance :
+                    </p>
 
-            <h3 class="text-lg font-semibold text-gray-700 mb-2">Médiateur de l'Assurance</h3>
-            <p class="text-gray-600">
-              La Médiation de la consommation PLANÉTE COURTIER<br />
-              12-14 Rond-Point des champs Elysées 75008 PARIS<br />
-              Email : <a href="mailto:mediation@planetecourtier.com" class="text-orange-600 hover:underline">mediation@planetecourtier.com</a><br />
-              Site internet : <a href="https://www.mediation-planetecourtier.com" class="text-orange-600 hover:underline" target="_blank" rel="noreferrer">www.mediation-planetecourtier.com</a>
-            </p>
-<p class="text-gray-600 mt-2">
-                Les documents en lien avec votre réclamation sont conservés cinq ans à compter de la date de réception.
-              </p>
-             </section>
-           </article>
-         </div> <!-- Close bg-white container -->
-       </main> <!-- Close main content section -->
+                    <div class="p-5 bg-amber-50/60 border border-amber-200/70 rounded-xl">
+                        <h3 class="text-base font-bold text-amber-900 mt-0 mb-2">Médiateur de l'Assurance</h3>
+                        <p class="text-sm text-amber-900/90 leading-relaxed">
+                            La Médiation de la consommation PLANÈTE COURTIER<br />
+                            12-14 Rond-Point des champs Elysées 75008 PARIS<br />
+                            <strong>Email :</strong> <a href="mailto:mediation@planetecourtier.com" class="text-indigo-600 hover:underline">mediation@planetecourtier.com</a><br />
+                            <strong>Site internet :</strong> <a href="https://www.mediation-planetecourtier.com" class="text-indigo-600 font-medium hover:underline" target="_blank" rel="noreferrer">www.mediation-planetecourtier.com</a>
+                        </p>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-4 italic">
+                        Les documents en lien avec votre réclamation sont conservés cinq ans à compter de la date de réception.
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
 
-<div class="flex justify-center my-8 sm:my-12">
-          <a href="{{ path('app_home') }}" class="inline-flex items-center gap-2 sm:gap-3 bg-white text-[#312a8b] font-bold py-3 sm:py-4 px-6 sm:px-10 rounded-2xl hover:bg-indigo-50 transition-all transform hover:scale-105 shadow-2xl cursor-pointer">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 10H5M5 10L10 5M5 10L10 15" stroke="#312a8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="flex justify-center pb-16">
+        <a href="{{ path('app_home') }}" class="inline-flex items-center gap-3 bg-white text-[#312a8b] font-bold py-4 px-10 rounded-2xl hover:bg-indigo-50 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl border border-gray-100 cursor-pointer">
+            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 10H5M5 10L10 5M5 10L10 15" stroke="#312a8b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Retour à l'accueil
-          </a>
-        </div>
+        </a>
+    </div>
+</div>
 
-       {{ include('partials/footer.html.twig') }}
+{{ include('partials/footer.html.twig') }}
 {% endblock %}

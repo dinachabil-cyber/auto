@@ -3,134 +3,609 @@
 {% block title %}Assurance loueur de voiture - RC PRO location{% endblock %}
 
 {% block meta %}
-<meta name="description" content="Devis assurance pour loueur de voiture rapide, un comparatif pour RC PRO location de voiture.">
-<meta name="keywords" content="Assurance loueur de voiture, RC PRO loueur voiture, Devis assurance loueur véhicule">
+<meta name="description" content="Devis assurance pour loueur de voiture rapide, un comparatif pour RC PRO location de voiture en ligne.">
+<meta name="keywords" content="Assurance loueur de voiture, RC PRO loueur voiture, Devis assurance loueur véhicule, Assurance flotte location">
 {% endblock %}
 
 {% block body %}
-    {{ include('partials/header.html.twig') }}
-    
-    <main id="main-content" class="flex-1">
-        {# Hero Section with Form #}
-        <section class="py-12 lg:py-20 bg-white hero-pattern relative overflow-hidden">
-            <div class="absolute inset-0 scanlines-bg opacity-30"></div>
-            <div class="absolute top-6 left-6 sm:top-10 sm:left-10 floating-animation"><i class="fas fa-car text-orange-400 text-4xl sm:text-6xl opacity-30"></i></div>
-            <div class="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 floating-animation"><i class="fas fa-shield-alt text-orange-500 text-6xl sm:text-8xl opacity-25"></i></div>
+{{ include('partials/header.html.twig') }}
 
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 relative z-10">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-        <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
-            <div class="order-2 lg:order-1 slide-in-left flex-1 lg:flex-[6]">
+/* ── Design tokens ──────────────────────────────────────── */
+:root {
+  --brand:        #0b3dff;
+  --brand-dark:   #0028c4;
+  --brand-light:  #dde5ff;
+  --brand-xlight: #eef1ff;
+  --accent:       #ff7a18;
+  --accent-dark:  #e05e00;
+  --surface:      #f6f7fb;
+  --text-primary: #0d1117;
+  --text-muted:   #5a6478;
+  --border:       #e4e7f0;
+  --white:        #ffffff;
+  --radius-sm:    10px;
+  --radius-md:    16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+}
 
-                <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl">
-                    <img
-                        src="https://assurance-professionnels-auto.fr/image/loueur-voiture.jpg"
-                        alt="Assurance loueur de voiture"
-                        class="w-full h-full object-cover object-center"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-            <div class="order-1 lg:order-2 flex-1 lg:flex-[6] flex h-full">
-             
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-primary);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
 
-                    <div class="flex-1">
-                        {{ include('partials/form_partial.html.twig', {
-                            'form': form,
-                            'title': 'Obtenez un devis gratuit',
-                            'subtitle': 'Complétez en 2 minutes',
-                            'showActivity': true,
-                            'showPostalCode': true
-                        }) }}
-                    </div>
-                </div>
-            </div>
+h1, h2, h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -.02em;
+}
 
+/* ── Utility: section tag pill ──────────────────────────── */
+.stag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--brand-xlight);
+  padding: .3rem .85rem;
+  border-radius: 999px;
+  border: 1px solid var(--brand-light);
+  margin-bottom: 1rem;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  background: var(--surface);
+  overflow: hidden;
+  padding: 5rem 0 0;
+}
+
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero::before {
+  width: 700px; height: 700px;
+  top: -200px; right: -120px;
+  background: radial-gradient(circle, rgba(11,61,255,.07) 0%, transparent 70%);
+}
+.hero::after {
+  width: 400px; height: 400px;
+  bottom: -80px; left: 5%;
+  background: radial-gradient(circle, rgba(255,122,24,.08) 0%, transparent 70%);
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-text  { order: 1; }
+  .hero-form  { order: 2; }
+}
+
+.hero-text { padding-bottom: 4rem; }
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--brand);
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 440px;
+  margin-bottom: 2rem;
+}
+
+/* ── Hero form panel ────────────────────────────────────── */
+.hero-form {
+  position: relative;
+  z-index: 1;
+}
+.hero-form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: 0 -4px 40px rgba(11,61,255,.08), 0 0 0 1px rgba(11,61,255,.04);
+  padding: 2.25rem 2rem 2rem;
+}
+.hero-form-eyebrow {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: .5rem;
+}
+.hero-form-card h2 {
+  font-size: 1.35rem;
+  margin-bottom: .35rem;
+  color: var(--text-primary);
+}
+.hero-form-card p {
+  font-size: .84rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Form fields overrides ─────────────────────────────── */
+.form-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 12px;
+}
+.field-full { grid-column: 1 / -1; }
+
+.field-row {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--white);
+  transition: border-color .18s, box-shadow .18s;
+}
+.field-row:focus-within {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(11,61,255,.1);
+}
+.field-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  min-height: 42px;
+  background: var(--brand-xlight);
+  border-right: 1.5px solid var(--brand-light);
+  flex-shrink: 0;
+  color: var(--brand);
+  font-size: 12px;
+  transition: background .18s;
+}
+.field-row:focus-within .field-icon {
+  background: var(--brand-light);
+}
+.field-input { flex: 1; min-width: 0; }
+.field-input .mb-3, .field-input div { margin: 0 !important; padding: 0 !important; }
+.field-input label { display: none; }
+.field-input input,
+.field-input select,
+.field-input textarea {
+  display: block; width: 100%; height: 42px;
+  padding: 0 12px; background: transparent;
+  border: none; outline: none; border-radius: 0;
+  font-size: .84rem; font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-primary); -webkit-appearance: none; appearance: none;
+}
+.field-input select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath fill='%230b3dff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  background-color: transparent;
+  padding-right: 30px;
+  cursor: pointer;
+}
+.field-input input::placeholder { color: #b2bacc; }
+
+.form-footer { margin-top: 14px; }
+.form-footer button,
+.form-footer input[type="submit"] {
+  display: block; width: 100%;
+  height: 46px;
+  background: var(--brand);
+  color: #fff; border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .9rem; font-weight: 700;
+  letter-spacing: .02em; cursor: pointer;
+  transition: background .18s, transform .12s, box-shadow .18s;
+  box-shadow: 0 4px 14px rgba(11,61,255,.35);
+}
+.form-footer button:hover,
+.form-footer input[type="submit"]:hover {
+  background: var(--brand-dark);
+  box-shadow: 0 6px 20px rgba(11,61,255,.45);
+  transform: translateY(-1px);
+}
+
+/* ── Section base ───────────────────────────────────────── */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.section-head { text-align: center; margin-bottom: 4rem; }
+.section-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: .75rem; }
+.section-head p  { font-size: 1rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+
+/* ── Intro strip ────────────────────────────────────────── */
+.intro-strip {
+  padding: 5rem 0;
+  background: var(--white);
+}
+.intro-strip .section-head { max-width: 700px; margin-inline: auto; margin-bottom: 0; }
+.intro-strip .section-head p { font-size: 1.05rem; line-height: 1.8; }
+
+/* ── Guarantees — flip cards ────────────────────────────── */
+.guarantees-section {
+  padding: 5rem 0 6rem;
+  background: var(--surface);
+}
+
+.g-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) { .g-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .g-grid { grid-template-columns: 1fr; } }
+
+.g-card {
+  perspective: 900px;
+  height: 220px;
+  cursor: pointer;
+}
+@media (max-width: 560px) { .g-card { height: 200px; } }
+
+.g-card-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .55s cubic-bezier(.4, 0, .2, 1);
+  border-radius: var(--radius-md);
+}
+.g-card:hover .g-card-inner { transform: rotateY(180deg); }
+
+.g-front, .g-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.g-front {
+  background: var(--white);
+  border: 1px solid var(--border);
+  justify-content: flex-start;
+  gap: .65rem;
+}
+.g-icon-wrap {
+  width: 44px; height: 44px;
+  background: var(--brand-xlight);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.g-front h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+.g-front-hint {
+  margin-top: auto;
+  font-size: .72rem;
+  color: var(--brand);
+  font-weight: 600;
+  letter-spacing: .04em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.g-front-hint svg { opacity: .6; }
+
+.g-back {
+  background: var(--brand);
+  border: 1px solid var(--brand-dark);
+  transform: rotateY(180deg);
+  justify-content: center;
+  gap: .75rem;
+}
+.g-back-icon {
+  font-size: 1.6rem;
+}
+.g-back h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.g-back p {
+  font-size: .78rem;
+  color: rgba(255,255,255,.82);
+  line-height: 1.65;
+}
+
+/* ── CTA banner ─────────────────────────────────────────── */
+.cta-wrap {
+  padding: 4rem 0 5rem;
+  background: var(--white);
+}
+.cta-box {
+  background: var(--brand);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -60%; right: -5%;
+  width: 60%; height: 220%;
+  background: rgba(255,255,255,.04);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cta-box h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--white);
+  margin-bottom: .85rem;
+}
+.cta-box p { color: rgba(255,255,255,.7); font-size: 1rem; line-height: 1.7; max-width: 520px; margin: 0 auto 2rem; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  padding: .85rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background .2s, transform .18s;
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+/* ── Reveal ─────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-text { padding-bottom: 2rem; }
+  .hero-form-card { border-radius: var(--radius-lg); }
+  .form-grid { grid-template-columns: 1fr; }
+  .field-full { grid-column: 1; }
+}
+</style>
+
+<main id="main-content" class="flex-1">
+  {# ── Hero Section with Form ── #}
+  <section class="hero">
+    <div class="hero-inner">
+      
+      {# Form Column #}
+      <div class="hero-form reveal order-1 lg:order-2" style="transition-delay:.15s">
+        <div class="hero-form-card">
+          <div class="hero-form-eyebrow">Votre devis</div>
+          <h2>Obtenez votre tarif en 2 minutes</h2>
+          <p>Nos conseillers étudient votre dossier et vous répondent rapidement.</p>
+          
+          {{ include('partials/form_partial.html.twig', {
+              'form': form,
+              'showActivity': true,
+              'showPostalCode': true
+          }) }}
         </div>
+      </div>
+
+      {# Image Column #}
+      <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1">
+        <img
+          src="https://assurance-professionnels-auto.fr/image/loueur-voiture.jpg"
+          alt="Assurance Flotte Loueur de Voiture"
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      </div>
+
     </div>
-</section>
+  </section>
 
-        {# Sections Content #}
-        <section class="py-20 md:py-28 bg-white">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="text-center mb-16 reveal opacity-0 translate-y-6 transition-all duration-700">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Assurance loueur de véhicules
-                    </h2>
-                </div>
+  {# ── Section 1 - Définition ── #}
+  <section class="intro-strip">
+    <div class="section">
+      <div class="section-head reveal">
+        <span class="stag">
+          <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+          I - Assurance Loueur
+        </span>
+        <h2>1 - Définition de l'offre location</h2>
+        <p>
+          L'assurance pour loueur de véhicules est une couverture sur-mesure développée spécifiquement pour protéger les flottes automobiles de location (courte ou longue durée). Elle protège activement l'entreprise contre les risques financiers majeurs liés aux sinistres subis par les conducteurs clients, tout en garantissant la pérennité de votre parc auto.
+        </p>
+      </div>
+    </div>
+  </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-2xl mb-3">🚗</div>
-                        <h3 class="text-base font-bold text-gray-900 mb-1">Couverture sur-mesure</h3>
-                        <p class="text-sm text-gray-500">Protégez votre flotte et votre activité avec une assurance spécialement conçue pour les professionnels de la location automobile.</p>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-200 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-2xl mb-3">🛡️</div>
-                        <h3 class="text-base font-bold text-gray-900 mb-1">Garantie RC PRO location</h3>
-                        <p class="text-sm text-gray-500">Couverture tous risques, responsabilité civile, dommages aux véhicules, perte d'exploitation, vol et vandalisme.</p>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-300 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-2xl mb-3">⭐</div>
-                        <h3 class="text-base font-bold text-gray-900 mb-1">Pourquoi nous choisir ?</h3>
-                        <p class="text-sm text-gray-500">Spécialiste du secteur automobile, tarifs compétitifs, accompagnement personnalisé et gestion rapide des sinistres.</p>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-6 transition-all duration-700 delay-100 bg-white rounded-xl p-5 border border-gray-200 hover:border-indigo-300 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-2xl mb-3">📄</div>
-                        <h3 class="text-base font-bold text-gray-900 mb-1">Devis gratuit en ligne</h3>
-                        <p class="text-sm text-gray-500">Complétez le formulaire en haut de la page. Simple et rapide, obtenez votre devis en ligne en quelques clics.</p>
-                    </div>
-                </div>
+  {# ── Section 2 - Garanties (Interactive Grid Setup) ── #}
+  <section class="guarantees-section" id="garanties">
+    <div class="section">
+      
+      <div class="section-head reveal">
+        <span class="stag">Couvertures</span>
+        <h2>2 - Garanties assurance loueur de véhicules</h2>
+        <p>Découvrez les protections essentielles pour sécuriser vos véhicules en circulation et votre activité de location.</p>
+      </div>
+
+      <div class="g-grid">
+
+        {# Card 1 #}
+        <div class="g-card reveal" style="transition-delay:.05s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🛡️</div>
+              <h3>Responsabilité Civile Circulation</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
             </div>
-        </section>
-
-        {# Devis Info Section #}
-
-        <div class="py-12">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="bg-[#312a8b] rounded-2xl p-6 md:p-8 shadow-xl text-center reveal opacity-0 translate-y-6 transition-all duration-700">
-            <h2 class="text-xl md:text-2xl font-bold text-white mb-2">Devis assurance loueur de voiture</h2>
-            <p class="text-sm text-white/80 mb-5 max-w-2xl mx-auto">Pour obtenir un devis RC PRO loueur de voiture, complétez le formulaire en haut de la page. Simple et rapide, obtenez votre devis en ligne et en quelques clics.</p>
-            <a href="{{ path('app_home') }}" class="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-[#312a8b] text-sm font-semibold rounded-xl hover:bg-gray-50 transition-all shadow-lg">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-                    <rect x="9" y="3" width="6" height="4" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h4" />
-                </svg>
-                <span>Retour à l'accueil</span>
-            </a>
-        </div>
+            <div class="g-back">
+              <div class="g-back-icon">🛡️</div>
+              <h3>RC Flotte de Location</h3>
+              <p>Garantie obligatoire couvrant l'ensemble des dommages matériels et corporels causés aux tiers par vos clients au volant de vos véhicules loués.</p>
             </div>
+          </div>
         </div>
 
-        {{ include('partials/cookie_banner.html.twig') }}
-    </main>
+        {# Card 2 #}
+        <div class="g-card reveal" style="transition-delay:.1s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">🚗</div>
+              <h3>Garantie Dommages Tous Risques</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">🚗</div>
+              <h3>Dommages Matériels</h3>
+              <p>Prend en charge les réparations de vos véhicules en cas d'accident responsable, de collision sans tiers identifié ou de sortie de route du locataire.</p>
+            </div>
+          </div>
+        </div>
 
-    {{ include('partials/footer.html.twig') }}
+        {# Card 3 #}
+        <div class="g-card reveal" style="transition-delay:.15s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">❌</div>
+              <h3>Vol, Détournement et Vandalisme</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">❌</div>
+              <h3>Protection Vol & Abus</h3>
+              <p>Indemnisation de la valeur de votre véhicule en cas de vol caractérisé, d'actes de vandalisme ou de non-restitution (détournement) par le locataire.</p>
+            </div>
+          </div>
+        </div>
 
-    {# ================= ANIMATION SCRIPT ================= #}
-    <script>
-    function initRevealAnimations() {
-        const elements = document.querySelectorAll(".reveal");
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("opacity-100", "translate-y-0");
-                    entry.target.classList.remove("opacity-0", "translate-y-6");
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        elements.forEach(el => observer.observe(el));
-    }
+        {# Card 4 #}
+        <div class="g-card reveal" style="transition-delay:.2s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">💼</div>
+              <h3>RC Professionnelle Loueur</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">💼</div>
+              <h3>RC Pro Activité</h3>
+              <p>Protège votre entreprise contre les litiges juridiques et préjudices découlant de votre activité commerciale (erreur dans le contrat, défaut d'entretien mécanique).</p>
+            </div>
+          </div>
+        </div>
 
-    document.addEventListener("DOMContentLoaded", initRevealAnimations);
-    document.addEventListener("turbo:load", initRevealAnimations);
-    </script>
+        {# Card 5 #}
+        <div class="g-card reveal" style="transition-delay:.25s">
+          <div class="g-card-inner">
+            <div class="g-front">
+              <div class="g-icon-wrap">📉</div>
+              <h3>Perte d'Exploitation Flotte</h3>
+              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+            </div>
+            <div class="g-back">
+              <div class="g-back-icon">📉</div>
+              <h3>Immobilisation Véhicule</h3>
+              <p>Compense la perte de revenus financiers liée à l'immobilisation prolongée de vos véhicules au garage suite à un sinistre couvert.</p>
+            </div>
+          </div>
+        </div>
 
+      </div>
+
+      <div class="reveal" style="transition-delay:.3s">
+        <p style="font-size: .88rem; color: var(--text-muted); text-align: center; margin-top: 3rem;">
+          En résumé, l'assurance loueur sécurise de bout en bout l'exploitation de votre parc automobile contre les aléas de la route.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  {# ── Section 3 - CTA Banner ── #}
+  <section class="cta-wrap">
+    <div class="section">
+      <div class="cta-box reveal">
+        <p style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.75rem">Devis assurance en ligne</p>
+        <h2>II - Devis assurance RC PRO loueur de voiture</h2>
+        <p>
+          Pour obtenir un devis personnalisé pour votre flotte de véhicules légers ou d'utilitaires, complétez notre formulaire de tarification rapide en haut de page.
+        </p>
+        <a href="{{ path('app_home') }}" class="btn-primary">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {{ include('partials/cookie_banner.html.twig') }}
+</main>
+
+{{ include('partials/footer.html.twig') }}
+
+<script>
+function initReveal() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+document.addEventListener('DOMContentLoaded', initReveal);
+document.addEventListener('turbo:load', initReveal);
+</script>
 {% endblock %}
