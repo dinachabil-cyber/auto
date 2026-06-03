@@ -2,86 +2,317 @@
 {% set showActivity = showActivity ?? true %}
 {% set showPostalCode = showPostalCode ?? true %}
 
-<div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 h-full flex flex-col text-left">
+<div class="form-card">
+
     {{ form_errors(form) }}
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'space-y-4 flex-1 flex flex-col'}}) }}
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>{{ form_row(form.nom) }}</div>
-            <div>{{ form_row(form.prenom) }}</div>
+
+    {{ form_start(form, {
+        'attr': {
+            'novalidate': 'novalidate',
+            'class': 'form-body'
+        }
+    }) }}
+
+    <div class="form-grid">
+
+        {# NOM #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-user"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.nom) }}</div>
         </div>
-        
-        <div>{{ form_row(form.raison_sociale) }}</div>
-        
+
+        {# PRENOM #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-user"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.prenom) }}</div>
+        </div>
+
+        {# RAISON SOCIALE #}
+        <div class="field-row field-full">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-building"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.raison_sociale) }}</div>
+        </div>
+
+        {# ACTIVITE #}
         {% if showActivity %}
-        <div>{{ form_row(form.activite) }}</div>
+        <div class="field-row field-full">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-briefcase"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.activite) }}</div>
+        </div>
         {% endif %}
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>{{ form_row(form.demarrage) }}</div>
-            <div>{{ form_row(form.assure) }}</div>
+
+        {# DEMARRAGE #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-clock"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.demarrage) }}</div>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>{{ form_row(form.ancienne) }}</div>
-            <div class="motif-container">{{ form_row(form.motif_resiliation) }}</div>
+
+        {# ASSURE #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-shield-alt"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.assure) }}</div>
         </div>
-        
+
+        {# ANCIENNE #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-history"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.ancienne) }}</div>
+        </div>
+
+        {# MOTIF #}
+        <div class="field-row" id="motif-wrapper">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-exclamation-circle"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.motif) }}</div>
+        </div>
+
+        {# CODE POSTAL #}
         {% if showPostalCode %}
-        <div>{{ form_row(form.code_postal) }}</div>
-        {% endif %}
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>{{ form_row(form.telephone) }}</div>
-            <div>{{ form_row(form.email) }}</div>
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-map-marker-alt"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.code_postal) }}</div>
         </div>
-        
+        {% endif %}
+
+        {# TELEPHONE #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-phone"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.tele) }}</div>
+        </div>
+
+        {# EMAIL #}
+        <div class="field-row field-full">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-envelope"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.email) }}</div>
+        </div>
+
+    </div>
+
+    <div class="form-footer">
         {{ form_row(form.save) }}
+    </div>
+
     {{ form_end(form) }}
 </div>
 
 <style>
-.hidden {
-    display: none !important;
+/* ── Card shell ─────────────────────────────────────────── */
+.form-card {
+    background: #ffffff;
+    border: 1px solid #f0ede8;
+    border-radius: 20px;
+    padding: 2rem 2.25rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+    text-align: left;
+}
+
+/* ── Form body ──────────────────────────────────────────── */
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ── Two-column grid for fields ─────────────────────────── */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+}
+
+.field-full {
+    grid-column: 1 / -1;
+}
+
+/* ── Individual field row ───────────────────────────────── */
+.field-row {
+    display: flex;
+    align-items: stretch;
+    border: 1.5px solid #edddd5;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.field-row:focus-within {
+    border-color: #e07840;
+    box-shadow: 0 0 0 3px rgba(224, 120, 64, .12);
+}
+
+/* ── Icon column ────────────────────────────────────────── */
+.field-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    min-height: 44px;
+    background: #fef6f1;
+    border-right: 1.5px solid #edddd5;
+    flex-shrink: 0;
+    color: #e07840;
+    font-size: 13px;
+    transition: background .18s ease;
+}
+
+.field-row:focus-within .field-icon {
+    background: #fdeee4;
+    color: #c4581d;
+}
+
+/* ── Input wrapper ──────────────────────────────────────── */
+.field-input {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ── Override Symfony's form_row markup ─────────────────── */
+.field-input .mb-3,
+.field-input div {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.field-input label {
+    display: none;  /* labels replaced by icons; screen-readers still get field names from placeholder/aria-label */
+}
+
+.field-input input,
+.field-input select,
+.field-input textarea {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #1a1a1a;
+    font-family: inherit;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.field-input select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e07840' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.field-input textarea {
+    height: auto;
+    min-height: 80px;
+    padding: 12px 14px;
+    resize: vertical;
+}
+
+.field-input input::placeholder,
+.field-input textarea::placeholder {
+    color: #b8a99a;
+}
+
+/* Symfony validation feedback */
+.field-input .invalid-feedback,
+.field-input .form-error-message {
+    display: block;
+    font-size: 11.5px;
+    color: #d04020;
+    padding: 4px 14px 6px;
+    margin: 0;
+}
+
+.field-row:has(.invalid-feedback) {
+    border-color: #e85c3a;
+    background: #fff8f6;
+}
+
+/* ── Submit button ──────────────────────────────────────── */
+.form-footer {
+    margin-top: 20px;
+}
+
+.form-footer button,
+.form-footer input[type="submit"] {
+    display: block;
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(135deg, #f07b3a 0%, #e0521a 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .3px;
+    cursor: pointer;
+    transition: opacity .18s ease, transform .12s ease, box-shadow .18s ease;
+    box-shadow: 0 3px 12px rgba(200, 70, 20, .28);
+}
+
+.form-footer button:hover,
+.form-footer input[type="submit"]:hover {
+    opacity: .93;
+    box-shadow: 0 5px 18px rgba(200, 70, 20, .36);
+    transform: translateY(-1px);
+}
+
+.form-footer button:active,
+.form-footer input[type="submit"]:active {
+    opacity: 1;
+    transform: translateY(0) scale(.99);
+    box-shadow: 0 2px 8px rgba(200, 70, 20, .22);
+}
+
+/* Form-level error block */
+.form-card > .alert,
+.form-card > ul.errors {
+    background: #fff0ee;
+    border: 1px solid #f5c4b3;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    font-size: 13.5px;
+    color: #993c1d;
+}
+
+/* ── Responsive: collapse to single column on small screens ─ */
+@media (max-width: 540px) {
+    .form-card {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field-full {
+        grid-column: 1;
+    }
 }
 </style>
-
-<script>
-(function() {
-    function initMotifResiliation() {
-        var ancienneSelect = null;
-        var motifContainer = null;
-        
-        document.querySelectorAll('select').forEach(function(select) {
-            if ((select.getAttribute('name') || '').indexOf('[ancienne]') !== -1) {
-                ancienneSelect = select;
-            }
-        });
-        
-        motifContainer = document.querySelector('.motif-container');
-        
-        if (!ancienneSelect || !motifContainer) return;
-        
-        var motifSelect = motifContainer.querySelector('select');
-        
-        function toggleMotif() {
-            if (ancienneSelect.value === 'NON' || ancienneSelect.value === '') {
-                motifContainer.classList.add('hidden');
-                motifSelect.value = '';
-            } else if (ancienneSelect.value === 'OUI') {
-                motifContainer.classList.remove('hidden');
-            }
-        }
-        
-        ancienneSelect.addEventListener('change', toggleMotif);
-        toggleMotif();
-    }
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMotifResiliation);
-    } else {
-        initMotifResiliation();
-    }
-    document.addEventListener('turbo:load', initMotifResiliation);
-})();
-</script>

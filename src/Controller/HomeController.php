@@ -2,16 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\AutoEcoleDevi;
-use App\Entity\Devi;
-use App\Entity\GarageDevi;
-use App\Entity\LoueurDevi;
-use App\Entity\NegociantsDevi;
-use App\Form\AutoEcoleDeviType;
-use App\Form\DeviType;
-use App\Form\GarageDeviType;
-use App\Form\LoueurDeviType;
-use App\Form\NegociantsDeviType;
+use App\Entity\Professionel;
+use App\Form\ProfessionelType;
 use App\Service\DevisService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,14 +18,12 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(Request $request, DevisService $devisService): Response
     {
-        $devi = new Devi();
-        $form = $this->createForm(DeviType::class, $devi);
+        $entity = new Professionel();
+        $form = $this->createForm(ProfessionelType::class, $entity, ['product_type' => 'general']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $entity = $devisService->createDevi($form);
-
+            $entity = $devisService->createProfessionel($form);
             $this->addFlash('success', 'Demande envoyée avec succès');
 
             return $this->redirectToRoute('app_confirmation', [
@@ -41,9 +31,15 @@ class HomeController extends AbstractController
             ]);
         }
 
-        return $this->render('home/index.html.twig', [
+        $response = $this->render('home/index.html.twig', [
             'form' => $form->createView(),
         ]);
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $response->setStatusCode(422);
+        }
+
+        return $response;
     }
 
     // =========================
@@ -52,14 +48,13 @@ class HomeController extends AbstractController
     #[Route('/negociants-auto', name: 'app_negociants')]
     public function negociants(Request $request, DevisService $devisService): Response
     {
-        $entity = new NegociantsDevi();
-        $form = $this->createForm(NegociantsDeviType::class, $entity);
+        $entity = new Professionel();
+        $entity->setProduct('negociants');
+        $form = $this->createForm(ProfessionelType::class, $entity, ['product_type' => 'negociants']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $entity = $devisService->createNegociantsDevi($form);
-
+            $entity = $devisService->createProfessionel($form);
             $this->addFlash('success', 'Demande négociant envoyée');
 
             return $this->redirectToRoute('app_confirmation', [
@@ -67,9 +62,15 @@ class HomeController extends AbstractController
             ]);
         }
 
-        return $this->render('negociants/index.html.twig', [
+        $response = $this->render('negociants/index.html.twig', [
             'form' => $form->createView(),
         ]);
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $response->setStatusCode(422);
+        }
+
+        return $response;
     }
 
     // =========================
@@ -78,14 +79,13 @@ class HomeController extends AbstractController
     #[Route('/auto-ecole', name: 'app_auto_ecole')]
     public function autoEcole(Request $request, DevisService $devisService): Response
     {
-        $entity = new AutoEcoleDevi();
-        $form = $this->createForm(AutoEcoleDeviType::class, $entity);
+        $entity = new Professionel();
+        $entity->setProduct('auto_ecole');
+        $form = $this->createForm(ProfessionelType::class, $entity, ['product_type' => 'auto_ecole']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $entity = $devisService->createAutoEcoleDevi($form);
-
+            $entity = $devisService->createProfessionel($form);
             $this->addFlash('success', 'Demande auto-école envoyée');
 
             return $this->redirectToRoute('app_confirmation', [
@@ -93,9 +93,15 @@ class HomeController extends AbstractController
             ]);
         }
 
-        return $this->render('autoecole/index.html.twig', [
+        $response = $this->render('autoecole/index.html.twig', [
             'form' => $form->createView(),
         ]);
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $response->setStatusCode(422);
+        }
+
+        return $response;
     }
 
     // =========================
@@ -104,14 +110,13 @@ class HomeController extends AbstractController
     #[Route('/loueur-voiture', name: 'app_loueur')]
     public function loueur(Request $request, DevisService $devisService): Response
     {
-        $entity = new LoueurDevi();
-        $form = $this->createForm(LoueurDeviType::class, $entity);
+        $entity = new Professionel();
+        $entity->setProduct('loueur');
+        $form = $this->createForm(ProfessionelType::class, $entity, ['product_type' => 'loueur']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $entity = $devisService->createLoueurDevi($form);
-
+            $entity = $devisService->createProfessionel($form);
             $this->addFlash('success', 'Demande loueur envoyée');
 
             return $this->redirectToRoute('app_confirmation', [
@@ -119,9 +124,15 @@ class HomeController extends AbstractController
             ]);
         }
 
-        return $this->render('loueur/index.html.twig', [
+        $response = $this->render('loueur/index.html.twig', [
             'form' => $form->createView(),
         ]);
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $response->setStatusCode(422);
+        }
+
+        return $response;
     }
 
     // =========================
@@ -130,14 +141,13 @@ class HomeController extends AbstractController
     #[Route('/garage-automobile', name: 'app_garage')]
     public function garage(Request $request, DevisService $devisService): Response
     {
-        $entity = new GarageDevi();
-        $form = $this->createForm(GarageDeviType::class, $entity);
+        $entity = new Professionel();
+        $entity->setProduct('garage');
+        $form = $this->createForm(ProfessionelType::class, $entity, ['product_type' => 'garage']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $entity = $devisService->createGarageDevi($form);
-
+            $entity = $devisService->createProfessionel($form);
             $this->addFlash('success', 'Demande garage envoyée');
 
             return $this->redirectToRoute('app_confirmation', [
@@ -145,9 +155,15 @@ class HomeController extends AbstractController
             ]);
         }
 
-        return $this->render('garage/index.html.twig', [
+        $response = $this->render('garage/index.html.twig', [
             'form' => $form->createView(),
         ]);
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $response->setStatusCode(422);
+        }
+
+        return $response;
     }
 
     // =========================

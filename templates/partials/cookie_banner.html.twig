@@ -141,3 +141,19 @@
          </div>
      </div>
  </div>
+
+<script>
+(function() {
+    // Define saveCookieConsent on window for inline onclick
+    if (typeof window.saveCookieConsent === 'undefined') {
+        window.saveCookieConsent = function() {
+            if (typeof window.setCookieConsent === 'function') {
+                window.setCookieConsent(window.analyticsValue, window.marketingValue);
+            }
+            if (typeof window.hideCookiePreferences === 'function') {
+                window.hideCookiePreferences();
+            }
+        };
+    }
+})();
+</script>

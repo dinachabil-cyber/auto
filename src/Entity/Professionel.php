@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\NegociantsDeviRepository;
+use App\Repository\ProfessionelRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: NegociantsDeviRepository::class)]
-#[ORM\Table(name: 'negociants_devis')]
-class NegociantsDevi
+#[ORM\Entity(repositoryClass: ProfessionelRepository::class)]
+#[ORM\Table(name: 'professionel')]
+class Professionel
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,42 +26,39 @@ class NegociantsDevi
     #[Assert\Length(max: 255)]
     private ?string $prenom = null;
 
-#[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $product = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $demarrage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $raison_sociale = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Length(max: 255)]
     private ?string $activite = null;
 
-    #[ORM\Column(length: 10, nullable: true)]
-    #[Assert\Regex('/^[0-9]{5}$/', message: 'Le code postal doit contenir 5 chiffres.')]
-    private ?string $code_postal = null;
-
-    #[ORM\Column(length: 3, nullable: true)]
-    private ?string $demarrage = null;
-
-    #[ORM\Column(length: 3, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $assure = null;
 
-    #[ORM\Column(length: 3, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $code_postal = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $ancienne = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $motif_resiliation = null;
+    private ?string $motif = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'L\'email est obligatoire.')]
     #[Assert\Email(message: 'Veuillez saisir un email valide.')]
     private ?string $email = null;
 
-    #[ORM\Column(length: 20, nullable: true)]
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le téléphone est obligatoire.')]
     #[Assert\Regex('/^0[1-9][0-9]{8}$/', message: 'Le numéro de téléphone est invalide.')]
-    private ?string $telephone = null;
-
-    #[ORM\Column(length: 255, options: ['default' => 'nouveau'])]
-    private ?string $statut = 'nouveau';
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $notes = null;
+    private ?string $tele = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $created_at = null;
@@ -79,7 +76,6 @@ class NegociantsDevi
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -91,43 +87,17 @@ class NegociantsDevi
     public function setPrenom(string $prenom): static
     {
         $this->prenom = $prenom;
-
         return $this;
     }
 
-    public function getRaisonSociale(): ?string
+    public function getProduct(): ?string
     {
-        return $this->raison_sociale;
+        return $this->product;
     }
 
-    public function setRaisonSociale(?string $raison_sociale): static
+    public function setProduct(?string $product): static
     {
-        $this->raison_sociale = $raison_sociale;
-
-        return $this;
-    }
-
-    public function getActivite(): ?string
-    {
-        return $this->activite;
-    }
-
-    public function setActivite(?string $activite): static
-    {
-        $this->activite = $activite;
-
-        return $this;
-    }
-
-    public function getCodePostal(): ?string
-    {
-        return $this->code_postal;
-    }
-
-    public function setCodePostal(?string $code_postal): static
-    {
-        $this->code_postal = $code_postal;
-
+        $this->product = $product;
         return $this;
     }
 
@@ -139,7 +109,28 @@ class NegociantsDevi
     public function setDemarrage(?string $demarrage): static
     {
         $this->demarrage = $demarrage;
+        return $this;
+    }
 
+    public function getRaisonSociale(): ?string
+    {
+        return $this->raison_sociale;
+    }
+
+    public function setRaisonSociale(?string $raison_sociale): static
+    {
+        $this->raison_sociale = $raison_sociale;
+        return $this;
+    }
+
+    public function getActivite(): ?string
+    {
+        return $this->activite;
+    }
+
+    public function setActivite(?string $activite): static
+    {
+        $this->activite = $activite;
         return $this;
     }
 
@@ -151,7 +142,17 @@ class NegociantsDevi
     public function setAssure(?string $assure): static
     {
         $this->assure = $assure;
+        return $this;
+    }
 
+    public function getCodePostal(): ?string
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(?string $code_postal): static
+    {
+        $this->code_postal = $code_postal;
         return $this;
     }
 
@@ -163,19 +164,17 @@ class NegociantsDevi
     public function setAncienne(?string $ancienne): static
     {
         $this->ancienne = $ancienne;
-
         return $this;
     }
 
-    public function getMotifResiliation(): ?string
+    public function getMotif(): ?string
     {
-        return $this->motif_resiliation;
+        return $this->motif;
     }
 
-    public function setMotifResiliation(?string $motif_resiliation): static
+    public function setMotif(?string $motif): static
     {
-        $this->motif_resiliation = $motif_resiliation;
-
+        $this->motif = $motif;
         return $this;
     }
 
@@ -184,53 +183,31 @@ class NegociantsDevi
         return $this->email;
     }
 
-    public function setEmail(?string $email): static
+    public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
-    public function getTelephone(): ?string
+    public function getTele(): ?string
     {
-        return $this->telephone;
+        return $this->tele;
     }
 
-    public function setTelephone(?string $telephone): static
+    public function setTele(string $tele): static
     {
-        $this->telephone = $telephone;
-
+        $this->tele = $tele;
         return $this;
     }
 
-    public function getStatut(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->statut;
-    }
-
-    public function setStatut(string $statut): static
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    public function getNotes(): ?string
-    {
-        return $this->notes;
-    }
-
-    public function setNotes(?string $notes): static
-    {
-        $this->notes = $notes;
-
-        return $this;
+        return $this->created_at;
     }
 
     public function setCreatedAt(?\DateTimeInterface $created_at): static
     {
         $this->created_at = $created_at;
-
         return $this;
     }
 
