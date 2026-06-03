@@ -25,7 +25,7 @@ class ProfessionelType extends AbstractType
             'loueur' => 'Nom de votre entreprise de location',
             'auto_ecole' => 'Nom de votre auto-école',
             'negociants' => 'Nom de votre société',
-            default => 'Votre nom d\'entreprise'
+            default => 'Raison sociale'
         };
 
         $builder
@@ -79,7 +79,7 @@ class ProfessionelType extends AbstractType
                 'required' => false,
                 'choices' => ['Sélectionnez…' => '', 'Oui' => 'OUI', 'Non' => 'NON'],
                 'attr' => ['class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'],
-                'label' => 'Démarrage d\'activité',
+                'label' => 'Démarrage activité',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
             ])
             ->add('ancienne', ChoiceType::class, [

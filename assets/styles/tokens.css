@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --brand:        #0b3dff;
+  --brand-dark:   #0028c4;
+  --brand-light:  #dde5ff;
+  --brand-xlight: #eef1ff;
+  --accent:       #ff7a18;
+  --accent-dark:  #e05e00;
+  --surface:      #f6f7fb;
+  --text-primary: #0d1117;
+  --text-muted:   #5a6478;
+  --border:       #e4e7f0;
+  --white:        #ffffff;
+  --radius-sm:    10px;
+  --radius-md:    16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+}

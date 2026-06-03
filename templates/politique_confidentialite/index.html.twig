@@ -6,96 +6,21 @@
 <meta name="description" content="Consultez notre politique de confidentialité pour connaître l'utilisation de vos données personnelles.">
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/legal.css') }}">
+{% endblock %}
+
 {% block body %}
 {{ include('partials/header.html.twig') }}    
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
-/* ── Design Tokens & Base Theme ────────────────────────── */
-:root {
-  --brand-primary: #312a8b;
-  --brand-gradient: linear-gradient(135deg, #312a8b 0%, #4f46e5 100%);
-  --text-dark: #1f2937;
-  --text-muted: #4b5563;
-  --bg-light: #f9fafb;
-  --accent-gold: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
-}
-
-.legal-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: var(--text-dark);
-  background-color: var(--bg-light);
-}
-
-/* ── Custom Pattern & Background Effects ────────────────── */
-.hero-pattern {
-  background-color: #ffffff;
-  background-image: radial-gradient(#4f46e5 0.5px, transparent 0.5px), radial-gradient(#4f46e5 0.5px, #ffffff 0.5px);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 10px;
-  background-opacity: 0.02;
-}
-
-.scanlines-bg {
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.03) 50%
-  );
-  background-size: 100% 4px;
-}
-
-/* ── Typography & Gradients ────────────────────────────── */
-.text-gradient {
-  background: var(--brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-/* ── Article / Prose Layout Fixes ──────────────────────── */
-.legal-prose h2 {
-  color: var(--brand-primary);
-  border-left: 4px solid #f59e0b;
-  padding-left: 12px;
-  margin-top: 2.5rem;
-}
-
-.legal-prose h3 {
-  color: #374151;
-  margin-top: 1.5rem;
-  font-weight: 600;
-}
-
-.legal-prose p {
-  line-height: 1.75;
-  color: var(--text-muted);
-}
-
-.legal-prose ul li {
-  position: relative;
-  padding-left: 1.5rem;
-  list-style-type: none;
-}
-
-.legal-prose ul li::before {
-  content: "•";
-  color: #f59e0b;
-  font-weight: bold;
-  font-size: 1.25rem;
-  position: absolute;
-  left: 0;
-  top: -2px;
-}
-</style>
-
 <div class="legal-body">
-    <section class="py-12 lg:py-20 hero-pattern relative overflow-hidden border-b border-gray-100">
+    <section class="py-12 lg:py-20 legal-hero-pattern relative overflow-hidden border-b border-gray-100">
         <div class="absolute inset-0 scanlines-bg opacity-20"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center">
-                <h1 class="text-4xl lg:text-5xl font-extrabold text-gradient mb-4">Politique de confidentialité</h1>
+                <h1 class="text-4xl lg:text-5xl font-extrabold legal-text-gradient mb-4">Politique de confidentialité</h1>
                 <div class="w-20 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 mx-auto rounded-full"></div>
             </div>
         </div>
@@ -150,7 +75,7 @@
                         <li>Des données relatives aux moyens de paiement en cas de prise de garantie (RIB, numéro de carte bancaire, date de fin de validité). Les données relatives aux cartes bancaires sont supprimées une fois la transaction réalisée, c'est-à-dire dès le paiement effectif.</li>
                         <li>Des données relatives à la souscription d'un contrat en ligne et au contrat en découlant.</li>
                         <li>Vos permis de conduire et cartes grises pour les contrats d'assurance véhicule et deux-roues.</li>
-                        <li>Des données relatives à vos antécédents de conducteur (Bonus/malus, existence de sinistres, de suspension ou annulation de permis de conduire, de condamnation en relation avec la conduite d'un véhicule, de résiliation d'une assurance pour conduite sous l'emprise d'un état alcoolique ou sous stupéfiant…).</li>
+                        <li>Des données relatives à vos antécédents de conducteur (Bonus/malus, existence de sinistres, de suspension ou annulation de permis de conduite, de condamnation en relation avec la conduite d'un véhicule, de résiliation d'une assurance pour conduite sous l'emprise d'un état alcoolique ou sous stupéfiant…).</li>
                         <li>Des données relatives à des sinistres ou à l'existence d'hypothèques sur les biens immobiliers à assurer.</li>
                         <li>Des données relatives au règlement des factures : modalités de règlement, remises consenties, reçus, impayés.</li>
                     </ul>

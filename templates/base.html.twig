@@ -15,53 +15,10 @@
         <link rel="canonical" href="https://assurance-professionnels-auto.fr">
         {% endblock %}
         
-        {% block stylesheets %}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-            <script src="https://cdn.tailwindcss.com"></script>
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
-                
-                .hero-pattern {
-                    background-image: radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 20%),
-                                     radial-gradient(circle at 90% 80%, rgba(49, 42, 139, 0.05) 0%, transparent 20%);
-                }
-                
-                .scanlines-bg {
-                    background-image: repeating-linear-gradient(0deg, rgba(49, 42, 139, 0.02), rgba(49, 42, 139, 0.02) 1px, transparent 1px, transparent 4px);
-                }
-                
-                @keyframes float {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-10px); }
-                }
-                
-                .floating-animation {
-                    animation: float 6s ease-in-out infinite;
-                }
-                
-                .animate-fade-in {
-                    animation: fadeIn 0.6s ease-out;
-                }
-                
-                @keyframes fadeIn {
-                    0% { opacity: 0; }
-                    100% { opacity: 1; }
-                }
-                
-                .text-gradient {
-                    background: linear-gradient(135deg, #f97316, #ea580c);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                }
-                
-                .max {
-                    max-width: 80rem;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-            </style>
-        {% endblock %}
+{% block stylesheets %}
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+             <script src="https://cdn.tailwindcss.com"></script>
+         {% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}

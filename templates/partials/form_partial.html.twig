@@ -29,22 +29,6 @@
 
     <div class="form-grid">
 
-        {# NOM #}
-        <div class="field-row">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-user"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.nom) }}</div>
-        </div>
-
-        {# PRENOM #}
-        <div class="field-row">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-user"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.prenom) }}</div>
-        </div>
-
         {# RAISON SOCIALE #}
         <div class="field-row field-full">
             <span class="field-icon" aria-hidden="true">
@@ -105,12 +89,20 @@
         </div>
         {% endif %}
 
-        {# TELEPHONE #}
+        {# NOM #}
         <div class="field-row">
             <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-phone"></i>
+                <i class="fas fa-user"></i>
             </span>
-            <div class="field-input">{{ form_row(form.tele) }}</div>
+            <div class="field-input">{{ form_row(form.nom) }}</div>
+        </div>
+
+        {# PRENOM #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-user"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.prenom) }}</div>
         </div>
 
         {# EMAIL #}
@@ -121,6 +113,14 @@
             <div class="field-input">{{ form_row(form.email) }}</div>
         </div>
 
+        {# TELEPHONE #}
+        <div class="field-row">
+            <span class="field-icon" aria-hidden="true">
+                <i class="fas fa-phone"></i>
+            </span>
+            <div class="field-input">{{ form_row(form.tele) }}</div>
+        </div>
+
     </div>
 
     <div class="form-footer">
@@ -128,6 +128,27 @@
     </div>
 
     {{ form_end(form) }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ancienneSelect = document.querySelector('[name*="[ancienne]"]');
+    const motifWrapper = document.getElementById('motif-wrapper');
+    
+    if (ancienneSelect && motifWrapper) {
+        function toggleMotifField() {
+            if (ancienneSelect.value === 'NON') {
+                motifWrapper.style.display = 'none';
+                motifWrapper.querySelector('select').value = '';
+            } else {
+                motifWrapper.style.display = '';
+            }
+        }
+        
+        toggleMotifField();
+        ancienneSelect.addEventListener('change', toggleMotifField);
+    }
+});
+</script>
 </div>
 
 <style>
