@@ -5,7 +5,12 @@
 <div class="form-card">
 
     {{ form_errors(form) }}
-
+<div style="color:red">
+    {{ form_errors(form.nom) }}
+    {{ form_errors(form.prenom) }}
+    {{ form_errors(form.email) }}
+    {{ form_errors(form.tele) }}
+</div>
     {{ form_start(form, {
         'attr': {
             'novalidate': 'novalidate',

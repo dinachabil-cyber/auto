@@ -110,9 +110,9 @@ class ProfessionelType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new NotBlank(message: 'Le téléphone est obligatoire.'),
-                    new Regex(pattern: '/^(0[1-9][0-9]{8}|0[1-9] ?[0-9]{2} ?[0-9]{2} ?[0-9]{2} ?[0-9]{2})$/', message: 'Téléphone invalide (10 chiffres).'),
+                    new Regex(pattern: '/^0[1-9]([0-9]{2} ?){4}$/', message: 'Téléphone invalide (ex: 0612345678 ou 06 12 34 56 78).'),
                 ],
-                'attr' => ['placeholder' => '01 23 45 67 89', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none', 'maxlength' => 10],
+                'attr' => ['placeholder' => '06 12 34 56 78', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none'],
                 'label' => 'Téléphone *',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
             ])
