@@ -35,9 +35,11 @@ class ProfessionelType extends AbstractType
                     new NotBlank(message: 'Le nom est obligatoire.'),
                     new Length(max: 255),
                 ],
-                'attr' => ['placeholder' => 'Votre nom', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none'],
-                'label' => 'Nom *',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
+                    'placeholder' => 'Nom *'
+                ],
+                'label' => false,
             ])
             ->add('prenom', TextType::class, [
                 'required' => true,
@@ -45,56 +47,78 @@ class ProfessionelType extends AbstractType
                     new NotBlank(message: 'Le prénom est obligatoire.'),
                     new Length(max: 255),
                 ],
-                'attr' => ['placeholder' => 'Votre prénom', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none'],
-                'label' => 'Prénom *',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
+                    'placeholder' => 'Prénom *'
+                ],
+                'label' => false,
             ])
             ->add('raison_sociale', TextType::class, [
                 'required' => false,
-                'attr' => ['placeholder' => $productPlaceholder, 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none'],
-                'label' => 'Raison sociale',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
+                    'placeholder' => 'Raison sociale'
+                ],
+                'label' => false,
             ])
             ->add('activite', TextType::class, [
                 'required' => false,
-                'attr' => ['placeholder' => 'Votre activité', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none'],
-                'label' => 'Activité',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
+                    'placeholder' => 'Activité'
+                ],
+                'label' => false,
             ])
             ->add('assure', ChoiceType::class, [
                 'required' => false,
-                'choices' => ['Sélectionnez un statut…' => '', 'Oui' => 'OUI', 'Non' => 'NON'],
-                'attr' => ['class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'],
-                'label' => 'Activité assurée actuellement',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'placeholder' => 'Activité assurée actuellement',
+                'choices' => ['Oui' => 'OUI', 'Non' => 'NON'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'
+                ],
+                'label' => false,
             ])
             ->add('code_postal', TextType::class, [
                 'required' => false,
                 'constraints' => [new Length(max: 10)],
-                'attr' => ['placeholder' => '75001', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none', 'maxlength' => 10],
-                'label' => 'Code Postal',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
+                    'maxlength' => 10,
+                    'placeholder' => 'Code Postal'
+                ],
+                'label' => false,
             ])
             ->add('demarrage', ChoiceType::class, [
                 'required' => false,
-                'choices' => ['Sélectionnez le statut…' => '', 'Oui' => 'OUI', 'Non' => 'NON'],
-                'attr' => ['class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'],
-                'label' => 'Démarrage activité',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'placeholder' => 'Démarrage activité',
+                'choices' => ['Oui' => 'OUI', 'Non' => 'NON'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'
+                ],
+                'label' => false,
             ])
             ->add('ancienne', ChoiceType::class, [
                 'required' => false,
-                'choices' => ['Sélectionnez une option…' => '', 'Oui' => 'OUI', 'Non' => 'NON'],
-                'attr' => ['class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'],
-                'label' => 'Ancienne Assurance résilié',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'placeholder' => 'Ancienne Assurance résilié',
+                'choices' => ['Oui' => 'OUI', 'Non' => 'NON'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'
+                ],
+                'label' => false,
             ])
             ->add('motif', ChoiceType::class, [
                 'required' => false,
-                'choices' => ['Sélectionnez un motif…' => '', 'Sinistre' => 'Sinistre', 'Non paiement' => 'Non paiement', 'Amiable' => 'Amiable', 'Échéance' => 'Échéance'],
-                'attr' => ['class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'],
-                'label' => 'Motif résiliation',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'placeholder' => 'Motif résiliation',
+                'choices' => [
+                    'Sinistre' => 'Sinistre',
+                    'Non paiement' => 'Non paiement',
+                    'Amiable' => 'Amiable',
+                    'Échéance' => 'Échéance'
+                ],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'
+                ],
+                'label' => false,
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
@@ -102,9 +126,11 @@ class ProfessionelType extends AbstractType
                     new NotBlank(message: 'L\'email est obligatoire.'),
                     new Email(message: 'Email invalide.'),
                 ],
-                'attr' => ['placeholder' => 'email@exemple.com', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none'],
-                'label' => 'Email *',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
+                    'placeholder' => 'Email *'
+                ],
+                'label' => false,
             ])
             ->add('tele', TelType::class, [
                 'required' => true,
@@ -112,9 +138,11 @@ class ProfessionelType extends AbstractType
                     new NotBlank(message: 'Le téléphone est obligatoire.'),
                     new Regex(pattern: '/^0[1-9]([0-9]{2} ?){4}$/', message: 'Téléphone invalide (ex: 0612345678 ou 06 12 34 56 78).'),
                 ],
-                'attr' => ['placeholder' => '06 12 34 56 78', 'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none'],
-                'label' => 'Téléphone *',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-700 mb-1.5'],
+                'attr' => [
+                    'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
+                    'placeholder' => 'Téléphone *'
+                ],
+                'label' => false,
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Comparer maintenant',
