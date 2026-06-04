@@ -50,33 +50,31 @@
 
 <script>
 (function() {
-    var done = false;
+    var textEl = document.getElementById('header-text');
+    var cursorEl = document.getElementById('header-cursor');
     
-    function typeText() {
-        if (done) return;
-        done = true;
-        
-        var textEl = document.getElementById('header-text');
-        var cursorEl = document.getElementById('header-cursor');
-        
-        if (!textEl || !cursorEl || textEl.textContent.length > 0) return;
-        
-        cursorEl.style.display = 'inline';
-        var text = "Quels que soient vos antécédents, obtenez un devis d'assurance pour professionnels auto en quelques clics";
-        var i = 0;
-        
-        var int = setInterval(function() {
-            if (i < text.length) {
-                textEl.textContent += text[i];
-                i++;
-            } else {
-                clearInterval(int);
-                setTimeout(function() { cursorEl.style.display = 'none'; }, 500);
-            }
-        }, 35);
+    if (!textEl || !cursorEl) return;
+    
+    var fullText = "Quels que soient vos antécédents, obtenez un devis d'assurance pour professionnels auto en quelques clics";
+    
+    // Session check - use localStorage for tab persistence
+    if (localStorage.getItem('headerTyped') === 'true') {
+        textEl.textContent = fullText;
+        cursorEl.style.display = 'none';
+        return;
     }
+    localStorage.setItem('headerTyped', 'true');
     
-    // Use only turbo:load - it fires on both initial load and navigation
-    document.addEventListener('turbo:load', typeText);
+    cursorEl.style.display = 'inline';
+    textEl.textContent = '';
+    
+    var i = 0;
+    var int = setInterval(function() {
+        textEl.textContent = fullText.substring(0, ++i);
+        if (i >= fullText.length) {
+            clearInterval(int);
+            setTimeout(function() { cursorEl.style.display = 'none'; }, 500);
+        }
+    }, 35);
 })();
 </script>

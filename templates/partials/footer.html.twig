@@ -1,42 +1,38 @@
 <footer class="bg-[#312a8b] text-gray-300 w-full block" role="contentinfo">
-    <div class="max-w-[1200px] mr-auto px-4 sm:px-6 lg:px-8 py-12 text-left">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start justify-start text-left">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             
-            <div class="text-left flex flex-col items-start">
-                <div class="flex items-center gap-3 mb-4 text-left justify-start">
-                    <span class="text-lg font-bold text-white block text-left">Aksam Assurance</span>
-                </div>
-                <p class="text-sm leading-relaxed text-gray-400 text-left">
+            <div class="flex flex-col items-start">
+                <span class="text-lg font-bold text-white mb-4 block">Aksam Assurance</span>
+                <p class="text-sm leading-relaxed text-gray-400">
                     Spécialiste de l'assurance des professionnels de l'automobile.
                     Comparez et obtenez votre devis en ligne.
                 </p>
             </div>
 
-            <div class="text-left flex flex-col items-start">
-                <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4 text-left">Informations</h4>
-                <ul class="space-y-3 text-left w-full">
-                    <li class="text-left"><a href="{{ path('app_mentions_legales') }}" class="text-sm hover:text-[#5a4fbf] transition-colors block text-left">Mentions légales</a></li>
-                    <li class="text-left"><a href="{{ path('app_politique_confidentialite') }}" class="text-sm hover:text-[#5a4fbf] transition-colors block text-left">Politique de confidentialité</a></li>
+            <div class="flex flex-col items-start">
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Informations</h4>
+                <ul class="space-y-3 w-full">
+                    <li><a href="{{ path('app_mentions_legales') }}" class="text-sm hover:text-[#5a4fbf] transition-colors block">Mentions légales</a></li>
+                    <li><a href="{{ path('app_politique_confidentialite') }}" class="text-sm hover:text-[#5a4fbf] transition-colors block">Politique de confidentialité</a></li>
                 </ul>
             </div>
 
-            <div class="text-left flex flex-col items-start">
-                <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4 text-left">Contact</h4>
-                <ul class="space-y-3 text-sm text-gray-400 text-left w-full">
-                    <li class="text-left">10 rue de Penthièvre</li>
-                    <li class="text-left">75008 Paris</li>
-                    <li class="text-left"><a href="tel:0182834800" class="hover:text-[#5a4fbf] transition-colors block text-left">01 82 83 48 00</a></li>
-                    <li class="text-left"><a href="mailto:contact@aksam-assurances.fr" class="hover:text-[#5a4fbf] transition-colors block text-left">contact@aksam-assurances.fr</a></li>
+            <div class="flex flex-col items-start">
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Contact</h4>
+                <ul class="space-y-3 text-sm text-gray-400 w-full">
+                    <li>10 rue de Penthièvre</li>
+                    <li>75008 Paris</li>
+                    <li><a href="tel:0182834800" class="hover:text-[#5a4fbf] transition-colors block">01 82 83 48 00</a></li>
+                    <li><a href="mailto:contact@aksam-assurances.fr" class="hover:text-[#5a4fbf] transition-colors block">contact@aksam-assurances.fr</a></li>
                 </ul>
             </div>
             
         </div>
 
-        <div class="border-t border-[#312a8b]/30 pt-8 mt-8 flex flex-col md:flex-row items-start justify-between gap-4 text-xs text-gray-500 w-full text-left">
-            <p class="text-left block w-full md:w-auto">© {{ 'now'|date('Y') }} Aksam Assurance — Tous droits réservés</p>
-            <div class="flex items-center gap-4 justify-start">
-            </div>
+        <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 w-full">
+            <p>© {{ 'now'|date('Y') }} Aksam Assurance — Tous droits réservés</p>
         </div>
 
     </div>
