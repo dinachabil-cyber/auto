@@ -3,29 +3,29 @@
         <div class="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0">
 
 {# LEFT SECTION → Hidden on mobile, visible from lg screens #}
-            <div class="hidden lg:flex items-center space-x-4">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center shadow-lg"
-                     style="background: rgba(255,255,255,0.2);">
-                    <svg class="w-8 h-8 lg:w-10 lg:h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M32 8L50 14L50 32C50 41 42 49 32 53C22 49 14 41 14 32L14 14Z" fill="white"/>
-                        <path d="M20 37L20 33L23 27L29 26L35 26L41 27L44 33L44 37Z" fill="#312a8b"/>
-                        <path d="M24 27L25.5 31L38.5 31L40 27Z" fill="rgba(49,42,139,0.25)"/>
-                        <circle cx="26" cy="37" r="3" fill="#312a8b"/>
-                        <circle cx="38" cy="37" r="3" fill="#312a8b"/>
-                        <circle cx="26" cy="37" r="1.3" fill="white"/>
-                        <circle cx="38" cy="37" r="1.3" fill="white"/>
-                    </svg>
-                </div>
+         <div class="hidden lg:flex items-center space-x-4">
+    
+    <div class="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg shrink-0"
+         style="background: rgba(255,255,255,0.2);">
+        <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8L50 14L50 32C50 41 42 49 32 53C22 49 14 41 14 32L14 14Z" fill="white"/>
+            <path d="M20 37L20 33L23 27L29 26L35 26L41 27L44 33L44 37Z" fill="#312a8b"/>
+            <path d="M24 27L25.5 31L38.5 31L40 27Z" fill="rgba(49,42,139,0.25)"/>
+            <circle cx="26" cy="37" r="3" fill="#312a8b"/>
+            <circle cx="38" cy="37" r="3" fill="#312a8b"/>
+            <circle cx="26" cy="37" r="1.3" fill="white"/>
+            <circle cx="38" cy="37" r="1.3" fill="white"/>
+        </svg>
+    </div>
 
-                <div>
-                    <h1 class="text-lg sm:text-xl lg:text-2xl font-semibold text-white max-w-2xl lg:max-w-3xl min-h-[5rem] sm:min-h-[4.5rem] leading-snug break-words">
-                        <span id="header-text"></span>
-                        <span id="header-cursor"
-                              class="inline-block w-0.5 h-6 bg-amber-300 ml-1 rounded-sm animate-pulse"
-                              style="display:none;"></span>
-                    </h1>
-                </div>
-            </div>
+    <h1 class="text-xl lg:text-2xl font-semibold text-white leading-snug">
+        <span id="header-text"></span>
+        <span id="header-cursor"
+              class="inline-block w-0.5 h-6 bg-amber-300 ml-1 rounded-sm animate-pulse"
+              style="display:none;"></span>
+    </h1>
+
+</div>
 
             {# RIGHT SECTION → Always visible, centered on mobile #}
             <div class="flex items-center space-x-3 w-full justify-center lg:w-auto lg:justify-end">
@@ -47,34 +47,31 @@
         </div>
     </div>
 </header>
-
 <script>
 (function() {
     var textEl = document.getElementById('header-text');
     var cursorEl = document.getElementById('header-cursor');
-    
+
     if (!textEl || !cursorEl) return;
-    
+
     var fullText = "Quels que soient vos antécédents, obtenez un devis d'assurance pour professionnels auto en quelques clics";
-    
-    // Session check - use localStorage for tab persistence
-    if (localStorage.getItem('headerTyped') === 'true') {
-        textEl.textContent = fullText;
-        cursorEl.style.display = 'none';
-        return;
-    }
-    localStorage.setItem('headerTyped', 'true');
-    
+
     cursorEl.style.display = 'inline';
-    textEl.textContent = '';
-    
-    var i = 0;
-    var int = setInterval(function() {
-        textEl.textContent = fullText.substring(0, ++i);
-        if (i >= fullText.length) {
-            clearInterval(int);
-            setTimeout(function() { cursorEl.style.display = 'none'; }, 500);
-        }
-    }, 35);
+
+    function startTyping() {
+        textEl.textContent = '';
+        var i = 0;
+        var int = setInterval(function() {
+            textEl.textContent = fullText.substring(0, ++i);
+            if (i >= fullText.length) {
+                clearInterval(int);
+                setTimeout(function() {
+                    startTyping(); // ← restart after a pause
+                }, 1500); // wait 1.5s before retyping
+            }
+        }, 35);
+    }
+
+    startTyping();
 })();
 </script>
