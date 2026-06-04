@@ -57,7 +57,7 @@ class Professionel
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le téléphone est obligatoire.')]
-    #[Assert\Regex('/^0[1-9][0-9]{8}$/', message: 'Le numéro de téléphone est invalide.')]
+    #[Assert\Regex('/^0[1-9]([0-9]{2} ?){4}$/', message: 'Le numéro de téléphone est invalide.')]
     private ?string $tele = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
