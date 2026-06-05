@@ -1,159 +1,102 @@
-<section class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-100 shadow-lg" id="cookie-banner">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div class="flex gap-3 items-start">
-                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="text-sm font-semibold text-gray-800">Gestion des cookies</h4>
-                    <p class="text-sm text-gray-500">Ce site utilise des cookies pour améliorer votre expérience. <a href="{{ path('app_politique_confidentialite') }}" class="text-orange-600 hover:underline font-medium">En savoir plus</a></p>
-                </div>
+<div class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" id="cookie-overlay">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative" id="cookie-banner">
+        <div class="flex items-start gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-[#0b3dff]/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-[#0b3dff]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
             </div>
-            <div class="flex gap-2 shrink-0">
-                <button onclick="setCookieConsent(false, false)" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200">Refuser</button>
-                <button onclick="showCookiePreferences()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-300">Personnaliser</button>
-                <button onclick="setCookieConsent(true, true)" class="px-5 py-2.5 bg-orange-500 text-white rounded-lg text-sm font-semibold hover:bg-orange-600 shadow">Accepter</button>
+            <div>
+                <h3 class="font-semibold text-gray-900 mb-1">Cookies</h3>
+                <p class="text-sm text-gray-600">Ce site utilise des cookies pour améliorer votre expérience. <a href="{{ path('app_politique_confidentialite') }}" class="text-[#0b3dff] underline hover:text-[#0028c4]">En savoir plus</a></p>
             </div>
         </div>
+        <div class="flex gap-3">
+            <button onclick="setCookieConsent(false)" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Refuser</button>
+            <button onclick="setCookieConsent(true)" class="flex-1 px-4 py-2 bg-[#0b3dff] text-white rounded-lg hover:bg-[#0028c4] transition font-semibold">Accepter</button>
+        </div>
     </div>
-</section>
+</div>
 
 <script>
-(function() {
-    // Prevent redeclaration on Turbo navigation
-    if (window.initCookieBanner) {
-        document.addEventListener('turbo:load', window.initCookieBanner);
-        return;
+(function () {
+
+    const COOKIE_NAME = "aksamConsent";
+
+    // ---------- COOKIE HELPERS ----------
+    function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + days * 86400000);
+
+        document.cookie =
+            name + "=" + encodeURIComponent(value) +
+            "; expires=" + d.toUTCString() +
+            "; path=/; SameSite=Lax";
     }
 
-    window.analyticsValue = true;
-    window.marketingValue = true;
-
-    window.setCookieConsent = function(analytics, marketing) {
-        var prefs = JSON.stringify({ analytics: analytics, marketing: marketing });
-        var expiry = new Date();
-        expiry.setMonth(expiry.getMonth() + 6);
-        document.cookie = 'aksamConsent=' + encodeURIComponent(prefs) + '; path=/; expires=' + expiry.toUTCString() + '; SameSite=Lax';
-        var banner = document.getElementById('cookie-banner');
-        if (banner) {
-            banner.style.display = 'none';
-        }
-    };
-
-    window.showCookiePreferences = function() {
-        var prefs = document.getElementById('cookie-preferences');
-        var banner = document.getElementById('cookie-banner');
-        if (prefs) prefs.classList.remove('hidden');
-        if (banner) banner.classList.add('hidden');
-    };
-
-    window.hideCookiePreferences = function() {
-        var prefs = document.getElementById('cookie-preferences');
-        if (prefs) prefs.classList.add('hidden');
-    };
-
-    window.toggleAnalytics = function() {
-        window.analyticsValue = !window.analyticsValue;
-        var toggle = document.getElementById('analytics-toggle');
-        if (toggle) {
-            var span = toggle.querySelector('span');
-            if (window.analyticsValue) {
-                toggle.classList.add('bg-orange-500');
-                toggle.classList.remove('bg-gray-300');
-                if (span) span.classList.add('translate-x-6');
-            } else {
-                toggle.classList.remove('bg-orange-500');
-                toggle.classList.add('bg-gray-300');
-                if (span) span.classList.remove('translate-x-6');
+    function getCookie(name) {
+        const cookies = document.cookie.split("; ");
+        for (let c of cookies) {
+            if (c.indexOf(name + "=") === 0) {
+                return decodeURIComponent(c.substring(name.length + 1));
             }
         }
-    };
-
-    window.toggleMarketing = function() {
-        window.marketingValue = !window.marketingValue;
-        var toggle = document.getElementById('marketing-toggle');
-        if (toggle) {
-            var span = toggle.querySelector('span');
-            if (window.marketingValue) {
-                toggle.classList.add('bg-orange-500');
-                toggle.classList.remove('bg-gray-300');
-                if (span) span.classList.add('translate-x-6');
-            } else {
-                toggle.classList.remove('bg-orange-500');
-                toggle.classList.add('bg-gray-300');
-                if (span) span.classList.remove('translate-x-6');
-            }
-        }
-    };
-
-    window.initCookieBanner = function() {
-        var consent = document.cookie.match(/aksamConsent=([^;]+)/);
-        var banner = document.getElementById('cookie-banner');
-        if (consent && banner) {
-            banner.style.display = 'none';
-        }
-    };
-
-    // Initialize on load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', window.initCookieBanner);
-    } else {
-        window.initCookieBanner();
+        return null;
     }
 
-    document.addEventListener('turbo:load', window.initCookieBanner);
-})();
-</script>
-
-<div id="cookie-preferences" class="hidden fixed inset-0 bg-black/50 z-[99]" onclick="hideCookiePreferences()">
-    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4" role="dialog" aria-modal="true">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full border border-gray-100 overflow-hidden" onclick="event.stopPropagation()">
-            <div class="bg-orange-500 px-6 py-4">
-                <h3 class="text-lg font-bold text-white">Paramètres de confidentialité</h3>
-            </div>
-            <div class="p-6 space-y-4">
-                <div class="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-sm mb-1">Cookies analytiques</h4>
-                        <p class="text-xs text-gray-500">Nous permettent d'améliorer le site.</p>
-                    </div>
-                    <button onclick="toggleAnalytics()" id="analytics-toggle" class="relative w-12 h-6 rounded-full shrink-0 transition-colors bg-orange-500">
-                        <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform translate-x-6"></span>
-                    </button>
-                </div>
-                <div class="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-sm mb-1">Cookies marketing</h4>
-                        <p class="text-xs text-gray-500">Campagnes publicitaires personnalisées.</p>
-                    </div>
-                    <button onclick="toggleMarketing()" id="marketing-toggle" class="relative w-12 h-6 rounded-full shrink-0 transition-colors bg-orange-500">
-                        <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform translate-x-6"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="flex gap-3 px-6 py-4 bg-gray-50 border-t border-gray-100">
-                <button onclick="hideCookiePreferences()" class="px-5 py-2.5 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-300">Fermer</button>
-<button onclick="saveCookieConsent()" class="px-5 py-2.5 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 shadow">Enregistrer</button>
-             </div>
-         </div>
-     </div>
- </div>
-
-<script>
-(function() {
-    // Define saveCookieConsent on window for inline onclick
-    if (typeof window.saveCookieConsent === 'undefined') {
-        window.saveCookieConsent = function() {
-            if (typeof window.setCookieConsent === 'function') {
-                window.setCookieConsent(window.analyticsValue, window.marketingValue);
-            }
-            if (typeof window.hideCookiePreferences === 'function') {
-                window.hideCookiePreferences();
-            }
-        };
+    // ---------- SHOW / HIDE ----------
+    function showCookie() {
+        document.getElementById("cookie-overlay")?.classList.remove("hidden");
+        document.getElementById("cookie-banner")?.classList.remove("hidden");
     }
+
+    function hideCookie() {
+        document.getElementById("cookie-overlay")?.classList.add("hidden");
+        document.getElementById("cookie-banner")?.classList.add("hidden");
+    }
+
+    // ---------- INIT ----------
+    function initCookie() {
+        const consent = getCookie(COOKIE_NAME);
+
+        if (!consent) {
+            showCookie();
+        } else {
+            hideCookie();
+        }
+    }
+
+    // ---------- SAVE CONSENT ----------
+    window.setCookieConsent = function (accept) {
+        setCookie(
+            COOKIE_NAME,
+            JSON.stringify({
+                analytics: accept,
+                marketing: accept
+            }),
+            180
+        );
+
+        hideCookie();
+    };
+
+    // ---------- BUTTON EVENTS ----------
+    document.addEventListener("click", function (e) {
+        const btn = e.target.closest("[data-cookie]");
+        if (!btn) return;
+
+        if (btn.dataset.cookie === "accept") {
+            setCookieConsent(true);
+        }
+
+        if (btn.dataset.cookie === "reject") {
+            setCookieConsent(false);
+        }
+    });
+
+    // ---------- START ----------
+    document.addEventListener("DOMContentLoaded", initCookie);
+    document.addEventListener("turbo:load", initCookie);
+
 })();
 </script>

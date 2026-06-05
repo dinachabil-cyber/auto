@@ -34,7 +34,7 @@
 @media (max-width: 560px) { .activity-grid { grid-template-columns: 1fr; } }
 
 .act-card {
-  background: #111827;
+  background:#0b3dff;
   border: 1px solid rgba(255,255,255,.07);
   border-radius: var(--radius-md);
   padding: 1.4rem 1.2rem 1.2rem;
