@@ -1,39 +1,81 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Aksam Assurance — Assurance Professionnels Auto{% endblock %}</title>
-        <link rel="icon" type="image/png" href="{{ asset('image/favicon.png') }}" />
-        {% block meta %}
-        <meta name="description" content="Devis assurance pour professionnels de l'automobile, un comparatif rapide et en ligne.">
-        <meta name="keywords" content="Assurance professionnel auto, RC PRO auto-école, Devis assurance MRP">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Aksam Assurance — Assurance Professionnels Auto">
-        <meta property="og:description" content="Comparez les meilleures assurances pour professionnels de l'automobile.">
-        <meta property="twitter:card" content="summary_large_image">
-        <link rel="canonical" href="https://assurance-professionnels-auto.fr">
-        {% endblock %}
-        
-{% block stylesheets %}
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-              <script src="https://cdn.tailwindcss.com"></script>
-          {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flash-message">
-                    {{ message }}
-                </div>
-            {% endfor %}
+    <title>{% block title %}Aksam Assurance — Assurance Professionnels Auto{% endblock %}</title>
+
+    <meta name="description" content="{% block meta_description %}Devis assurance pour professionnels de l’automobile, comparatif rapide et en ligne.{% endblock %}">
+    
+    <meta name="keywords" content="Assurance professionnel auto, RC PRO auto-école, Devis assurance MRP auto, assurance garage automobile">
+
+    <meta name="author" content="Aksam Assurance">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="{% block canonical %}https://assurance-professionnels-auto.fr{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('image/favicon.png') }}">
+
+    <!-- Open Graph SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}Aksam Assurance — Assurance Professionnels Auto{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Comparez les meilleures assurances pour professionnels de l'automobile.{% endblock %}">
+    <meta property="og:url" content="https://assurance-professionnels-auto.fr">
+    <meta property="og:image" content="https://assurance-professionnels-auto.fr/image/photo.jpg">
+
+    <!-- Twitter SEO -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Aksam Assurance — Assurance Professionnels Auto{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Comparez les meilleures assurances pour professionnels de l'automobile.{% endblock %}">
+    <meta name="twitter:image" content="https://assurance-professionnels-auto.fr/image/photo.jpg">
+
+    {% block meta %}{% endblock %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    {% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+
+    <!-- Structured Data (SEO Boost) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Aksam Assurance",
+        "url": "https://assurance-professionnels-auto.fr",
+        "image": "https://assurance-professionnels-auto.fr/image/photo.jpg",
+        "telephone": "+33 1 82 83 48 00",
+        "priceRange": "€€",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "10 rue de Penthièvre",
+            "addressLocality": "Paris",
+            "postalCode": "75008",
+            "addressCountry": "FR"
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flash-message">
+                {{ message }}
+            </div>
         {% endfor %}
-        {% include 'partials/cookie_banner.html.twig' %}
+    {% endfor %}
 
-        {% block body %}{% endblock %}
-    </body>
+    {% include 'partials/cookie_banner.html.twig' %}
+
+    {% block body %}{% endblock %}
+
+</body>
 </html>
