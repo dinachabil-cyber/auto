@@ -1,23 +1,40 @@
-<div class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" id="cookie-overlay">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative" id="cookie-banner">
-        <div class="flex items-start gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-[#0b3dff]/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-[#0b3dff]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
+<div id="cookie-overlay" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+
+    <div id="cookie-banner"
+         class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-7 transform transition-all duration-300 scale-95">
+
+        <!-- ICON -->
+        <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl">
+                🍪
             </div>
+
             <div>
-                <h3 class="font-semibold text-gray-900 mb-1">Cookies</h3>
-                <p class="text-sm text-gray-600">Ce site utilise des cookies pour améliorer votre expérience. <a href="{{ path('app_politique_confidentialite') }}" class="text-[#0b3dff] underline hover:text-[#0028c4]">En savoir plus</a></p>
+                <h3 class="text-lg font-bold text-gray-900">We use cookies</h3>
+                <p class="text-sm text-gray-500">To improve your experience</p>
             </div>
         </div>
+
+        <!-- TEXT -->
+        <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+            We use cookies to personalize content, analyze traffic and improve your experience on our website.
+        </p>
+
+        <!-- BUTTONS -->
         <div class="flex gap-3">
-            <button onclick="setCookieConsent(false)" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">Refuser</button>
-            <button onclick="setCookieConsent(true)" class="flex-1 px-4 py-2 bg-[#0b3dff] text-white rounded-lg hover:bg-[#0028c4] transition font-semibold">Accepter</button>
+            <button data-cookie="reject"
+                class="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-100 transition">
+                Refuser
+            </button>
+
+            <button data-cookie="accept"
+                class="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition font-semibold">
+                Accepter
+            </button>
         </div>
+
     </div>
 </div>
-
 <script>
 (function () {
 
@@ -99,4 +116,20 @@
     document.addEventListener("turbo:load", initCookie);
 
 })();
-</script>
+<script>
+style>
+#cookie-banner {
+    animation: popup 0.25s ease-out;
+}
+
+@keyframes popup {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+</style>
