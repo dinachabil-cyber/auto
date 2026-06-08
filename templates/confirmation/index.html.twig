@@ -6,69 +6,159 @@
 
 {% block body %}
 
-    {% include 'partials/header.html.twig' %}
+{% include 'partials/header.html.twig' %}
 
-    <div class="min-h-screen bg-white hero-pattern relative overflow-hidden">
-        <div class="absolute inset-0 scanlines-bg opacity-30"></div>
-        <div class="absolute top-6 left-6 sm:top-10 sm:left-10 floating-animation"><i class="fas fa-shield-alt text-orange-500 text-6xl sm:text-8xl opacity-25"></i></div>
+<div class="page-wrapper">
 
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl p-6 sm:p-12 text-center border border-yellow-200 mt-12 reveal opacity-0 translate-y-6 transition-all duration-700">
+    <div class="confirm-card">
 
-
-                 <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
-                     Merci pour votre demande !
-                </h1>
-
-                <p class="text-base sm:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8">
-                    Votre demande de devis a été enregistrée avec succès.
-                    Nos conseillers vont l'analyser et vous contacter
-                    dans les plus brefs délais pour vous fournir les meilleures offres
-                    d'assurance adaptées à votre situation.
-                </p>
-
-               
-                <a href="{{ path('app_home') }}"
-                   class="inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-[#312a8b] font-bold py-3 sm:py-4 px-6 sm:px-10 rounded-2xl hover:bg-indigo-50 transition-all transform hover:scale-105 shadow-2xl cursor-pointer reveal opacity-0 translate-y-6 transition-all duration-700">
-
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 20 20" fill="none">
-                        <path d="M15 10H5M5 10L10 5M5 10L10 15"
-                              stroke="#312a8b"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"/>
-                    </svg>
-
-                    Retour à l'accueil
-                </a>
-
-            </div>
+        <div class="icon">
+            <i class="fas fa-check-circle"></i>
         </div>
+
+        <h2 class="title">
+            Merci pour votre demande !
+        </h2>
+
+        <p class="desc">
+            Votre demande de devis a été enregistrée avec succès.  
+            Nos conseillers vont l’analyser et vous contacter dans les plus brefs délais.
+        </p>
+
+        <a href="{{ path('app_home') }}" class="btn">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M15 10H5M5 10L10 5M5 10L10 15"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+            Retour à l'accueil
+        </a>
+
+        <div class="footer">
+            Aksam Assurance
+        </div>
+
     </div>
 
-    {% include 'partials/footer.html.twig' %}
+</div>
 
-    {# ================= ANIMATION SCRIPT ================= #}
-    <script>
-    function initRevealAnimations() {
-        const elements = document.querySelectorAll(".reveal");
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("opacity-100", "translate-y-0");
-                    entry.target.classList.remove("opacity-0", "translate-y-6");
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        elements.forEach(el => observer.observe(el));
-    }
+{% include 'partials/footer.html.twig' %}
 
-    document.addEventListener("DOMContentLoaded", initRevealAnimations);
-    document.addEventListener("turbo:load", initRevealAnimations);
-    </script>
+<style>
+
+/* PAGE BACKGROUND (WHITE) */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0px;
+  background: #ffffff;
+}
+
+/* CARD */
+.confirm-card {
+  width: 480px;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 50px 35px;
+  text-align: center;
+  position: relative;
+
+  border: 1px solid rgba(0,0,0,0.06);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    0 0 25px rgba(11,61,255,.10);
+
+  animation: fadeUp 0.5s ease-out;
+}
+
+/* soft blue glow */
+.confirm-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(90deg, transparent, rgba(11,61,255,.25), transparent);
+  filter: blur(25px);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* ICON */
+.icon {
+  font-size: 54px;
+  color: #2f6bff;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+/* TITLE */
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* DESCRIPTION */
+.desc {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 28px;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2f6bff;
+  color: white;
+  font-weight: 700;
+  padding: 14px 22px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: #1f55dd;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 22px;
+  font-size: 12px;
+  color: #888;
+  position: relative;
+  z-index: 1;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
 
 {% endblock %}
