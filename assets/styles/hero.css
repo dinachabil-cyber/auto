@@ -2,9 +2,9 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: .7rem;
-  font-weight: 700;
+  font-weight: bold;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: #007bff;
@@ -15,11 +15,12 @@
   margin-bottom: 1rem;
 }
 
+/* HERO SECTION */
 .hero {
   position: relative;
-  background: var(--surface);
+  background: #f6f7fb;
   overflow: hidden;
-  padding: 5rem 0 0;
+  padding: 5rem 0;
 }
 
 .hero::before,
@@ -31,39 +32,78 @@
 }
 
 .hero::before {
-  width: 700px; height: 700px;
-  top: -200px; right: -120px;
-  background: radial-gradient(circle, rgba(0, 123, 255, .12) 0%, transparent 70%);
+  width: 700px;
+  height: 700px;
+  top: -200px;
+  right: -120px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 123, 255, .12) 0%,
+    transparent 70%
+  );
 }
 
 .hero::after {
-  width: 400px; height: 400px;
-  bottom: -80px; left: 5%;
-  background: radial-gradient(circle, rgba(0, 123, 255, .08) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  bottom: -80px;
+  left: 5%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 123, 255, .08) 0%,
+    transparent 70%
+  );
 }
 
+/* MAIN LAYOUT */
 .hero-inner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: end;
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-text  { order: 1; }
-  .hero-form  { order: 2; }
+/* IMAGE LEFT */
+.hero-image-container {
+  flex: 1;
+  min-height: 650px;
+  border-radius: 2rem;
+  overflow: hidden;
+  align-self: stretch;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .08);
 }
 
-.hero-text { padding-bottom: 4rem; }
+.hero-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* FORM RIGHT */
+.hero-form {
+  width: 100%;
+  max-width: 420px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+/* TEXT */
+.hero-text {
+  padding-bottom: 2rem;
+}
 
 .hero h1 {
   font-size: clamp(2.4rem, 5vw, 3.8rem);
-  color: var(--text-primary);
+  color: #000;
   margin-bottom: 1.25rem;
+  line-height: 1.1;
 }
 
 .hero h1 em {
@@ -73,35 +113,38 @@
 
 .hero-lead {
   font-size: 1.05rem;
-  color: var(--text-muted);
+  color: #666;
   line-height: 1.7;
   max-width: 440px;
   margin-bottom: 2rem;
 }
 
+/* KICKER */
 .hero-kicker {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid #ddd;
   border-radius: 999px;
   padding: .45rem 1.1rem .45rem .55rem;
   font-size: .8rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-weight: bold;
+  color: #666;
   margin-bottom: 1.75rem;
   box-shadow: 0 1px 4px rgba(0,0,0,.05);
 }
 
 .hero-kicker-dot {
-  width: 8px; height: 8px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #22c55e;
   box-shadow: 0 0 0 3px rgba(34,197,94,.2);
   flex-shrink: 0;
 }
 
+/* STATS */
 .hero-stats {
   display: flex;
   gap: 2rem;
@@ -109,19 +152,78 @@
 }
 
 .hero-stat-num {
-  font-family: 'Instrument Serif', serif;
   font-size: 1.85rem;
-  color: var(--text-primary);
+  color: #333;
   line-height: 1;
+  font-weight: 700;
 }
 
 .hero-stat-label {
   font-size: .78rem;
-  color: var(--text-muted);
+  color: #666;
   margin-top: 2px;
 }
 
 .hero-stat-div {
-  width: 1px; height: 36px;
-  background: var(--border);
+  width: 1px;
+  height: 36px;
+  background: #ccc;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .hero-image-container {
+    min-height: 550px;
+  }
+
+  .hero-form {
+    max-width: 380px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+
+  .hero-form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  
+
+  .hero-text {
+    padding-bottom: 1rem;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-stat-div {
+    display: none;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 576px) {
+  .hero {
+    padding: 3rem 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-image-container {
+    min-height: 250px;
+  }
+
+  .hero-lead {
+    font-size: .95rem;
+  }
 }

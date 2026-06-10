@@ -12,32 +12,31 @@
 
 <main id="main-content" class="flex-1">
    {# ── Hero Section with Form ── #}
-   <section class="hero">
-     <div class="hero-inner">
-        
-        {# Form panel - First on mobile viewports #}
-        <div class="hero-form reveal order-1 lg:order-2" style="transition-delay:.15s">
-        
-            {{ include('partials/form_partial.html.twig', {
-                'form': form,
-                'showActivity': true,
-                'showPostalCode': true
-            }) }}
+<section class="hero">
+      <div class="hero-inner">
          
-        </div>
+         {# Image Column - Full width background #}
+         <div class="hero-image-container">
+           <img
+             src="https://assurance-professionnels-auto.fr/image/negocie-auto.jpg"
+             alt="Assurance négociant automobile"
+             loading="lazy"
+           />
+         </div>
+         
+         {# Form Column - Positioned on right #}
+         <div class="hero-form reveal" style="transition-delay:.15s;">
+         
+             {{ include('partials/form_partial.html.twig', {
+                 'form': form,
+                 'showActivity': true,
+                 'showPostalCode': true
+             }) }}
+          
+         </div>
 
-        {# Brand Image block frame #}
-        <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1">
-          <img
-            src="https://assurance-professionnels-auto.fr/image/negocie-auto.jpg"
-            alt="Assurance négociant automobile"
-            class="w-full h-full object-cover object-center"
-            loading="lazy"
-          />
-        </div>
-
-     </div>
-   </section>
+      </div>
+    </section>
 
    {# ── Section 1 - Définition Editorial Intro Strip ── #}
    <section class="py-20 bg-white">
@@ -65,7 +64,7 @@ Une assurance pour négociant automobile est une police d’assurance spécialem
         <h2>  2- Garantie assurance RC négociants automobiles
 </h2>Les garanties incluses dans une assurance négociants automobiles peuvent couvrir :
 
-        <p style="font-size:1rem; color:var(--text-muted); max-width:520px; margin:0 auto;"></p>
+        <p style="font-size:1rem; color:#666; max-width:520px; margin:0 auto;"></p>
       </div>
 
       <div class="g-grid">

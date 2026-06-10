@@ -9,26 +9,23 @@
 {# ── Hero ── #}
 <section class="hero">
     <div class="hero-inner">
-
-        {# Form - Comes FIRST on mobile #}
-        <div class="hero-form reveal order-1 lg:order-2" style="transition-delay:.15s">
-           
-                {{ include('partials/form_partial.html.twig', {
-                    'form': form,
-                    'showActivity': true,
-                    'showPostalCode': true
-                }) }}
-          
-        </div>
-
-        {# Image - Comes AFTER form on mobile #}
-        <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1">
+    
+        {# Image - Full width background #}
+        <div class="hero-image-container">
             <img
-                src="{{ asset('image/home.png') }}"
-                alt="Conducteur professionnel"
-                class="w-full h-full object-cover object-center"
-                loading="lazy"
+            src="https://assurance-professionnels-auto.fr/image/photo.jpg"
+            alt="Assurance RC Pro auto-école"
+            loading="lazy"
             />
+        </div>
+        
+        {# Form - Positioned on right #}
+        <div class="hero-form reveal" style="transition-delay:.15s;">
+            {{ include('partials/form_partial.html.twig', {
+                'form': form,
+                'showActivity': true,
+                'showPostalCode': true
+            }) }}
         </div>
 
     </div>
@@ -41,7 +38,8 @@
           <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
           À propos
         </span> 
-        <h2>Assurance des professionnels de l'automobile</h2>
+        <h1 class="intro-title">Assurance des professionnels de l'automobile</h1>
+        
         <p>
 L'assurance des professionnels de l'automobile fait référence à une forme d'assurance conçue spécifiquement pour les entreprises et les professionnels travaillant dans le secteur automobile. Cette assurance appelé aussi assurance multirisque professionnelle, vise à protéger les professionnels de l’automobile contre les risques spécifiques liés à leurs activités.        </p>
       </div>

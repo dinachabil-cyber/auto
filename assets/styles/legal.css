@@ -1,17 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
-:root {
-  --brand-primary: #312a8b;
-  --brand-gradient: linear-gradient(135deg, #312a8b 0%, #4f46e5 100%);
-  --text-dark: #1f2937;
-  --text-muted: #4b5563;
-  --bg-light: #f9fafb;
-}
-
 .legal-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: var(--text-dark);
-  background-color: var(--bg-light);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+  background-color: #f9fafb;
 }
 
 .legal-hero-pattern {
@@ -30,14 +20,14 @@
 }
 
 .legal-text-gradient {
-  background: var(--brand-gradient);
+  background: linear-gradient(135deg, #312a8b 0%, #4f46e5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
 
 .legal-prose h2 {
-  color: var(--brand-primary);
+  color: #312a8b;
   border-left: 4px solid #f59e0b;
   padding-left: 12px;
   margin-top: 2.5rem;
@@ -46,12 +36,12 @@
 .legal-prose h3 {
   color: #374151;
   margin-top: 1.5rem;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .legal-prose p {
   line-height: 1.75;
-  color: var(--text-muted);
+  color: #4b5563;
 }
 
 .legal-prose ul li {

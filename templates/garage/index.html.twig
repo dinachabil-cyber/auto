@@ -11,33 +11,32 @@
 {{ include('partials/header.html.twig') }}
 
 <main id="main-content" class="flex-1">
-   {# ── Hero Section with Form ── #}
-   <section class="hero">
-     <div class="hero-inner">
-        
-        {# Form Column - Responsive placement #}
-        <div class="hero-form reveal order-1 lg:order-2" style="transition-delay:.15s">
-            
-            {{ include('partials/form_partial.html.twig', {
-                'form': form,
-                'showActivity': true,
-                'showPostalCode': true
-            }) }}
-          
-        </div>
+{# ── Hero Section with Form ── #}
+<section class="hero">
+      <div class="hero-inner">
+         
+         {# Image Column - Full width background #}
+         <div class="hero-image-container">
+           <img
+             src="https://assurance-professionnels-auto.fr/image/proauto-garage.jpg"
+             alt="Assurance garage automobile"
+             loading="lazy"
+           />
+         </div>
+         
+         {# Form Column - Positioned on right #}
+         <div class="hero-form reveal" style="transition-delay:.15s;">
+              
+             {{ include('partials/form_partial.html.twig', {
+                 'form': form,
+                 'showActivity': true,
+                 'showPostalCode': true
+             }) }}
+           
+         </div>
 
-        {# Image Column #}
-        <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1">
-          <img
-            src="https://assurance-professionnels-auto.fr/image/proauto-garage.jpg"
-            alt="Assurance garage automobile"
-            class="w-full h-full object-cover object-center"
-            loading="lazy"
-          />
-        </div>
-
-     </div>
-   </section>
+      </div>
+    </section>
 
    {# ── Section 1 - Définition ── #}
    <section class="intro-strip">

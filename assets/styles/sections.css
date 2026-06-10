@@ -5,14 +5,14 @@
 }
 
 .section-head { text-align: center; margin-bottom: 4rem; }
-.section-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: .75rem; }
-.section-head h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; font-weight: 600; color: #007bff; margin-top: -0.25rem; margin-bottom: 1rem; }
-.section-head p  { font-size: 1rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+.section-head h2, .section-head h1 {     font-size: clamp(2rem, 3vw, 3rem); margin-bottom: .75rem; }
+.section-head h3 { font-family: Arial, Helvetica, sans-serif; font-size: 1.1rem; font-weight: bold; color: #007bff; margin-top: -0.25rem; margin-bottom: 1rem; }
+.section-head p  { font-size: 1rem; color: #666; max-width: 520px; margin: 0 auto; }
 .section-head p.text-xl { font-size: 1.05rem; line-height: 1.8; max-width: 680px; }
 
 .intro-strip {
   padding: 5rem 0;
-  background: var(--white);
+  background: #fff;
 }
 
 .intro-strip .section-head { max-width: 700px; margin-inline: auto; margin-bottom: 0; }
@@ -20,7 +20,7 @@
 
 .guarantees-section {
   padding: 5rem 0 6rem;
-  background: var(--surface);
+  background: #f6f7fb;
 }
 
 .g-grid {
@@ -45,7 +45,7 @@
   width: 100%; height: 100%;
   transform-style: preserve-3d;
   transition: transform .55s cubic-bezier(.4, 0, .2, 1);
-  border-radius: var(--radius-md);
+  border-radius: 16px;
 }
 
 .g-card:hover .g-card-inner { transform: rotateY(180deg); }
@@ -53,7 +53,7 @@
 .g-front, .g-back {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-md);
+  border-radius: 16px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   display: flex;
@@ -62,7 +62,7 @@
 }
 
 .g-front {
-  background: var(--white);
+  background: #fff;
   border: 1px solid rgba(0, 123, 255, .15);
   justify-content: flex-start;
   gap: .65rem;
@@ -78,10 +78,9 @@
 }
 
 .g-front h3 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: .92rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-weight: bold;
+  color: #000;
   line-height: 1.3;
 }
 
@@ -112,15 +111,14 @@
 }
 
 .g-back h3 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: .88rem;
-  font-weight: 700;
+  font-weight: bold;
   color: #fff;
 }
 
 .g-back p {
   font-size: .78rem;
-  color: rgba(255,255,255,.72);
+  color: rgba(255,255,255,.8);
   line-height: 1.65;
 }
 
@@ -149,8 +147,8 @@
   display: inline-flex; align-items: center; gap: 6px;
   margin-top: .5rem;
   background: #007bff;
-  color: var(--white);
-  font-size: .78rem; font-weight: 700;
+  color: #fff;
+  font-size: .78rem; font-weight: bold;
   padding: .42rem .95rem;
   border-radius: 999px;
   text-decoration: none;
@@ -162,12 +160,12 @@
 
 .cta-wrap {
   padding: 4rem 0 5rem;
-  background: var(--white);
+  background: #fff;
 }
 
 .cta-box {
   background: #312a8b;
-  border-radius: var(--radius-xl);
+  border-radius: 32px;
   padding: 3.5rem 2.5rem;
   text-align: center;
   position: relative;
@@ -188,7 +186,7 @@
 
 .cta-box h2 {
   font-size: clamp(2rem, 4vw, 2.8rem);
-  color: var(--white);
+  color: #fff;
   margin-bottom: .85rem;
 }
 
@@ -199,10 +197,9 @@
   align-items: center;
   gap: 8px;
   background: #5a4fbf;
-  color: var(--white);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
   font-size: .9rem;
-  font-weight: 700;
+  font-weight: bold;
   padding: .85rem 2rem;
   border-radius: 999px;
   text-decoration: none;

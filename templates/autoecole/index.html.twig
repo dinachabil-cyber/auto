@@ -11,32 +11,30 @@
 {{ include('partials/header.html.twig') }}
 
 <main id="main-content" class="flex-1">
-   {# ── Hero Section with Form ── #}
-   <section class="hero">
-     <div class="hero-inner">
-        
-        {# Form Column - First on mobile viewports #}
-        <div class="hero-form reveal order-1 lg:order-2" style="transition-delay:.15s">
+{# ── Hero Section with Form ── #}
+<section class="hero">
+      <div class="hero-inner">
          
-            {{ include('partials/form_partial.html.twig', {
-                'form': form,
-                'showActivity': true,
-                'showPostalCode': true
-            }) }}
-        </div>
+         {# Image Column - Full width background #}
+         <div class="hero-image-container">
+           <img
+             src="https://assurance-professionnels-auto.fr/image/photautoecole.png"
+             alt="Assurance RC Pro auto-école"
+             loading="lazy"
+           />
+         </div>
+         
+         {# Form Column - Positioned on right #}
+         <div class="hero-form reveal" style="transition-delay:.15s;">
+             {{ include('partials/form_partial.html.twig', {
+                 'form': form,
+                 'showActivity': true,
+                 'showPostalCode': true
+             }) }}
+         </div>
 
-        {# Image Column #}
-        <div class="relative h-full min-h-[350px] lg:min-h-[650px] rounded-xl lg:rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1">
-          <img
-            src="https://assurance-professionnels-auto.fr/image/photautoecole.png"
-            alt="Assurance RC Pro auto-école"
-            class="w-full h-full object-cover object-center"
-            loading="lazy"
-          />
-        </div>
-
-     </div>
-   </section>
+      </div>
+    </section>
 
    {# ── Section 1 - Définition ── #}
    <section class="intro-strip">
@@ -150,7 +148,7 @@
       </div>
 
       <div class="reveal" style="transition-delay:.3s">
-        <p style="font-size: .88rem; color: var(--text-muted); text-align: center; margin-top: 3rem;">
+        <p style="font-size: .88rem; color: #666; text-align: center; margin-top: 3rem;">
 En résumé, l'assurance auto-école offre une protection complète pour les risques spécifiques liés à l'enseignement de la conduite, incluant à la fois la responsabilité des moniteurs, la sécurité des élèves, ainsi que la protection des véhicules et des locaux de l'auto-école.        </p>
       </div>
 
