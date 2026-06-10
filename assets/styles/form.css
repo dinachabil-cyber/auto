@@ -26,12 +26,19 @@
 
 /* GRID */
 .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .field-full { grid-column: 1 / -1; }
+
+/* MOBILE FORM */
+@media (max-width: 576px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* FIELD */
 .field-row {
