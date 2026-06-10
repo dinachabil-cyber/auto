@@ -7,11 +7,11 @@
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--brand);
-  background: var(--brand-xlight);
+  color: #007bff;
+  background: rgba(0, 123, 255, .12);
   padding: .3rem .85rem;
   border-radius: 999px;
-  border: 1px solid var(--brand-light);
+  border: 1px solid rgba(0, 123, 255, .25);
   margin-bottom: 1rem;
 }
 
@@ -33,13 +33,13 @@
 .hero::before {
   width: 700px; height: 700px;
   top: -200px; right: -120px;
-  background: radial-gradient(circle, rgba(11,61,255,.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 123, 255, .12) 0%, transparent 70%);
 }
 
 .hero::after {
   width: 400px; height: 400px;
   bottom: -80px; left: 5%;
-  background: radial-gradient(circle, rgba(255,122,24,.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 123, 255, .08) 0%, transparent 70%);
 }
 
 .hero-inner {
@@ -68,7 +68,7 @@
 
 .hero h1 em {
   font-style: italic;
-  color: var(--brand);
+  color: #007bff;
 }
 
 .hero-lead {
