@@ -12,16 +12,13 @@
 
         {# Form - Comes FIRST on mobile #}
         <div class="hero-form reveal order-1 lg:order-2" style="transition-delay:.15s">
-            <div class="hero-form-card">
-                <h2>Obtenez votre tarif en 2 minutes</h2>
-                <p>Nos conseillers étudient votre dossier et vous répondent rapidement.</p>
-                
+           
                 {{ include('partials/form_partial.html.twig', {
                     'form': form,
                     'showActivity': true,
                     'showPostalCode': true
                 }) }}
-            </div>
+          
         </div>
 
         {# Image - Comes AFTER form on mobile #}
