@@ -4,148 +4,126 @@
 {% set title = title|default('') %}
 {% set subtitle = subtitle|default('') %}
 
-<div class="form-card">
+<div class="quote-form-wrapper">
 
-{% if title %}
-    <h2 class="text-xl font-bold text-gray-900 mb-3">{{ title }}</h2>
-{% endif %}
-{% if subtitle %}
-    <p class="text-sm text-gray-500 mb-6">{{ subtitle }}</p>
-{% endif %}
-
-    {{ form_errors(form) }}
-<div style="color:red">
-    {{ form_errors(form.nom) }}
-    {{ form_errors(form.prenom) }}
-    {{ form_errors(form.email) }}
-    {{ form_errors(form.tele) }}
-</div>
-    {{ form_start(form, {
-        'attr': {
-            'novalidate': 'novalidate',
-            'class': 'form-body'
-        }
-    }) }}
-
-    <div class="form-grid">
-
-        {# RAISON SOCIALE #}
-        <div class="field-row field-full">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-building"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.raison_sociale) }}</div>
-        </div>
-
-        {# ACTIVITE #}
-        {% if showActivity %}
-        <div class="field-row field-full">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-briefcase"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.activite) }}</div>
-        </div>
-        {% endif %}
-
-        {# DEMARRAGE #}
-        <div class="field-row field-full">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-clock"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.demarrage) }}</div>
-        </div>
-
-        {# ASSURE #}
-        <div class="field-row field-full">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-shield-alt"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.assure) }}</div>
-        </div>
-
-        {# ANCIENNE #}
-        <div class="field-row field-full">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-history"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.ancienne) }}</div>
-        </div>
-
-        {# MOTIF #}
-        <div class="field-row field-full" id="motif-wrapper">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-exclamation-circle"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.motif) }}</div>
-        </div>
-
-        {# NOM & PRENOM #}
-        <div class="field-row">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-user"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.nom) }}</div>
-        </div>
-
-        <div class="field-row">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-user"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.prenom) }}</div>
-        </div>
-
-        {# TELEPHONE & CODE POSTAL #}
-        <div class="field-row">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-phone"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.tele) }}</div>
-        </div>
-
-        {% if showPostalCode %}
-        <div class="field-row">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-map-marker-alt"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.code_postal) }}</div>
-        </div>
-        {% endif %}
-
-        {# EMAIL #}
-        <div class="field-row field-full">
-            <span class="field-icon" aria-hidden="true">
-                <i class="fas fa-envelope"></i>
-            </span>
-            <div class="field-input">{{ form_row(form.email) }}</div>
-        </div>
-
+    <div class="form-header">
+        Complétez ce formulaire pour obtenir un tarif
     </div>
 
-    <div class="form-footer">
-        {{ form_row(form.save) }}
-    </div>
+    <div class="form-card">
 
-    {{ form_end(form) }}
+        {% if title %}
+            <h2 class="text-xl font-bold text-gray-900 mb-2">{{ title }}</h2>
+        {% endif %}
+
+        {% if subtitle %}
+            <p class="text-sm text-gray-500 mb-6">{{ subtitle }}</p>
+        {% endif %}
+
+        {# Global errors #}
+        <div class="form-errors">
+            {{ form_errors(form) }}
+        </div>
+
+        {{ form_start(form, {
+            'attr': {
+                'novalidate': 'novalidate',
+                'class': 'form-body'
+            }
+        }) }}
+
+        <div class="form-grid">
+
+            {# RAISON SOCIALE #}
+            <div class="field-row field-full">
+                <span class="field-icon"><i class="fas fa-building"></i></span>
+                <div class="field-input">{{ form_row(form.raison_sociale) }}</div>
+            </div>
+
+            {% if showActivity %}
+            <div class="field-row field-full">
+                <span class="field-icon"><i class="fas fa-briefcase"></i></span>
+                <div class="field-input">{{ form_row(form.activite) }}</div>
+            </div>
+            {% endif %}
+
+            <div class="field-row field-full">
+                <span class="field-icon"><i class="fas fa-clock"></i></span>
+                <div class="field-input">{{ form_row(form.demarrage) }}</div>
+            </div>
+
+            <div class="field-row field-full">
+                <span class="field-icon"><i class="fas fa-shield-alt"></i></span>
+                <div class="field-input">{{ form_row(form.assure) }}</div>
+            </div>
+
+            <div class="field-row field-full">
+                <span class="field-icon"><i class="fas fa-history"></i></span>
+                <div class="field-input">{{ form_row(form.ancienne) }}</div>
+            </div>
+
+            <div class="field-row field-full" id="motif-wrapper">
+                <span class="field-icon"><i class="fas fa-exclamation-circle"></i></span>
+                <div class="field-input">{{ form_row(form.motif) }}</div>
+            </div>
+
+            <div class="field-row">
+                <span class="field-icon"><i class="fas fa-user"></i></span>
+                <div class="field-input">{{ form_row(form.nom) }}</div>
+            </div>
+
+            <div class="field-row">
+                <span class="field-icon"><i class="fas fa-user"></i></span>
+                <div class="field-input">{{ form_row(form.prenom) }}</div>
+            </div>
+
+            <div class="field-row">
+                <span class="field-icon"><i class="fas fa-phone"></i></span>
+                <div class="field-input">{{ form_row(form.tele) }}</div>
+            </div>
+
+            {% if showPostalCode %}
+            <div class="field-row">
+                <span class="field-icon"><i class="fas fa-map-marker-alt"></i></span>
+                <div class="field-input">{{ form_row(form.code_postal) }}</div>
+            </div>
+            {% endif %}
+
+            <div class="field-row field-full">
+                <span class="field-icon"><i class="fas fa-envelope"></i></span>
+                <div class="field-input">{{ form_row(form.email) }}</div>
+            </div>
+
+        </div>
+
+        <div class="form-footer">
+            {{ form_row(form.save) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
 </div>
 
 <script>
 function initToggleMotif() {
     const ancienneSelect = document.querySelector('[name*="[ancienne]"]');
     const motifWrapper = document.getElementById('motif-wrapper');
-    
-    if (ancienneSelect && motifWrapper) {
-        function toggleMotifField() {
-            if (ancienneSelect.value === 'NON') {
-                motifWrapper.style.display = 'none';
-                motifWrapper.querySelector('select').value = '';
-            } else {
-                motifWrapper.style.display = '';
-            }
+
+    if (!ancienneSelect || !motifWrapper) return;
+
+    function toggleMotifField() {
+        const motifSelect = motifWrapper.querySelector('select');
+
+        if (ancienneSelect.value === 'NON') {
+            motifWrapper.style.display = 'none';
+            if (motifSelect) motifSelect.value = '';
+        } else {
+            motifWrapper.style.display = '';
         }
-        
-        toggleMotifField();
-        ancienneSelect.addEventListener('change', toggleMotifField);
     }
+
+    toggleMotifField();
+    ancienneSelect.addEventListener('change', toggleMotifField);
 }
 
 document.addEventListener('DOMContentLoaded', initToggleMotif);
@@ -153,106 +131,108 @@ document.addEventListener('turbo:load', initToggleMotif);
 </script>
 
 <style>
-/* ── Card shell ─────────────────────────────────────────── */
+.quote-form-wrapper{
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+/* HEADER */
+.form-header{
+    background: linear-gradient(135deg, #c97842, #e08a55);
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 16px;
+}
+
+/* CARD */
 .form-card {
-    background: #ffffff;
-    border: 1px solid #f0ede8;
-    border-radius: 20px;
-    padding: 2rem 2.25rem;
-    box-shadow: 0 2px 16px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-    text-align: left;
+    background: #fff;
+    border: 2px solid #f3e6df;
+    border-top: none;
+    border-radius: 0 0 22px 22px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,.06);
 }
 
-/* ── Form body ──────────────────────────────────────────── */
-.form-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-/* ── Two-column grid for fields ─────────────────────────── */
+/* GRID */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px 14px;
+    gap: 12px;
 }
 
-.field-full {
-    grid-column: 1 / -1;
-}
-/* ── Individual field row ───────────────────────────────── */
+.field-full { grid-column: 1 / -1; }
+
+/* FIELD */
 .field-row {
     position: relative;
-    border: 1.5px solid #edddd5;
+    border: 1px solid #ead7cd;
     border-radius: 12px;
-    background: #ffffff;
-    transition: border-color .18s ease, box-shadow .18s ease;
-    overflow: visible;
+    background: #fff;
+    transition: .2s;
 }
 
 .field-row:focus-within {
-    border-color: #e07840;
-    box-shadow: 0 0 0 3px rgba(224, 120, 64, .12);
+    border-color: #c97842;
+    box-shadow: 0 0 0 3px rgba(201,120,66,.15);
 }
 
-/* ── Icon inside field ──────────────────────────────────── */
+/* ICON */
 .field-icon {
     position: absolute;
-    left: 14px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 5;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 20px;
-    height: 20px;
+    width: auto;
+    height: auto;
 
-    color: #e07840;
+    background: transparent !important;
+    border: none;
+
+    color: #c97842;
     font-size: 13px;
 
-    background: transparent;
-    border: none;
     pointer-events: none;
 }
 
-/* ── Input wrapper ──────────────────────────────────────── */
-.field-input {
-    width: 100%;
-}
-
-/* ── Inputs & Selects ───────────────────────────────────── */
+/* INPUT */
 .field-input input,
 .field-input select,
 .field-input textarea {
     width: 100%;
     min-height: 44px;
-    padding-left: 42px; /* espace pour l'icon */
-    padding-right: 14px;
-
+    padding: 10px 12px 10px 38px;
     border: none;
     outline: none;
-    background: transparent;
-
     font-size: 14px;
-    color: #1a1a1a;
-
-    box-shadow: none;
-    appearance: none;
-    -webkit-appearance: none;
+    background: transparent;
 }
 
-/* Select arrow */
+/* SELECT ARROW */
 .field-input select {
-    cursor: pointer;
-
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e07840' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c97842' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
+    background-position: right 10px center;
+}
 
-    padding-right: 35px;
+/* BUTTON AREA */
+.form-footer {
+    margin-top: 18px;
+    text-align: center;
+}
+
+/* ERRORS */
+.form-errors {
+    color: #d93025;
+    font-size: 13px;
+    margin-bottom: 10px;
 }
 </style>
