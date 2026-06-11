@@ -1,61 +1,61 @@
 .legal-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #1f2937;
-  background-color: #f9fafb;
-}
+   font-family: Arial, Helvetica, sans-serif;
+   color: var(--text-primary);
+   background-color: var(--white);
+ }
 
-.legal-hero-pattern {
-  background-color: #ffffff;
-  background-image: radial-gradient(#4f46e5 0.5px, transparent 0.5px), radial-gradient(#4f46e5 0.5px, #ffffff 0.5px);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 10px;
-}
+ .legal-hero-pattern {
+   background-color: var(--white);
+   background-image: radial-gradient(var(--brand) 0.5px, transparent 0.5px), radial-gradient(var(--brand) 0.5px, var(--white) 0.5px);
+   background-size: 20px 20px;
+   background-position: 0 0, 10px 10px;
+ }
 
-.scanlines-bg {
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.03) 50%
-  );
-  background-size: 100% 4px;
-}
+ .scanlines-bg {
+   background: linear-gradient(
+     rgba(255, 255, 255, 0) 50%, 
+     rgba(0, 0, 0, 0.03) 50%
+   );
+   background-size: 100% 4px;
+ }
 
-.legal-text-gradient {
-  background: linear-gradient(135deg, #312a8b 0%, #4f46e5 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
+ .legal-text-gradient {
+   background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   display: inline-block;
+ }
 
-.legal-prose h2 {
-  color: #312a8b;
-  border-left: 4px solid #f59e0b;
-  padding-left: 12px;
-  margin-top: 2.5rem;
-}
+ .legal-prose h2 {
+   color: var(--brand-dark);
+   border-left: 4px solid var(--accent);
+   padding-left: 12px;
+   margin-top: 2.5rem;
+ }
 
-.legal-prose h3 {
-  color: #374151;
-  margin-top: 1.5rem;
-  font-weight: bold;
-}
+ .legal-prose h3 {
+   color: var(--text-primary);
+   margin-top: 1.5rem;
+   font-weight: bold;
+ }
 
-.legal-prose p {
-  line-height: 1.75;
-  color: #4b5563;
-}
+ .legal-prose p {
+   line-height: 1.75;
+   color: var(--text-muted);
+ }
 
-.legal-prose ul li {
-  position: relative;
-  padding-left: 1.5rem;
-  list-style-type: none;
-}
+ .legal-prose ul li {
+   position: relative;
+   padding-left: 1.5rem;
+   list-style-type: none;
+ }
 
-.legal-prose ul li::before {
-  content: "•";
-  color: #f59e0b;
-  font-weight: bold;
-  font-size: 1.25rem;
-  position: absolute;
-  left: 0;
-  top: -2px;
-}
+ .legal-prose ul li::before {
+   content: "•";
+   color: var(--accent);
+   font-weight: bold;
+   font-size: 1.25rem;
+   position: absolute;
+   left: 0;
+   top: -2px;
+ }
