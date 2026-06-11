@@ -41,6 +41,60 @@ class HomeController extends AbstractController
 
         return $response;
     }
+       #[Route('/vrs2', name: 'app2_home')]
+    public function index2(Request $request, DevisService $devisService): Response
+    {
+        $entity = new Professionel();
+        $form = $this->createForm(ProfessionelType::class, $entity, ['product_type' => 'general']);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entity = $devisService->createProfessionel($form);
+            $this->addFlash('success', 'Demande envoyée avec succès');
+
+            return $this->redirectToRoute('app_confirmation', [
+                'id' => $entity->getId()
+            ]);
+        }
+
+        $response = $this->render('home/vrs2.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $response->setStatusCode(422);
+        }
+
+        return $response;
+    }
+
+   #[Route('/vrs3', name: 'app3_home')]
+public function index3(Request $request, DevisService $devisService): Response
+{
+    $entity = new Professionel();
+    $form = $this->createForm(ProfessionelType::class, $entity, ['product_type' => 'general']);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entity = $devisService->createProfessionel($form);
+        $this->addFlash('success', 'Demande envoyée avec succès');
+
+        return $this->redirectToRoute('app_confirmation', [
+            'id' => $entity->getId()
+        ]);
+    }
+
+    $response = $this->render('home/vrs3.html.twig', [
+        'form' => $form->createView(),
+    ]);
+
+    if ($form->isSubmitted() && !$form->isValid()) {
+        $response->setStatusCode(422);
+    }
+
+    return $response;
+}
+
 
     // =========================
     // NEGOCIANTS

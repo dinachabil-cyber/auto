@@ -6,9 +6,9 @@
 
 <div class="quote-form-wrapper">
 
-     <div class="form-header" style="background: #D17B43;">
-         Complétez ce formulaire pour obtenir un tarif
-     </div>
+<div class="form-header">
+          Complétez ce formulaire pour obtenir un tarif
+      </div>
 
      <div class="form-card">
 
@@ -105,6 +105,9 @@
 </div>
 
 <style>
+.quote-form-wrapper .form-header {
+    background: #D17B43;
+}
 .quote-form-wrapper .form-footer button,
 .quote-form-wrapper .form-footer input[type="submit"] {
     background: #D17B43 !important;
@@ -144,7 +147,3 @@ function initToggleMotif() {
 document.addEventListener('DOMContentLoaded', initToggleMotif);
 document.addEventListener('turbo:load', initToggleMotif);
 </script>
-
-
-{# Cookie banner script #}
-
