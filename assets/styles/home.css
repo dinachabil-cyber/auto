@@ -1,10 +1,22 @@
 
 .activities-bg {
-   padding: clamp(3.5rem, 6vw, 6rem) 0 clamp(4rem, 7vw, 7rem);
-   background: var(--white);
-   position: relative;
-   overflow: hidden;
- }
+    padding: clamp(2.5rem, 4vw, 5rem) 0 clamp(3rem, 5vw, 5rem);
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .activities-bg {
+      padding: 1.75rem 0 2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .activities-bg {
+      padding: 1.5rem 0 1.75rem;
+    }
+  }
 
  .activities-bg::before {
    content: '';
@@ -37,15 +49,22 @@
    color: var(--brand);
  }
 
- /* Grid */
- .activity-grid {
-   width: min(1180px, calc(100% - 32px));
-   margin: clamp(2rem, 4vw, 3rem) auto 0;
-   display: grid;
-   grid-template-columns: repeat(4, minmax(0, 1fr));
-   gap: clamp(1rem, 1.5vw, 1.35rem);
-   align-items: stretch;
- }
+/* Grid */
+  .activity-grid {
+    width: min(1180px, calc(100% - 32px));
+    margin: clamp(1.5rem, 3vw, 2rem) auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1rem, 1.5vw, 1.35rem);
+    align-items: stretch;
+  }
+
+  @media (max-width: 600px) {
+    .activity-grid {
+      margin: 1.25rem auto 0;
+      gap: 1rem;
+    }
+  }
 
  @media (max-width: 1100px) {
    .activity-grid {
