@@ -10,146 +10,146 @@
 {% block body %}
 {{ include('partials/header.html.twig') }}
 
-<main id="main-content" class="flex-1">
-   {# ── Hero Section with Form ── #}
-<section class="hero">
-      <div class="hero-inner">
-         
-         {# Image Column - Full width background #}
-         <div class="hero-image-container">
-           <img
-             src="https://assurance-professionnels-auto.fr/image/loueur-voiture.jpg"
-             alt="Assurance Flotte Loueur de Voiture"
-             loading="lazy"
-           />
-         </div>
-         
-         {# Form Column - Positioned on right #}
-         <div class="hero-form reveal" style="transition-delay:.15s;">
-          
-             {{ include('partials/form_partial.html.twig', {
-                 'form': form,
-                 'showActivity': true,
-                 'showPostalCode': true
-             }) }}
-         </div>
-
-      </div>
-    </section>
-
-   {# ── Section 1 - Définition ── #}
-    <section class="intro-strip">
-      <div class="section">
-        <div class="section-head reveal">
-          <span class="stag">À propos</span>
-          <h2>I - Assurance loueur de véhicules</h2>
-          <p>L'assurance pour loueurs de véhicules couvre les risques spécifiques liés à la location courte et longue durée, incluant la responsabilité civile, les dommages aux véhicules et la perte d'exploitation.</p>
+<main id="main-content">
+{# ── Hero Section with Form ── #}
+<section id="hero" class="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 hero-pattern relative overflow-hidden">
+    <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+    
+    {# Orbs #}
+    <div class="bg-orb w-96 h-96 bg-yellow-300 top-20 left-10 reveal" data-reveal data-reveal-id="orb1" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-80 h-80 bg-blue-300 bottom-20 right-10 reveal" data-reveal data-reveal-id="orb2" style="animation-delay: -5s;"></div>
+    <div class="bg-orb w-60 h-60 bg-green-300 top-1/2 left-1/3 reveal" data-reveal data-reveal-id="orb3" style="animation-delay: -10s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-stretch">
+            {# Form Column #}
+            <div class="reveal order-1 lg:order-2" style="transition-delay: 0.1s;">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover border border-gray-100">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-car text-2xl text-dark"></i>
+                        </div>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-gradient mb-4">Complétez ce formulaire pour obtenir un tarif</h2>
+                        <div class="w-20 h-1 bg-yellow-400 mx-auto rounded-full"></div>
+                    </div>
+                    {{ include('partials/form_partial.html.twig', {
+                        'form': form,
+                        'showActivity': true,
+                        'showPostalCode': true
+                    }) }}
+                </div>
+            </div>
+            
+            {# Image Column #}
+            <div class="reveal order-2 lg:order-1 lg:flex-1" style="transition-delay: 0.2s;">
+                <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-3xl shadow-2xl overflow-hidden h-full min-h-[600px] relative group">
+                    <div class="absolute inset-0 scanlines-bg opacity-20"></div>
+                    <div class="absolute -inset-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="absolute inset-0 rounded-full border-2 border-yellow-400 glow-ring"></div>
+                        <div class="absolute inset-4 rounded-full border-2 border-yellow-300 glow-ring" style="animation-direction: reverse;"></div>
+                    </div>
+                    <img
+                        src="https://assurance-professionnels-auto.fr/image/loueur-voiture.jpg"
+                        alt="Assurance Flotte Loueur de Voiture"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-   
-
-   {# ── Section 2 - Garanties (Interactive Grid Setup) ── #}
-   <section class="guarantees-section" id="garanties">
-     <div class="section">
-      
-      <div class="section-head reveal">
-        <span class="stag">Couvertures</span>
-        <h2>I- Assurance loueur de véhicules : Protégez votre flotte et votre activité.
-</h2>
-      </div>
-
-    <div class="g-grid">
-
-        {# Card 1 #}
-        <div class="g-card reveal" style="transition-delay:.05s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🚗</div>
-              <h3>Une couverture sur-mesure pour votre entreprise de location de véhicules</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🚗</div>
-              <h3>Couverture sur-mesure</h3>
-              <p>Vous êtes loueur de véhicules courte ou longue durée et recherchez une assurance fiable et compétitive ? Protégez votre flotte avec une assurance spécialement conçue pour les professionnels de la location automobile.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 2 #}
-        <div class="g-card reveal" style="transition-delay:.1s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🛡️</div>
-              <h3>Garantie RC PRO location voiture</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🛡️</div>
-              <h3>Garanties principales</h3>
-              <p><strong>Assurance complète :</strong> Couverture tous risques, responsabilité civile, dommages aux véhicules.<br><br><strong>Protection financière :</strong> Garantie perte d'exploitation, vol, vandalisme.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 3 #}
-        <div class="g-card reveal" style="transition-delay:.15s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">💼</div>
-              <h3>Pourquoi choisir notre assurance pour loueurs de véhicules ?</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">💼</div>
-              <h3>Nos atouts</h3>
-              <p><strong>Spécialiste automobile :</strong> Expertise des besoins des professionnels de la location.<br><br><strong>Tarifs compétitifs :</strong> Solutions sur-mesure adaptées à votre budget.<br><br><strong>Sinistres rapides :</strong> Réactivité pour assurer la continuité de votre activité.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 4 #}
-        <div class="g-card reveal" style="transition-delay:.2s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">📋</div>
-              <h3>Obtenez votre devis gratuit en quelques clics !</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">📋</div>
-              <h3>Comment obtenir votre devis</h3>
-              <p><strong>Conseiller dédié :</strong> Expertise adaptée à votre secteur.<br><br><strong>Formulaire en ligne :</strong> Réponse et devis rapides.<br><br><strong>Comparez & souscrivez :</strong> Protégez votre flotte en toute sérénité.</p>
-            </div>
-          </div>
-        </div>
-
-</div>
-     </div>
-   </section>
-
-   {# ── Section 3 - CTA Banner ── #}
-  <section class="cta-wrap">
-    <div class="section">
-      <div class="cta-box reveal">
-        <p style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.75rem">Devis assurance en ligne</p>
-        <h2>II - Devis assurance RC PRO loueur de voiture</h2>
-        <p>
-          Pour obtenir un devis personnalisé pour votre flotte de véhicules légers ou d'utilitaires, complétez notre formulaire de tarification rapide en haut de page.
-        </p>
-        <a href="{{ path('app_home') }}" class="btn-primary">
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Retour à l'accueil
-        </a>
-      </div>
     </div>
-  </section>
+</section>
 
+{# ── Section 1 - Définition ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">I - Assurance loueur de véhicules</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16 reveal" style="transition-delay: 0.2s;">
+                L'assurance pour loueurs de véhicules couvre les risques spécifiques liés à la location courte et longue durée, incluant la responsabilité civile, les dommages aux véhicules et la perte d'exploitation.
+            </p>
+        </div>
+    </div>
+</section>
+
+{# ── Section 2 - Garanties ── #}
+<section class="py-20 bg-surface relative overflow-hidden" id="garanties">
+    <div class="container mx-auto px-4">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+                Couvertures
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Assurance loueur de véhicules : Protégez votre flotte et votre activité</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-12">Des garanties adaptées aux besoins spécifiques des professionnels de la location automobile.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+            <div class="garantie-card reveal" style="transition-delay: 0.05s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-400/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-car text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Couverture sur-mesure</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Vous êtes loueur de véhicules courte ou longue durée et recherchez une assurance fiable et compétitive ?</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Garantie RC PRO location</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Assurance complète : couverture tous risques, responsabilité civile, dommages aux véhicules.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.15s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-green-500 to-green-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-briefcase text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Nos atouts</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Spécialiste automobile, tarifs compétitifs, sinistres rapides.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-file-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Obtenez votre devis</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Formulaire en ligne pour un devis rapide et une comparaison personnalisée.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{# ── Section 3 - CTA Banner ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-3xl p-8 lg:p-12 text-center reveal" style="transition-delay: 0.2s;">
+            <p class="text-sm font-bold tracking-wider text-dark/60 mb-4">DEVIS ASSURANCE EN LIGNE</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">II - Devis assurance RC PRO loueur de voiture</h2>
+            <p class="text-lg text-dark/80 max-w-2xl mx-auto mb-8">
+                Pour obtenir un devis personnalisé pour votre flotte de véhicules légers ou d'utilitaires, complétez notre formulaire.
+            </p>
+            <a href="{{ path('app_home') }}" class="inline-block btn-modern bg-gradient-to-r from-yellow-400 to-yellow-500 text-dark font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all transform hover:scale-105 gradient-shine">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+</section>
 </main>
 
 
-{{ include('partials/footer.html.twig') %}}
+{{ include('partials/footer.html.twig') }}
 
 <script>
 function initReveal() {

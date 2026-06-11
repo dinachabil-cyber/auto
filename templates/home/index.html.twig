@@ -7,222 +7,294 @@
 
 <main id="main-content">
 {# ── Hero ── #}
-<section class="hero">
-    <div class="hero-inner">
+<section id="hero" class="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 hero-pattern relative overflow-hidden">
+    <div class="absolute inset-0 scanlines-bg opacity-30"></div>
     
-        {# Image - Full width background #}
-        <div class="hero-image-container">
-            <img
-            src="https://assurance-professionnels-auto.fr/image/photo.jpg"
-            alt="Assurance RC Pro auto-école"
-            loading="lazy"
-            />
+    {# Orbs #}
+    <div class="bg-orb w-96 h-96 bg-yellow-300 top-20 left-10 reveal" data-reveal data-reveal-id="orb1" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-80 h-80 bg-blue-300 bottom-20 right-10 reveal" data-reveal data-reveal-id="orb2" style="animation-delay: -5s;"></div>
+    <div class="bg-orb w-60 h-60 bg-green-300 top-1/2 left-1/3 reveal" data-reveal data-reveal-id="orb3" style="animation-delay: -10s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-stretch">
+            {# Form Column #}
+            <div class="reveal order-1 lg:order-2" style="transition-delay: 0.1s;">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover border border-gray-100">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-calculator text-2xl text-dark"></i>
+                        </div>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-gradient mb-4">Complétez ce formulaire pour obtenir un tarif</h2>
+                        <div class="w-20 h-1 bg-yellow-400 mx-auto rounded-full"></div>
+                    </div>
+                    {{ include('partials/form_partial.html.twig', {
+                        'form': form,
+                        'showActivity': true,
+                        'showPostalCode': true
+                    }) }}
+                </div>
+            </div>
+            
+            {# Image Column #}
+            <div class="reveal order-2 lg:order-1 lg:flex-1" style="transition-delay: 0.2s;">
+                <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-3xl shadow-2xl overflow-hidden h-full min-h-[600px] relative group">
+                    <div class="absolute inset-0 scanlines-bg opacity-20"></div>
+                    <div class="absolute -inset-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="absolute inset-0 rounded-full border-2 border-yellow-400 glow-ring"></div>
+                        <div class="absolute inset-4 rounded-full border-2 border-yellow-300 glow-ring" style="animation-direction: reverse;"></div>
+                    </div>
+                    <img
+                        src="https://assurance-professionnels-auto.fr/image/photo.jpg"
+                        alt="Assurance RC Pro auto-école"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                </div>
+            </div>
         </div>
-        
-        {# Form - Positioned on right #}
-        <div class="hero-form reveal" style="transition-delay:.15s;">
-            {{ include('partials/form_partial.html.twig', {
-                'form': form,
-                'showActivity': true,
-                'showPostalCode': true
-            }) }}
-        </div>
-
     </div>
 </section>
-  {# ── Intro ── #}
-  <section class="intro-strip">
-    <div class="section">
-      <div class="section-head reveal">
-        <span class="stag">
-          <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
-          À propos
-        </span> 
-        <h1 class="intro-title">Assurance des professionnels de l'automobile</h1>
-        
-        <p>
-L'assurance des professionnels de l'automobile fait référence à une forme d'assurance conçue spécifiquement pour les entreprises et les professionnels travaillant dans le secteur automobile. Cette assurance appelé aussi assurance multirisque professionnelle, vise à protéger les professionnels de l’automobile contre les risques spécifiques liés à leurs activités.        </p>
-      </div>
+
+{# ── Intro ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Assurance des professionnels de l'automobile</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16 reveal" style="transition-delay: 0.2s;">
+                L'assurance des professionnels de l'automobile fait référence à une forme d'assurance conçue spécifiquement pour les entreprises et les professionnels travaillant dans le secteur automobile. Cette assurance appelé aussi assurance multirisque professionnelle, vise à protéger les professionnels de l'automobile contre les risques spécifiques liés à leurs activités.
+            </p>
+        </div>
     </div>
-  </section>
+</section>
 
-  {# ── Activities ── #}
-  <section class="activities-bg" id="activites">
-    <div class="section">
-      <div class="section-head reveal">
-        <span class="stag">Métiers couverts</span>
-        <h2>Assurance MRP automobile</h2>
-        <p>L’assurance multirisque pour les professionnels du secteur automobile concerne :
-</p>
-      </div>
-
-      <div class="activity-grid">
-
-        <a href="{{ path('app_garage') }}" class="act-card reveal" style="transition-delay:.05s">
-          <div class="act-icon">🏠</div>
-          <div class="act-title">Garagistes</div>
-          <div class="act-desc">Ateliers de réparation, entretien et maintenance automobile.</div>
-          <span class="act-link">En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-
-        <div class="act-card reveal" style="transition-delay:.1s">
-          <div class="act-icon">🏢</div>
-          <div class="act-title">Concessionnaires</div>
-          <div class="act-desc">Vente de véhicules neufs et occasions.</div>
+{# ── Activities ── #}
+<section class="py-20 bg-surface relative overflow-hidden" id="activites">
+    <div class="container mx-auto px-4">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+                Métiers couverts
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Assurance MRP automobile</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-12">L'assurance multirisque pour les professionnels du secteur automobile concerne :</p>
         </div>
 
-        <a href="{{ path('app_loueur') }}" class="act-card reveal" style="transition-delay:.15s">
-          <div class="act-icon">🚗</div>
-          <div class="act-title">Loueurs de véhicules</div>
-          <div class="act-desc">Location courte et longue durée.</div>
-          <span class="act-link">En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
 
-        <div class="act-card reveal" style="transition-delay:.2s">
-          <div class="act-icon">🚛</div>
-          <div class="act-title">Dépanneurs</div>
-          <div class="act-desc">Remorquage et assistance routière.</div>
+            <a href="{{ path('app_garage') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-yellow-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.05s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-400/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-home text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Garagistes</h3>
+                        <p class="text-gray-700 leading-relaxed">Ateliers de réparation, entretien et maintenance automobile.</p>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
+                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </a>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-store text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Concessionnaires</h3>
+                        <p class="text-gray-700 leading-relaxed">Vente de véhicules neufs et occasions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{{ path('app_loueur') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-green-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.15s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-green-500 to-green-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-car text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Loueurs de véhicules</h3>
+                        <p class="text-gray-700 leading-relaxed">Location courte et longue durée.</p>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
+                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </a>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-purple-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-truck-pickup text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Dépanneurs</h3>
+                        <p class="text-gray-700 leading-relaxed">Remorquage et assistance routière.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-orange-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.05s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-gas-pump text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Stations-services</h3>
+                        <p class="text-gray-700 leading-relaxed">Distribution de carburant et services associés.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-cyan-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-cyan-500 to-cyan-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-wrench text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Centres techniques</h3>
+                        <p class="text-gray-700 leading-relaxed">Contrôle technique et diagnostics véhicule.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{{ path('app_negociants') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-pink-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.15s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-pink-500 to-pink-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-handshake text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Négociants auto</h3>
+                        <p class="text-gray-700 leading-relaxed">Achat et revente de véhicules d'occasion.</p>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
+                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </a>
+
+            <a href="{{ path('app_auto_ecole') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-indigo-500 to-indigo-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-book text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Auto-écoles</h3>
+                        <p class="text-gray-700 leading-relaxed">Enseignement de la conduite et formation.</p>
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
+                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </a>
+
         </div>
-
-        <div class="act-card reveal" style="transition-delay:.05s">
-          <div class="act-icon">⛽</div>
-          <div class="act-title">Stations-services</div>
-          <div class="act-desc">Distribution de carburant et services associés.</div>
-        </div>
-
-        <div class="act-card reveal" style="transition-delay:.1s">
-          <div class="act-icon">🔬</div>
-          <div class="act-title">Centres techniques</div>
-          <div class="act-desc">Contrôle technique et diagnostics véhicule.</div>
-        </div>
-
-        <a href="{{ path('app_negociants') }}" class="act-card reveal" style="transition-delay:.15s">
-          <div class="act-icon">🤝</div>
-          <div class="act-title">Négociants auto</div>
-          <div class="act-desc">Achat et revente de véhicules d'occasion.</div>
-          <span class="act-link">En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-
-        <a href="{{ path('app_auto_ecole') }}" class="act-card reveal" style="transition-delay:.2s">
-          <div class="act-icon">📚</div>
-          <div class="act-title">Auto-écoles</div>
-          <div class="act-desc">Enseignement de la conduite et formation.</div>
-          <span class="act-link">En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        
-
-      </div>
     </div>
-  </section>
+</section>
 
-  {# ── Guarantees ── #}
-  <section class="guarantees-section" id="garanties">
-    <div class="section">
-      <div class="section-head reveal">
-        <span class="stag">Couvertures</span>
-        <h2>Garanties assurance pro de l'auto</h2>
-        <p>Les principales formes d'assurance des professionnels de l'automobile peuvent inclure les garanties comme :
-
-</p>
-      </div>
-
-      <div class="g-grid">
-
-        <div class="g-card reveal" style="transition-delay:.05s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🛡️</div>
-              <h3>Responsabilité civile professionnelle (RCP) </h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🛡️</div>
-              <h3>RC Professionnelle</h3>
-              <p>Protège contre les dommages corporels ou matériels causés à des tiers dans le cadre de l'activité professionnelle.
-</p>
-            </div>
-          </div>
+{# ── Guarantees ── #}
+<section class="py-20 bg-surface relative overflow-hidden" id="garanties">
+    <div class="container mx-auto px-4">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+                Couvertures
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Garanties assurance pro de l'auto</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-12">Les principales formes d'assurance des professionnels de l'automobile peuvent inclure les garanties comme :</p>
         </div>
 
-        <div class="g-card reveal" style="transition-delay:.1s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🏗️</div>
-              <h3>Assurance des biens</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+            <div class="garantie-card reveal" style="transition-delay: 0.05s;">
+                <div class="garantie-front">
+                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-400/80 rounded-2xl shadow-lg flex-shrink-0">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Responsabilité civile professionnelle (RCP)</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">Protège contre les dommages corporels ou matériels causés à des tiers dans le cadre de l'activité professionnelle.</p>
+                </div>
             </div>
-            <div class="g-back">
-              <div class="g-back-icon">🏗️</div>
-              <h3>Assurance des biens</h3>
-              <p>Couvre les dommages ou la perte de vos équipements, outils et installations professionnels.</p>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.1s;">
+                <div class="garantie-front">
+                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                            <i class="fas fa-box text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance des biens</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">Couvre les dommages ou la perte de vos équipements, outils et installations professionnels.</p>
+                </div>
             </div>
-          </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.15s;">
+                <div class="garantie-front">
+                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-green-500 to-green-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                            <i class="fas fa-tools text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance responsabilité civile garage</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">Spécifique aux ateliers, offre une protection contre les dommages causés aux véhicules des clients.</p>
+                </div>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.2s;">
+                <div class="garantie-front">
+                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                            <i class="fas fa-car text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance véhicule propre</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">Protège les véhicules appartenant directement au professionnel dans le cadre de son activité.</p>
+                </div>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.05s;">
+                <div class="garantie-front">
+                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-pink-500 to-pink-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                            <i class="fas fa-clipboard-list text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance de la responsabilité des produits</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">Pour les fabricants ou vendeurs de pièces, couvre les dommages causés par des défauts de fabrication.</p>
+                </div>
+            </div>
+
         </div>
+    </div>
+</section>
 
-        <div class="g-card reveal" style="transition-delay:.15s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🔧</div>
-              <h3>Assurance responsabilité civile garage</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🔧</div>
-              <h3>RC garage</h3>
-              <p>Spécifique aux ateliers, offre une protection contre les dommages causés aux véhicules des clients.</p>
-            </div>
-          </div>
+{# ── CTA Banner ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-3xl p-8 lg:p-12 text-center reveal" style="transition-delay: 0.2s;">
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Devis RC pro pour professionnel auto</h2>
+            <p class="text-lg text-dark/80 max-w-2xl mx-auto mb-8">
+                Il est important pour les professionnels de l'automobile de bien comprendre les risques spécifiques liés à leur activité et de choisir des polices d'assurance adaptées pour assurer une protection adéquate.
+            </p>
+            <a href="#main-content" class="inline-block btn-modern bg-gradient-to-r from-yellow-400 to-yellow-500 text-dark font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all transform hover:scale-105 gradient-shine">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Obtenir mon devis
+            </a>
         </div>
-
-        <div class="g-card reveal" style="transition-delay:.05s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🚘</div>
-              <h3>Assurance véhicule propre</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🚘</div>
-              <h3>Véhicule propre</h3>
-              <p>Protège les véhicules appartenant directement au professionnel dans le cadre de son activité.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="g-card reveal" style="transition-delay:.1s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">📋</div>
-              <h3>Assurance de la responsabilité des produits :</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">📋</div>
-              <h3>Responsabilité produits</h3>
-              <p>Pour les fabricants ou vendeurs de pièces, couvre les dommages causés par des défauts de fabrication.</p>
-            </div>
-          </div>
-        </div>
-
-</div>
-     </div>
-   </section>
-
-   {# ── CTA Banner ── #}
-  <section class="cta-wrap">
-    <div class="section">
-      <div class="cta-box reveal">
-        <h2>Devis RC pro pour professionnel auto</h2>
-        <p>
-Il est important pour les professionnels de l'automobile de bien comprendre les risques spécifiques liés à leur activité et de choisir des polices d'assurance adaptées pour assurer une protection adéquate. Les détails exacts de la couverture peuvent varier en fonction du fournisseur d'assurance et des besoins spécifiques de l'entreprise.        </p>
-        <a href="#main-content" class="btn-primary">
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-Obtenir mon devis
-         </a>
-       </div>
-     </div>
-   </section>
- </main>
+    </div>
+</section>
+</main>
 
 
 {{ include('partials/footer.html.twig') }}
