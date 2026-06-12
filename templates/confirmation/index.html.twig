@@ -8,32 +8,41 @@
 
 {% include 'partials/header.html.twig' %}
 
-<div class="page-wrapper py-20">
+<!-- Added perspective to the wrapper to enable 3D space -->
+<div class="page-wrapper py-20 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 min-h-[80vh]" style="perspective: 1000px;">
 
-    <div class="confirm-card bg-white rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-100 mx-4">
+    <!-- 3D Card with floating animation and tilt effects -->
+    <div class="confirm-card 3d-card bg-white rounded-3xl p-8 lg:p-12 border border-gray-100/50 mx-4 max-w-2xl text-center relative overflow-hidden">
+        
+        <!-- Ambient Background Glow for depth -->
+        <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#D17B43]/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gray-200 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="icon w-20 h-20 bg-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <i class="fas fa-check-circle text-3xl text-white"></i>
+        <!-- 3D Pop-out Icon Container -->
+        <div class="icon-wrapper relative mb-8 native-3d">
+            <div class="icon w-24 h-24 bg-gradient-to-tr from-[#D17B43] to-[#e5935c] rounded-full mx-auto flex items-center justify-center float-animation shadow-[0_15px_30px_rgba(209,123,67,0.4)]">
+                <i class="fas fa-check-circle text-4xl text-white transform translate-z-10"></i>
+            </div>
+            <!-- Icon Drop Shadow for realism -->
+            <div class="w-16 h-2 bg-black/10 rounded-full mx-auto mt-3 blur-sm shadow-pulse"></div>
         </div>
 
-        <h2 class="title text-3xl lg:text-4xl font-bold text-dark mb-4">
+        <!-- Typography with layered spacing -->
+        <h2 class="title text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight transform translate-z-5">
             Merci pour votre demande !
         </h2>
 
-        <p class="desc text-lg text-gray-700 leading-relaxed mb-8 max-w-2xl mx-auto">
-            Votre demande de devis a été enregistrée avec succès.  
+        <p class="desc text-lg text-gray-600 leading-relaxed mb-10 max-w-md mx-auto transform translate-z-2">
+            Votre demande de devis a été enregistrée avec succès.<br>
             Nos conseillers vont l'analyser et vous contacter dans les plus brefs délais.
         </p>
 
-        <a href="{{ path('app_home') }}" class="btn-modern inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-dark font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all transform hover:scale-105 gradient-shine">
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M15 10H5M5 10L10 5M5 10L10 15"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"/>
-            </svg>
-            Retour à l'accueil
+        <!-- 3D Interactive Button -->
+        <a href="{{ path('app_home') }}" class="btn-3d inline-flex items-center gap-2 bg-[#D17B43] text-white font-bold py-4 px-10 rounded-2xl transition-all duration-300 relative overflow-hidden">
+            <span class="relative z-10 flex items-center gap-2">
+                <i class="fas fa-arrow-left text-sm transition-transform duration-300 button-arrow"></i>
+                Retour à l'accueil
+            </span>
         </a>
 
     </div>
@@ -43,23 +52,84 @@
 {% include 'partials/footer.html.twig' %}
 
 <style>
-.card-hover {
-    transition: all 0.3s ease;
-}
-.card-hover:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+/* --- 3D Core Layering --- */
+.confirm-card {
+    transform-style: preserve-3d;
+    box-shadow: 
+        0 10px 30px -10px rgba(0, 0, 0, 0.05),
+        0 40px 80px -15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+    animation: cardEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-@keyframes fadeUp {
+/* Subtle Tilt effect on Hover */
+.confirm-card:hover {
+    transform: rotateX(4deg) rotateY(-2deg) translateY(-8px);
+    box-shadow: 
+        0 15px 35px -10px rgba(0, 0, 0, 0.05),
+        0 50px 100px -20px rgba(209, 123, 67, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Pushes elements into different Z-indexes for true depth */
+.native-3d {
+    transform-style: preserve-3d;
+}
+.translate-z-10 { transform: translateZ(40px); }
+.translate-z-5 { transform: translateZ(20px); }
+.translate-z-2 { transform: translateZ(10px); }
+
+
+/* --- 3D Button Styling --- */
+.btn-3d {
+    box-shadow: 
+        0 4px 0px #a45625, /* 3D Side edge */
+        0 10px 20px rgba(209, 123, 67, 0.3);
+}
+.btn-3d:hover {
+    transform: translateY(2px);
+    box-shadow: 
+        0 2px 0px #a45625,
+        0 6px 15px rgba(209, 123, 67, 0.4);
+}
+.btn-3d:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 0px 0px #a45625,
+        0 2px 5px rgba(209, 123, 67, 0.2);
+}
+.btn-3d:hover .button-arrow {
+    transform: translateX(-4px);
+}
+
+
+/* --- Animations --- */
+@keyframes cardEntrance {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: scale(0.9) rotateX(-10deg) translateY(40px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1) rotateX(0deg) translateY(0);
     }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
+.float-animation {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(0.8); opacity: 0.05; }
+}
+.shadow-pulse {
+    animation: shadowPulse 4s ease-in-out infinite;
 }
 </style>
 

@@ -7,21 +7,24 @@
 
 <main id="main-content">
 {# ── Hero ── #}
-<section id="hero" class="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 hero-pattern relative overflow-hidden">
-    <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+ <section id="hero" class="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 hero-pattern relative overflow-hidden">
+     <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+     
+    <div class="bg-orb w-64 h-64 bg-[#D17B43]/20 top-10 right-10 reveal" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;"></div>
+    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;"></div>
     
-    {# Orbs #}
-    <div class="container mx-auto px-4 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-stretch">
-            {# Form Column #}
-            <div class="reveal order-1 lg:order-2" style="transition-delay: 0.1s;">
+     <div class="container mx-auto px-4 relative z-10">
+      <div class="grid lg:grid-cols-5 gap-16 items-stretch">
+    {# Form Column - 40% on desktop #}
+    <div class="reveal order-1 lg:order-2 lg:col-span-2" style="transition-delay: 0.1s;">
                 <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover border border-gray-100">
                     <div class="text-center mb-8">
-                        <div class="w-16 h-16 bg-yellow-400 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                        <div class="w-16 h-16 bg-[#D17B43] rounded-2xl mx-auto mb-4 flex items-center justify-center">
                             <i class="fas fa-calculator text-2xl text-dark"></i>
                         </div>
                         <h2 class="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600 mb-4">Complétez ce formulaire pour obtenir un tarif</h2>
-                        <div class="w-20 h-1 bg-yellow-400 mx-auto rounded-full"></div>
+                        <div class="w-20 h-1 bg-[#D17B43] mx-auto rounded-full"></div>
                     </div>
                     {{ include('partials/form_partial.html.twig', {
                         'form': form,
@@ -32,12 +35,12 @@
             </div>
             
             {# Image Column #}
-            <div class="reveal order-2 lg:order-1 lg:flex-1" style="transition-delay: 0.2s;">
-                <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-3xl shadow-2xl overflow-hidden h-full min-h-[600px] relative group">
+    {# Image Column - 60% on desktop #}
+    <div class="reveal order-2 lg:order-1 lg:col-span-3" style="transition-delay: 0.2s;">                <div class="bg-[#D17B43] rounded-3xl shadow-2xl overflow-hidden h-full min-h-[600px] relative group">
                     <div class="absolute inset-0 scanlines-bg opacity-20"></div>
                     <div class="absolute -inset-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div class="absolute inset-0 rounded-full border-2 border-yellow-400 glow-ring"></div>
-                        <div class="absolute inset-4 rounded-full border-2 border-yellow-300 glow-ring" style="animation-direction: reverse;"></div>
+                        <div class="absolute inset-0 rounded-full border-2 border-[#D17B43] glow-ring"></div>
+                        <div class="absolute inset-4 rounded-full border-2 border-[#D17B43] glow-ring" style="animation-direction: reverse;"></div>
                     </div>
                     <img
                         src="https://assurance-professionnels-auto.fr/image/photo.jpg"
@@ -53,151 +56,163 @@
 {# ── Intro ── #}
 <section class="py-20 bg-surface relative overflow-hidden">
 
-    <div class="bg-orb w-64 h-64 bg-yellow-200 top-10 right-10 reveal" style="animation-delay: 0s;" data-reveal data-reveal-id="orb1"></div>
-    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;" data-reveal data-reveal-id="orb2"></div>
-    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;" data-reveal data-reveal-id="orb3"></div>
-    <div class="container mx-auto px-4">
+    <div class="bg-orb w-64 h-64 bg-[#D17B43]/20 top-10 right-10 reveal" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;"></div>
+    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
         <div class="section-head reveal" style="transition-delay: 0.1s;">
             
-            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Assurance des professionnels de l'automobile</h2>
-            <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16 reveal" style="transition-delay: 0.2s;">
-                L'assurance des professionnels de l'automobile fait référence à une forme d'assurance conçue spécifiquement pour les entreprises et les professionnels travaillant dans le secteur automobile. Cette assurance appelé aussi assurance multirisque professionnelle, vise à protéger les professionnels de l'automobile contre les risques spécifiques liés à leurs activités.
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-10">Assurance des professionnels de l'automobile</h2>
+            <br/>    <br/>
+            <p class="text-xl text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16 reveal" style="transition-delay: 0.2s;">
+L'assurance des professionnels de l'automobile fait référence à une forme d'assurance conçue spécifiquement pour les entreprises et les professionnels travaillant dans le secteur automobile. Cette assurance appelé aussi assurance multirisque professionnelle, vise à protéger les professionnels de l’automobile contre les risques spécifiques liés à leurs activités.
+
             </p>
         </div>
     </div>
 </section>
 
 {# ── Activities ── #}
-<section class="py-20 bg-surface relative overflow-hidden" id="activites">
-
-    <div class="bg-orb w-64 h-64 bg-yellow-200 top-10 right-10 reveal" style="animation-delay: 0s;" data-reveal data-reveal-id="orb1"></div>
-    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;" data-reveal data-reveal-id="orb2"></div>
-    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;" data-reveal data-reveal-id="orb3"></div>
-    <div class="container mx-auto px-4">
-        <div class="section-head reveal" style="transition-delay: 0.1s;">
-            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
-                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+{# ── Reimagined 3D Activities Showcase ── #}
+<section class="py-24 bg-surface relative overflow-hidden perspective-container" id="activites">
+    
+    <div class="bg-orb w-64 h-64 bg-[#D17B43]/20 top-10 right-10 reveal" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;"></div>
+    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        
+        {# Section Header #}
+        <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D17B43]/10 text-[#D17B43] border border-[#D17B43]/20 text-sm font-semibold tracking-wide uppercase mb-4">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24" class="animate-spin-slow"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
                 Métiers couverts
             </span>
-            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Assurance MRP automobile</h2>
-            <p class="text-lg text-gray-700 leading-relaxed mb-12">L'assurance multirisque pour les professionnels du secteur automobile concerne :</p>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-dark tracking-tight mb-4">
+                Assurance MRP Automobile
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-[#D17B43] to-amber-500 mx-auto rounded-full mb-6"></div>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Une infrastructure de couverture multirisque complète, taillée sur mesure pour les exigences de votre écosystème :
+            </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {# 3D Isometric Ecosystem Grid #}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto matrix-3d-grid">
 
-            <a href="{{ path('app_garage') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-yellow-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.05s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-400/80 rounded-2xl shadow-lg flex-shrink-0">
-                        <i class="fas fa-home text-white text-xl"></i>
+            <!-- Node 1: Garagistes -->
+            <a href="{{ path('app_garage') }}" class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-[#D17B43]/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 209,123,67;">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#D17B43]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-[#D17B43] to-[#b5692f] rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                        <i class="fas fa-tools text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Garagistes</h3>
-                        <p class="text-gray-700 leading-relaxed">Ateliers de réparation, entretien et maintenance automobile.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Garagistes</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Ateliers de réparation, entretien mécanique et maintenance électronique complète.</p>
                 </div>
-                <div class="mt-4 text-right">
-                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
-                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
+                <div class="mt-8 flex items-center gap-2 text-[#D17B43] font-semibold text-sm transform group-hover:translate-x-2 transition-all duration-300">
+                    <span>Explorer le module</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.1s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-500/80 rounded-2xl shadow-lg flex-shrink-0">
+            <!-- Node 2: Concessionnaires -->
+            <div class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-blue-500/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 59,130,246;">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                         <i class="fas fa-store text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Concessionnaires</h3>
-                        <p class="text-gray-700 leading-relaxed">Vente de véhicules neufs et occasions.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Concessionnaires</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Showrooms, parcs d'exposition de vente de véhicules neufs et d'opportunités.</p>
                 </div>
+                <div class="w-2 h-2 rounded-full bg-blue-500 self-end mt-8"></div>
             </div>
 
-            <a href="{{ path('app_loueur') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-green-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.15s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-green-500 to-green-500/80 rounded-2xl shadow-lg flex-shrink-0">
+            <!-- Node 3: Loueurs -->
+            <a href="{{ path('app_loueur') }}" class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-green-500/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 34,197,94;">
+                <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                         <i class="fas fa-car text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Loueurs de véhicules</h3>
-                        <p class="text-gray-700 leading-relaxed">Location courte et longue durée.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Loueurs</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Gestion structurelle des flottes dédiées à la location de courte et longue durée.</p>
                 </div>
-                <div class="mt-4 text-right">
-                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
-                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
+                <div class="mt-8 flex items-center gap-2 text-[#D17B43] font-semibold text-sm transform group-hover:translate-x-2 transition-all duration-300">
+                    <span>Explorer le module</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-purple-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.2s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-500/80 rounded-2xl shadow-lg flex-shrink-0">
+            <!-- Node 4: Dépanneurs -->
+            <div class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-purple-500/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 168,85,247;">
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-700 rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                         <i class="fas fa-truck-pickup text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Dépanneurs</h3>
-                        <p class="text-gray-700 leading-relaxed">Remorquage et assistance routière.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Dépanneurs</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Opérations de remorquage d'urgence, levage et assistance logistique routière.</p>
                 </div>
+                <div class="w-2 h-2 rounded-full bg-purple-500 self-end mt-8"></div>
             </div>
 
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-orange-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.05s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-500/80 rounded-2xl shadow-lg flex-shrink-0">
+            <!-- Node 5: Stations-services -->
+            <div class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-orange-500/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 249,115,22;">
+                <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                         <i class="fas fa-gas-pump text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Stations-services</h3>
-                        <p class="text-gray-700 leading-relaxed">Distribution de carburant et services associés.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Stations-services</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Distribution d'énergies fossiles, stations de recharge électrique et boutiques.</p>
                 </div>
+                <div class="w-2 h-2 rounded-full bg-orange-500 self-end mt-8"></div>
             </div>
 
-            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-cyan-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.1s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-cyan-500 to-cyan-500/80 rounded-2xl shadow-lg flex-shrink-0">
-                        <i class="fas fa-wrench text-white text-xl"></i>
+            <!-- Node 6: Centres techniques -->
+            <div class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-cyan-500/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 6,182,212;">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                        <i class="fas fa-tachometer-alt text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Centres techniques</h3>
-                        <p class="text-gray-700 leading-relaxed">Contrôle technique et diagnostics véhicule.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Centres techniques</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Contrôles techniques réglementaires et audits de conformité sécuritaire.</p>
                 </div>
+                <div class="w-2 h-2 rounded-full bg-cyan-500 self-end mt-8"></div>
             </div>
 
-            <a href="{{ path('app_negociants') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-pink-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.15s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-pink-500 to-pink-500/80 rounded-2xl shadow-lg flex-shrink-0">
+            <!-- Node 7: Négociants -->
+            <a href="{{ path('app_negociants') }}" class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-pink-500/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 236,72,153;">
+                <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                         <i class="fas fa-handshake text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Négociants auto</h3>
-                        <p class="text-gray-700 leading-relaxed">Achat et revente de véhicules d'occasion.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Négociants Auto</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Achat, transit structurel et revente professionnelle de parcs d'occasions.</p>
                 </div>
-                <div class="mt-4 text-right">
-                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
-                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
+                <div class="mt-8 flex items-center gap-2 text-[#D17B43] font-semibold text-sm transform group-hover:translate-x-2 transition-all duration-300">
+                    <span>Explorer le module</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
-            <a href="{{ path('app_auto_ecole') }}" class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300 reveal hover-lift" style="transition-delay: 0.2s;">
-                <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-indigo-500 to-indigo-500/80 rounded-2xl shadow-lg flex-shrink-0">
-                        <i class="fas fa-book text-white text-xl"></i>
+            <!-- Node 8: Auto-écoles -->
+            <a href="{{ path('app_auto_ecole') }}" class="group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-gray-100 hover:border-indigo-500/40 shadow-xl node-3d flex flex-col justify-between overflow-hidden" style="--glow-color: 99,102,241;">
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div>
+                    <div class="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-lg mb-6 transform group-hover:translate-z-20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Auto-écoles</h3>
-                        <p class="text-gray-700 leading-relaxed">Enseignement de la conduite et formation.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-3 transform group-hover:translate-z-10 transition-transform duration-500">Auto-écoles</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Centres de formation à la conduite routière théorique, pratique et avancée.</p>
                 </div>
-                <div class="mt-4 text-right">
-                    <span class="text-yellow-500 hover:text-yellow-400 font-medium cursor-pointer">
-                        En savoir plus <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
+                <div class="mt-8 flex items-center gap-2 text-[#D17B43] font-semibold text-sm transform group-hover:translate-x-2 transition-all duration-300">
+                    <span>Explorer le module</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
@@ -205,15 +220,92 @@
     </div>
 </section>
 
-{# ── Guarantees ── #}
-<section class="py-20 bg-surface relative overflow-hidden" id="garanties">
+{# ── 3D Engine Interactivity Script ── #}
+<script>
+function initAdvanced3DEngine() {
+    const space = document.querySelectorAll(".node-3d");
+    if (window.innerWidth < 1024) return; // Keeps rendering performant on mobile devices
 
-    <div class="bg-orb w-64 h-64 bg-yellow-200 top-10 right-10 reveal" style="animation-delay: 0s;" data-reveal data-reveal-id="orb1"></div>
-    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;" data-reveal data-reveal-id="orb2"></div>
-    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;" data-reveal data-reveal-id="orb3"></div>
-    <div class="container mx-auto px-4">
+    space.forEach(node => {
+        node.addEventListener("mousemove", (e) => {
+            const boundaries = node.getBoundingClientRect();
+            const coordinateX = e.clientX - boundaries.left - boundaries.width / 2;
+            const coordinateY = e.clientY - boundaries.top - boundaries.height / 2;
+            
+            // Map relative mouse position to perspective degrees
+            const rotateX = -(coordinateY / (boundaries.height / 2)) * 14;
+            const rotateY = (coordinateX / (boundaries.width / 2)) * 14;
+
+            node.style.transform = `translateZ(40px) scale(1.04) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        node.addEventListener("mouseleave", () => {
+            node.style.transform = "translateZ(0px) scale(1) rotateX(0deg) rotateY(0deg)";
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initAdvanced3DEngine);
+if (window.Turbo) {
+    document.addEventListener('turbo:load', initAdvanced3DEngine);
+}
+</script>
+
+{# ── Stylesheets for 3D Viewports ── #}
+<style>
+.perspective-container {
+    perspective: 1600px;
+}
+
+@media (min-width: 1024px) {
+    .matrix-3d-grid {
+        transform: rotateX(8deg) rotateY(-4deg) rotateZ(0.5deg);
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .matrix-3d-grid:hover {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+}
+
+.node-3d {
+    transform-style: preserve-3d;
+    transform: translateZ(0px);
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.4s;
+}
+
+.node-3d:hover {
+    box-shadow: 0 30px 50px -10px rgba(var(--glow-color), 0.15), 
+                0 10px 20px -5px rgba(0, 0, 0, 0.04);
+}
+
+.animate-pulse-slow {
+    animation: glow-pulse 8s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+    animation: spin-clockwise 15s linear infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% { transform: scale(1) opacity: 0.8; }
+    50% { transform: scale(1.1) opacity: 1; }
+}
+
+@keyframes spin-clockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+</style>
+{# ── Guarantees ── #}{# ── Guarantees ── #}
+<section class="py-20 bg-surface relative overflow-hidden" id="garanties">
+    <div class="bg-orb w-64 h-64 bg-[#D17B43]/20 top-10 right-10 reveal" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;"></div>
+    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
         <div class="section-head reveal" style="transition-delay: 0.1s;">
-            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+            <span class="stag inline-flex items-center gap-2 text-[#D17B43] mb-4">
                 <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
                 Couvertures
             </span>
@@ -221,86 +313,109 @@
             <p class="text-lg text-gray-700 leading-relaxed mb-12">Les principales formes d'assurance des professionnels de l'automobile peuvent inclure les garanties comme :</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div class="garanties-list max-w-5xl mx-auto">
 
-            <div class="garantie-card reveal" style="transition-delay: 0.05s;">
+            <div class="garantie-card reveal">
                 <div class="garantie-front">
-                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-400/80 rounded-2xl shadow-lg flex-shrink-0">
-                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                    <div class="garantie-content">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="garantie-icon yellow">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Responsabilité civile professionnelle (RCP)</h3>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Responsabilité civile professionnelle (RCP)</h3>
+                        <p>
+                            Protège contre les dommages corporels ou matériels causés à des tiers
+                            dans le cadre de l'activité professionnelle.
+                        </p>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">Protège contre les dommages corporels ou matériels causés à des tiers dans le cadre de l'activité professionnelle.</p>
                 </div>
             </div>
 
-            <div class="garantie-card reveal" style="transition-delay: 0.1s;">
+            <div class="garantie-card reveal">
                 <div class="garantie-front">
-                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-500/80 rounded-2xl shadow-lg flex-shrink-0">
-                            <i class="fas fa-box text-white text-xl"></i>
+                    <div class="garantie-content">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="garantie-icon blue">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <h3>Assurance des biens</h3>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance des biens</h3>
+                        <p>
+                            Couvre les dommages ou la perte de vos équipements,
+                            outils et installations professionnels.
+                        </p>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">Couvre les dommages ou la perte de vos équipements, outils et installations professionnels.</p>
                 </div>
             </div>
 
-            <div class="garantie-card reveal" style="transition-delay: 0.15s;">
+            <div class="garantie-card reveal">
                 <div class="garantie-front">
-                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-green-500 to-green-500/80 rounded-2xl shadow-lg flex-shrink-0">
-                            <i class="fas fa-tools text-white text-xl"></i>
+                    <div class="garantie-content">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="garantie-icon green">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3>Assurance responsabilité civile garage</h3>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance responsabilité civile garage</h3>
+                        <p>
+                            Spécifique aux ateliers, offre une protection contre les
+                            dommages causés aux véhicules des clients.
+                        </p>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">Spécifique aux ateliers, offre une protection contre les dommages causés aux véhicules des clients.</p>
                 </div>
             </div>
 
-            <div class="garantie-card reveal" style="transition-delay: 0.2s;">
+            <div class="garantie-card reveal">
                 <div class="garantie-front">
-                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-500/80 rounded-2xl shadow-lg flex-shrink-0">
-                            <i class="fas fa-car text-white text-xl"></i>
+                    <div class="garantie-content">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="garantie-icon purple">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <h3>Assurance véhicule propre</h3>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance véhicule propre</h3>
+                        <p>
+                            Protège les véhicules appartenant directement au professionnel
+                            dans le cadre de son activité.
+                        </p>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">Protège les véhicules appartenant directement au professionnel dans le cadre de son activité.</p>
                 </div>
             </div>
 
-            <div class="garantie-card reveal" style="transition-delay: 0.05s;">
+            <div class="garantie-card reveal">
                 <div class="garantie-front">
-                    <div class="flex items-center gap-4 sm:gap-6 mb-4">
-                        <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-pink-500 to-pink-500/80 rounded-2xl shadow-lg flex-shrink-0">
-                            <i class="fas fa-clipboard-list text-white text-xl"></i>
+                    <div class="garantie-content">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="garantie-icon pink">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h3>Assurance de la responsabilité des produits</h3>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance de la responsabilité des produits</h3>
+                        <p>
+                            Pour les fabricants ou vendeurs de pièces, couvre les dommages
+                            causés par des défauts de fabrication.
+                        </p>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">Pour les fabricants ou vendeurs de pièces, couvre les dommages causés par des défauts de fabrication.</p>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
-
 {# ── CTA Banner ── #}
 <section class="py-20 bg-surface relative overflow-hidden">
 
-    <div class="bg-orb w-64 h-64 bg-yellow-200 top-10 right-10 reveal" style="animation-delay: 0s;" data-reveal data-reveal-id="orb1"></div>
-    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;" data-reveal data-reveal-id="orb2"></div>
-    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;" data-reveal data-reveal-id="orb3"></div>
-    <div class="container mx-auto px-4">
+    <div class="bg-orb w-64 h-64 bg-[#D17B43]/20 top-10 right-10 reveal" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;"></div>
+    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-1/4 reveal" style="animation-delay: -3s;"></div>
+    <div class="container mx-auto px-4 relative z-10">
         <div class="bg-[#4799EA] rounded-3xl p-8 lg:p-12 text-center reveal" style="transition-delay: 0.2s;">
             <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Devis RC pro pour professionnel auto</h2>
             <p class="text-lg text-white/90 max-w-2xl mx-auto mb-8">
                 Il est important pour les professionnels de l'automobile de bien comprendre les risques spécifiques liés à leur activité et de choisir des polices d'assurance adaptées pour assurer une protection adéquate.
             </p>
             <a href="#main-content" class="inline-block bg-white text-[#4799EA] font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all transform hover:scale-105">
-                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 Obtenir mon devis
             </a>
         </div>
