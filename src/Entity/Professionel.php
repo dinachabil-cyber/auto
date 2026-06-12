@@ -19,11 +19,13 @@ class Professionel
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le nom est obligatoire.')]
     #[Assert\Length(max: 255)]
+    #[Assert\NoSpam(messageKeyword: 'Le nom contient des mots ou contenus interdits.')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Le prénom est obligatoire.')]
     #[Assert\Length(max: 255)]
+    #[Assert\NoSpam(messageKeyword: 'Le prénom contient des mots ou contenus interdits.')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -33,9 +35,11 @@ class Professionel
     private ?string $demarrage = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NoSpam(messageKeyword: 'La raison sociale contient des mots ou contenus interdits.')]
     private ?string $raison_sociale = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NoSpam(messageKeyword: 'L\'activité contient des mots ou contenus interdits.')]
     private ?string $activite = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -53,6 +57,7 @@ class Professionel
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'L\'email est obligatoire.')]
     #[Assert\Email(message: 'Veuillez saisir un email valide.')]
+    #[Assert\NoSpam(messageUrl: 'Les emails ne doivent pas contenir de lien.', messageKeyword: 'L\'email contient des mots interdits.')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]

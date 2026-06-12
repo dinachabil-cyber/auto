@@ -306,11 +306,11 @@
  }
 
 .text-gradient {
-    background: linear-gradient(135deg,#D17B43 0%,#D17B43 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+     background: linear-gradient(135deg,#D17B43 0%,#D17B43 100%);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+ }
 
 .max {
     max-width: 80rem;

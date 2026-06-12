@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Validator\NoSpam;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -34,6 +35,8 @@ class ProfessionelType extends AbstractType
                 'constraints' => [
                     new NotBlank(message: 'Le nom est obligatoire.'),
                     new Length(max: 255),
+                    new Regex(pattern: '/^[\p{L} \-\'\’]+$/u', message: 'Le nom contient des caractères non autorisés.'),
+                    new NoSpam(),
                 ],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
@@ -46,6 +49,8 @@ class ProfessionelType extends AbstractType
                 'constraints' => [
                     new NotBlank(message: 'Le prénom est obligatoire.'),
                     new Length(max: 255),
+                    new Regex(pattern: '/^[\p{L} \-\'\’]+$/u', message: 'Le prénom contient des caractères non autorisés.'),
+                    new NoSpam(),
                 ],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
@@ -55,6 +60,10 @@ class ProfessionelType extends AbstractType
             ])
             ->add('raison_sociale', TextType::class, [
                 'required' => false,
+                'constraints' => [
+                    new Length(max: 255),
+                    new NoSpam(),
+                ],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
                     'placeholder' => 'Raison sociale'
@@ -63,6 +72,10 @@ class ProfessionelType extends AbstractType
             ])
             ->add('activite', TextType::class, [
                 'required' => false,
+                'constraints' => [
+                    new Length(max: 255),
+                    new NoSpam(),
+                ],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
                     'placeholder' => 'Activité'
@@ -80,7 +93,7 @@ class ProfessionelType extends AbstractType
             ])
             ->add('code_postal', TextType::class, [
                 'required' => false,
-                'constraints' => [new Length(max: 10)],
+                'constraints' => [new Length(max: 10), new NoSpam()],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
                     'maxlength' => 10,
@@ -125,6 +138,7 @@ class ProfessionelType extends AbstractType
                 'constraints' => [
                     new NotBlank(message: 'L\'email est obligatoire.'),
                     new Email(message: 'Email invalide.'),
+                    new NoSpam(),
                 ],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
