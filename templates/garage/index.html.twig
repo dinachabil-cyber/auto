@@ -10,227 +10,199 @@
 {% block body %}
 {{ include('partials/header.html.twig') }}
 
-<main id="main-content" class="flex-1">
+<main id="main-content">
 {# ── Hero Section with Form ── #}
-<section class="hero">
-      <div class="hero-inner">
-         
-         {# Image Column - Full width background #}
-         <div class="hero-image-container">
-           <img
-             src="https://assurance-professionnels-auto.fr/image/proauto-garage.jpg"
-             alt="Assurance garage automobile"
-             loading="lazy"
-           />
-         </div>
-         
-         {# Form Column - Positioned on right #}
-         <div class="hero-form reveal" style="transition-delay:.15s;">
-              
-             {{ include('partials/form_partial.html.twig', {
-                 'form': form,
-                 'showActivity': true,
-                 'showPostalCode': true
-             }) }}
-           
-         </div>
-
-      </div>
-    </section>
-
-   {# ── Section 1 - Définition ── #}
-   <section class="intro-strip">
-     <div class="section">
-       <div class="section-head reveal">
-         
-         <h2>           I - Assurance garage automobile
-</h2>
-         <h2>1 - Définition</h2>
-         <p>
-Une assurance pour l’activité de garagiste est une couverture spécialement conçue pour les professionnels du secteur automobile qui exploitent des garages ou tout autre établissement proposant des services liés à la réparation des véhicules. Elle vise à protéger le garagiste contre les risques spécifiques à son activité et à couvrir les responsabilités, les biens, ainsi que les véhicules confiés par ses clients.         </p>
-       </div>
-     </div>
-   </section>
-
-   {# ── Section 2 - Garanties (3D Flip Grid) ── #}
-   <section class="guarantees-section" id="garanties">
-     <div class="section">
-      
-      <div class="section-head reveal">
-        <span class="stag">Couvertures</span>
-        <h2>2 - Garantie RC PRO garage automobile</h2>
-        <p>Les garanties principales incluent souvent :</p>
-      </div>
-
-      <div class="g-grid">
-
-        {# Card 1 #}
-        <div class="g-card reveal" style="transition-delay:.05s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🛡️</div>
-              <h3>Responsabilité Civile Professionnelle (RC Pro)</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+<section id="hero" class="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 hero-pattern relative overflow-hidden">
+    <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+    
+    {# Orbs #}
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-stretch">
+            {# Form Column #}
+            <div class="reveal order-1 lg:order-2" style="transition-delay: 0.1s;">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover border border-gray-100">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-tools text-2xl text-dark"></i>
+                        </div>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600 mb-4">Complétez ce formulaire pour obtenir un tarif</h2>
+                        <div class="w-20 h-1 bg-yellow-400 mx-auto rounded-full"></div>
+                    </div>
+                    {{ include('partials/form_partial.html.twig', {
+                        'form': form,
+                        'showActivity': true,
+                        'showPostalCode': true
+                    }) }}
+                </div>
             </div>
-            <div class="g-back">
-              <div class="g-back-icon">🛡️</div>
-              <h3>RC Professionnelle</h3>
-              <p> Couvre les dommages matériels, immatériels et corporels causés à des tiers (clients, fournisseurs, visiteurs) dans le cadre de l'activité.</p>
+            
+            {# Image Column #}
+            <div class="reveal order-2 lg:order-1 lg:flex-1" style="transition-delay: 0.2s;">
+                <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-3xl shadow-2xl overflow-hidden h-full min-h-[600px] relative group">
+                    <div class="absolute inset-0 scanlines-bg opacity-20"></div>
+                    <div class="absolute -inset-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="absolute inset-0 rounded-full border-2 border-yellow-400 glow-ring"></div>
+                        <div class="absolute inset-4 rounded-full border-2 border-yellow-300 glow-ring" style="animation-direction: reverse;"></div>
+                    </div>
+                    <img
+                        src="https://assurance-professionnels-auto.fr/image/proauto-garage.jpg"
+                        alt="Assurance garage automobile"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                </div>
             </div>
-          </div>
         </div>
-
-        {# Card 2 #}
-        <div class="g-card reveal" style="transition-delay:.1s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🏗️</div>
-              <h3>Responsabilité Civile Exploitation</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🏗️</div>
-              <h3>RC Exploitation</h3>
-              <p> Protège le garagiste contre les dommages causés dans le cadre de l'exploitation de l'entreprise (ex. : un client glisse sur une surface huileuse dans le garage)</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 3 #}
-        <div class="g-card reveal" style="transition-delay:.15s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🚗</div>
-              <h3>Responsabilité Civile après Livraison</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🚗</div>
-              <h3>Responsabilité Civile après Livraison </h3>
-              <p> Couvre les conséquences d'un sinistre lié à une intervention sur un véhicule (ex. : une réparation défectueuse causant un accident).</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 4 #}
-        <div class="g-card reveal" style="transition-delay:.2s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🔧</div>
-              <h3>Garantie des biens professionnels</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🔧</div>
-              <h3>Biens & Matériels</h3>
-              <p> Protège les locaux, équipements, et outils du garage contre des risques tels que l’incendie, le vol, ou les dégâts des eaux.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 5 #}
-        <div class="g-card reveal" style="transition-delay:.25s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">⚖️</div>
-              <h3>Assurance des véhicules confiés</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">⚖️</div>
-              <h3>Véhicules Confiés</h3>
-              <p>Couvre les véhicules appartenant aux clients lorsqu’ils sont sous la garde du garagiste pour une réparation, un entretien, ou tout autre service.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 6 #}
-        <div class="g-card reveal" style="transition-delay:.3s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">💰</div>
-              <h3>Assurance essais et déplacements</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">💰</div>
-              <h3>Essais Routiers</h3>
-              <p> Protège les véhicules clients lors d’essais routiers ou de déplacements effectués par les employés du garage.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 7 #}
-        <div class="g-card reveal" style="transition-delay:.35s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🛡️</div>
-              <h3>Protection juridique</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🛡️</div>
-              <h3>Protection Juridique</h3>
-              <p> Offre une assistance et une couverture financière en cas de litige avec un client, un fournisseur, ou une administration.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 8 #}
-        <div class="g-card reveal" style="transition-delay:.4s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">📉</div>
-              <h3>Perte d'exploitation</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">📉</div>
-              <h3>Perte d'Exploitation</h3>
-              <p> Indemnise les pertes financières liées à une interruption d’activité causée par un sinistre (ex. : incendie du garage).</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 9 #}
-        <div class="g-card reveal" style="transition-delay:.45s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🚗</div>
-              <h3>Flotte automobile</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🚗</div>
-              <h3>Flotte Interne (si applicable) </h3>
-              <p> Couvre les véhicules appartenant au garage, comme les véhicules de prêt ou de remplacement</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </section>
+</section>
 
-  {# ── Section 3 - CTA Banner ── #}
-  <section class="cta-wrap">
-    <div class="section">
-      <div class="cta-box reveal">
-        <p style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.75rem">Devis assurance en ligne</p>
-        <h2>II - Devis assurance garagiste</h2>
-        <p>
-          Pour obtenir un devis RCPRO garagiste personnalisé, veuillez compléter notre formulaire en haut de la page.
-        </p>
-        <a href="{{ path('app_home') }}" class="btn-primary">
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-Retour à l'accueil
-         </a>
-       </div>
-     </div>
-   </section>
+{# ── Section 1 - Définition ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="bg-orb w-64 h-64 bg-yellow-200 top-10 right-10 reveal" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+                Assurance garage
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">I - Assurance garage automobile</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16 reveal" style="transition-delay: 0.2s;">
+                Une assurance pour l'activité de garagiste est une couverture spécialement conçue pour les professionnels du secteur automobile qui exploitent des garages.
+            </p>
+        </div>
+    </div>
+</section>
 
+{# ── Section 2 - Garanties ── #}
+<section class="py-20 bg-surface relative overflow-hidden" id="garanties">
+    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-10 reveal" style="animation-delay: -3s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+                Couvertures
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Garantie RC PRO garage automobile</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-12">Les principales garanties pour les garagistes.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+            <div class="garantie-card reveal" style="transition-delay: 0.05s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-400/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Responsabilité Civile Professionnelle</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couvre les dommages matériels, immatériels et corporels causés à des tiers dans le cadre de l'activité.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-industry text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Responsabilité Civile Exploitation</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Protège contre les dommages causés dans le cadre de l'exploitation de l'entreprise.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.15s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-green-500 to-green-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-car-crash text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">RC After Livraison</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couvre les conséquences d'un sinistre lié à une intervention sur un véhicule.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-tools text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Garantie des biens professionnels</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Protège les locaux, équipements et outils du garage contre l'incendie, le vol, les dégâts des eaux.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.25s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-pink-500 to-pink-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-weight-hanging text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Véhicules confiés</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couvre les véhicules appartenant aux clients lorsqu'ils sont sous la garde du garagiste.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.3s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-cyan-500 to-cyan-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-road text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Essais et déplacements</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Protège les véhicules clients lors d'essais routiers ou déplacements par employés.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.35s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-gavel text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Protection juridique</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Assistance et couverture financière en cas de litige avec un client ou administration.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.4s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-red-500 to-red-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Perte d'exploitation</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Indemnise les pertes financières liées à une interruption d'activité causée par un sinistre.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.45s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-indigo-500 to-indigo-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-shuttle-van text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Flotte automobile</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couvre les véhicules appartenant au garage, comme les véhicules de prêt ou de remplacement.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{# ── Section 3 - CTA Banner ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="bg-orb w-48 h-48 bg-orange-200 bottom-10 right-1/4 reveal" style="animation-delay: -2s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="bg-[#4799EA] rounded-3xl p-8 lg:p-12 text-center reveal" style="transition-delay: 0.2s;">
+            <p class="text-sm font-bold tracking-wider text-white/60 mb-4">DEVIS ASSURANCE EN LIGNE</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">II - Devis assurance garagiste</h2>
+            <p class="text-lg text-white/90 max-w-2xl mx-auto mb-8">
+                Pour obtenir un devis RCPRO garagiste personnalisé, veuillez compléter notre formulaire en haut de la page.
+            </p>
+            <a href="{{ path('app_home') }}" class="inline-block bg-white text-[#4799EA] font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all transform hover:scale-105">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+</section>
 </main>
-
 
 {{ include('partials/footer.html.twig') }}
 

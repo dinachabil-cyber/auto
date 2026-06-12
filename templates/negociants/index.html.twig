@@ -10,204 +10,178 @@
 {% block body %}
 {{ include('partials/header.html.twig') }}
 
-<main id="main-content" class="flex-1">
-   {# ── Hero Section with Form ── #}
-<section class="hero">
-      <div class="hero-inner">
-         
-         {# Image Column - Full width background #}
-         <div class="hero-image-container">
-           <img
-             src="https://assurance-professionnels-auto.fr/image/negocie-auto.jpg"
-             alt="Assurance négociant automobile"
-             loading="lazy"
-           />
-         </div>
-         
-         {# Form Column - Positioned on right #}
-         <div class="hero-form reveal" style="transition-delay:.15s;">
-         
-             {{ include('partials/form_partial.html.twig', {
-                 'form': form,
-                 'showActivity': true,
-                 'showPostalCode': true
-             }) }}
-          
-         </div>
-
-      </div>
-    </section>
-
-{# ── Section 1 - Définition Editorial Intro Strip ── #}
-    <section class="intro-strip">
-      <div class="section">
-        <div class="section-head reveal">
-          <span class="stag">
-            <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
-            Présentation
-          </span>
-          <h2>I- Assurance négociants automobiles</h2>
-          <h3>1- Définition</h3>
-          <p>
-Une assurance pour négociant automobile est une police d'assurance spécialement conçue pour couvrir les besoins et les risques associés à l'activité des professionnels du commerce de véhicules automobiles. Les négociants automobiles achètent, vendent ou importent des véhicules, souvent en grande quantité, et nécessitent une couverture adaptée à leur activité.
-          </p>
+<main id="main-content">
+{# ── Hero Section with Form ── #}
+<section id="hero" class="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 hero-pattern relative overflow-hidden">
+    <div class="absolute inset-0 scanlines-bg opacity-30"></div>
+    
+    {# Orbs #}
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-stretch">
+            {# Form Column #}
+            <div class="reveal order-1 lg:order-2" style="transition-delay: 0.1s;">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover border border-gray-100">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-car text-2xl text-dark"></i>
+                        </div>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600 mb-4">Complétez ce formulaire pour obtenir un tarif</h2>
+                        <div class="w-20 h-1 bg-yellow-400 mx-auto rounded-full"></div>
+                    </div>
+                    {{ include('partials/form_partial.html.twig', {
+                        'form': form,
+                        'showActivity': true,
+                        'showPostalCode': true
+                    }) }}
+                </div>
+            </div>
+            
+            {# Image Column #}
+            <div class="reveal order-2 lg:order-1 lg:flex-1" style="transition-delay: 0.2s;">
+                <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-3xl shadow-2xl overflow-hidden h-full min-h-[600px] relative group">
+                    <div class="absolute inset-0 scanlines-bg opacity-20"></div>
+                    <div class="absolute -inset-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="absolute inset-0 rounded-full border-2 border-yellow-400 glow-ring"></div>
+                        <div class="absolute inset-4 rounded-full border-2 border-yellow-300 glow-ring" style="animation-direction: reverse;"></div>
+                    </div>
+                    <img
+                        src="https://assurance-professionnels-auto.fr/image/negocie-auto.jpg"
+                        alt="Assurance négociant automobile"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
-   {# ── Section 2 - Garanties (Interactive 7-Card Grid Setup) ── #}
-   <section class="guarantees-section" id="garanties">
-     <div class="section">
-      
-      <div class="section-head reveal">
-        <span class="stag">Couvertures</span>
-        <h2>  2- Garantie assurance RC négociants automobiles
-</h2>Les garanties incluses dans une assurance négociants automobiles peuvent couvrir :
-
-        <p style="font-size:1rem; color:var(--text-muted); max-width:520px; margin:0 auto;"></p>
-      </div>
-
-      <div class="g-grid">
-
-        {# Card 1 #}
-        <div class="g-card reveal" style="transition-delay:.05s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🛡️</div>
-              <h3>Responsabilité Civile Professionnelle</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🛡️</div>
-              <h3>Responsabilité Civile</h3>
-              <p>Couvre les dommages causés à des tiers (clients, fournisseurs, visiteurs) dans le cadre de l'activité.</p>
-            </div>
-          </div>
+{# ── Section 1 - Définition ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="bg-orb w-64 h-64 bg-yellow-200 top-10 right-10 reveal" style="animation-delay: 0s;"></div>
+    <div class="bg-orb w-48 h-48 bg-blue-200 bottom-10 left-10 reveal" style="animation-delay: -7s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+                Présentation
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">I - Assurance négociants automobiles</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16 reveal" style="transition-delay: 0.2s;">
+                Une assurance pour négociant automobile est une police d'assurance spécialement conçue pour couvrir les besoins et les risques associés à l'activité des professionnels du commerce de véhicules automobiles.
+            </p>
         </div>
+    </div>
+</section>
 
-        {# Card 2 #}
-        <div class="g-card reveal" style="transition-delay:.1s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🏢</div>
-              <h3>Garantie des locaux</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🏢</div>
-              <h3>Bâtiments & Bureaux</h3>
-              <p>Protège les locaux professionnels (showroom, atelier, bureaux) contre l'incendie, le vol, le vandalisme et les dégâts des eaux.</p>
-            </div>
-          </div>
+{# ── Section 2 - Garanties ── #}
+<section class="py-20 bg-surface relative overflow-hidden" id="garanties">
+    <div class="bg-orb w-48 h-48 bg-green-200 top-1/2 right-10 reveal" style="animation-delay: -3s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="section-head reveal" style="transition-delay: 0.1s;">
+            <span class="stag inline-flex items-center gap-2 text-yellow-500 mb-4">
+                <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+                Couvertures
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-dark mb-4">Garantie assurance RC négociants automobiles</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-12">Des garanties adaptées aux besoins spécifiques des négociants automobiles.</p>
         </div>
 
-        {# Card 3 #}
-        <div class="g-card reveal" style="transition-delay:.15s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🚗</div>
-              <h3>Assurance des véhicules en stock</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+            <div class="garantie-card reveal" style="transition-delay: 0.05s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-400/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Responsabilité Civile Professionnelle</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couvre les dommages causés à des tiers (clients, fournisseurs, visiteurs) dans le cadre de l'activité.</p>
             </div>
-            <div class="g-back">
-              <div class="g-back-icon">🚗</div>
-              <h3>Stock Marchandise</h3>
-              <p>Couvre les véhicules destinés à la vente contre le vol, l'incendie, le vandalisme et autres sinistres.</p>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-building text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Garantie des locaux</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Protège les locaux professionnels (showroom, atelier, bureaux) contre l'incendie, le vol, le vandalisme.</p>
             </div>
-          </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.15s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-green-500 to-green-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-car text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Véhicules en stock</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couvre les véhicules destinés à la vente contre le vol, l'incendie, le vandalisme.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-truck text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Assurance flotte automobile</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couverture pour les véhicules utilisés pour le transport, les essais, les livraisons.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.25s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-pink-500 to-pink-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-balance-scale text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Protection juridique</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Assistance et couverture financière en cas de litige avec clients ou fournisseurs.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.3s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-cyan-500 to-cyan-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-road text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Essais et démonstrations</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Couverture des risques lors des essais clients et démonstrations de véhicules.</p>
+            </div>
+
+            <div class="garantie-card reveal" style="transition-delay: 0.35s;">
+                <div class="flex items-center gap-4 sm:gap-6 mb-4">
+                    <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-500/80 rounded-2xl shadow-lg flex-shrink-0">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-dark leading-tight">Perte d'exploitation</h3>
+                </div>
+                <p class="text-gray-700 leading-relaxed">Indemnise les pertes financières dues à une interruption temporaire d'activité.</p>
+            </div>
+
         </div>
+    </div>
+</section>
 
-        {# Card 4 #}
-        <div class="g-card reveal" style="transition-delay:.2s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🚛</div>
-              <h3>Assurance flotte automobile</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🚛</div>
-              <h3>Flotte Pro</h3>
-              <p>Couverture pour les véhicules utilisés pour le transport, les essais, les livraisons et les démonstrations.</p>
-            </div>
-          </div>
+{# ── Section 3 - CTA Banner ── #}
+<section class="py-20 bg-surface relative overflow-hidden">
+    <div class="bg-orb w-48 h-48 bg-orange-200 bottom-10 right-1/4 reveal" style="animation-delay: -2s;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="bg-[#4799EA] rounded-3xl p-8 lg:p-12 text-center reveal" style="transition-delay: 0.2s;">
+            <p class="text-sm font-bold tracking-wider text-white/60 mb-4">DEVIS ASSURANCE EN LIGNE</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Devis assurance négociants automobiles</h2>
+            <p class="text-lg text-white/90 max-w-2xl mx-auto mb-8">
+                Pour obtenir un devis, veuillez compléter le formulaire en haut de la page. Simple et rapide.
+            </p>
+            <a href="{{ path('app_home') }}" class="inline-block bg-white text-[#4799EA] font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all transform hover:scale-105">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Retour à l'accueil
+            </a>
         </div>
-
-        {# Card 5 #}
-        <div class="g-card reveal" style="transition-delay:.25s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">⚖️</div>
-              <h3>Protection juridique</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">⚖️</div>
-              <h3>Défense Juridique</h3>
-              <p>Assistance et couverture financière en cas de litige avec clients, fournisseurs, employés ou administrations.</p>
-            </div>
-          </div>
-        </div>
-
-        {# Card 6 #}
-        <div class="g-card reveal" style="transition-delay:.3s">
-          <div class="g-card-inner">
-            <div class="g-front">
-              <div class="g-icon-wrap">🛣️</div>
-              <h3>Essais et démonstrations</h3>
-              <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-            </div>
-            <div class="g-back">
-              <div class="g-back-icon">🛣️</div>
-              <h3>Parcours Client</h3>
-              <p>Couverture des risques lors des essais clients et démonstrations de véhicules sur la route.</p>
-            </div>
-          </div>
-        </div>
-
-{# Card 7 #}
-         <div class="g-card reveal" style="transition-delay:.35s">
-           <div class="g-card-inner">
-             <div class="g-front">
-               <div class="g-icon-wrap">💰</div>
-               <h3>Perte d'exploitation</h3>
-               <div class="g-front-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg> Survolez pour en savoir plus</div>
-             </div>
-             <div class="g-back">
-               <div class="g-back-icon">💰</div>
-               <h3>Sécurité Financière</h3>
-               <p>Indemnise les pertes financières dues à une interruption temporaire d'activité après un sinistre majeur.</p>
-             </div>
-           </div>
-         </div>
-
-       </div>
-     </div>
-   </section>
-
-  {# ── Section 3 - Devis Micro CTA Block Frame ── #}
-  <section class="cta-wrap">
-    <div class="section">
-      <div class="cta-box reveal">
-        <h2> 3- Devis assurance négociants automobiles
-
-</h2>
-        <p>
-Pour obtenir un devis assurance négociants automobiles, veuillez compléter le formulaire à droite de la page. Simple et rapide obtenez votre devis en ligne et en quelques clic.
-        </p>
-        <a href="{{ path('app_home') }}" class="btn-primary">
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-            <rect x="9" y="3" width="6" height="4" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 16h4" />
-          </svg>
-<span>Retour à l'accueil</span>
-         </a>
-       </div>
-     </div>
-   </section>
-
+    </div>
+</section>
 </main>
 
 {{ include('partials/footer.html.twig') }}

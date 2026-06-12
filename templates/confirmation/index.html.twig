@@ -8,37 +8,33 @@
 
 {% include 'partials/header.html.twig' %}
 
-<div class="page-wrapper">
+<div class="page-wrapper py-20">
 
-    <div class="confirm-card">
+    <div class="confirm-card bg-white rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-100 mx-4">
 
-        <div class="icon">
-            <i class="fas fa-check-circle"></i>
+        <div class="icon w-20 h-20 bg-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+            <i class="fas fa-check-circle text-3xl text-white"></i>
         </div>
 
-        <h2 class="title">
+        <h2 class="title text-3xl lg:text-4xl font-bold text-dark mb-4">
             Merci pour votre demande !
         </h2>
 
-        <p class="desc">
+        <p class="desc text-lg text-gray-700 leading-relaxed mb-8 max-w-2xl mx-auto">
             Votre demande de devis a été enregistrée avec succès.  
-            Nos conseillers vont l’analyser et vous contacter dans les plus brefs délais.
+            Nos conseillers vont l'analyser et vous contacter dans les plus brefs délais.
         </p>
 
-        <a href="{{ path('app_home') }}" class="btn">
+        <a href="{{ path('app_home') }}" class="btn-modern inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-dark font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all transform hover:scale-105 gradient-shine">
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                 <path d="M15 10H5M5 10L10 5M5 10L10 15"
                       stroke="currentColor"
-                      stroke-width="2"
+                      stroke-width="2.5"
                       stroke-linecap="round"
                       stroke-linejoin="round"/>
             </svg>
             Retour à l'accueil
         </a>
-
-        <div class="footer">
-            Aksam Assurance
-        </div>
 
     </div>
 
@@ -47,118 +43,24 @@
 {% include 'partials/footer.html.twig' %}
 
 <style>
-
-/* PAGE BACKGROUND (WHITE) */
-.page-wrapper {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 0px;
-  background: #ffffff;
+.card-hover {
+    transition: all 0.3s ease;
+}
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* CARD */
-.confirm-card {
-  width: 480px;
-  max-width: 100%;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 50px 35px;
-  text-align: center;
-  position: relative;
-
-  border: 1px solid rgba(0,0,0,0.06);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.08),
-    0 0 25px rgba(11,61,255,.10);
-
-  animation: fadeUp 0.5s ease-out;
-}
-
-/* soft blue glow */
-.confirm-card::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(90deg, transparent, rgba(11,61,255,.25), transparent);
-  filter: blur(25px);
-  opacity: 0.2;
-  z-index: 0;
-}
-
-/* ICON */
-.icon {
-  font-size: 54px;
-  color: #2f6bff;
-  margin-bottom: 18px;
-  position: relative;
-  z-index: 1;
-}
-
-/* TITLE */
-.title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 12px;
-  position: relative;
-  z-index: 1;
-}
-
-/* DESCRIPTION */
-.desc {
-  font-size: 15px;
-  color: #555;
-  margin-bottom: 28px;
-  line-height: 1.7;
-  position: relative;
-  z-index: 1;
-}
-
-/* BUTTON */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #2f6bff;
-  color: white;
-  font-weight: 700;
-  padding: 14px 22px;
-  border-radius: 14px;
-  text-decoration: none;
-  transition: 0.25s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.btn:hover {
-  transform: translateY(-2px) scale(1.05);
-  background: #1f55dd;
-}
-
-/* FOOTER */
-.footer {
-  margin-top: 22px;
-  font-size: 12px;
-  color: #888;
-  position: relative;
-  z-index: 1;
-}
-
-/* ANIMATION */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
 </style>
 
 {% endblock %}
