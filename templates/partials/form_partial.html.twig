@@ -5,127 +5,174 @@
 {% set subtitle = subtitle|default('') %}
 
 <div class="quote-form-wrapper">
+    <div>
+        {% if title %}
+            <h2 class="text-xl font-bold text-gray-900 mb-2">{{ title }}</h2>
+        {% endif %}
 
-     
+        {% if subtitle %}
+            <p class="text-sm text-gray-500 mb-6">{{ subtitle }}</p>
+        {% endif %}
 
-     <div  >
+        {% if form.vars.errors|length > 0 %}
+            {% set global_messages = [] %}
+            <div class="form-errors" role="alert">
+                <ul>
+                    {% for error in form.vars.errors %}
+                        {% if error.message not in global_messages %}
+                            {% set global_messages = global_messages|merge([error.message]) %}
+                            <li>
+                                <span class="form-error-icon" aria-hidden="true">!</span>
+                                {{ error.message }}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
-         {% if title %}
-             <h2 class="text-xl font-bold text-gray-900 mb-2">{{ title }}</h2>
-         {% endif %}
+        {{ form_start(form, {
+            'attr': {
+                'novalidate': 'novalidate',
+                'data-turbo': 'false',
+                'class': 'form-body'
+            }
+        }) }}
 
-         {% if subtitle %}
-             <p class="text-sm text-gray-500 mb-6">{{ subtitle }}</p>
-         {% endif %}
+        <div class="form-grid">
+            {% set raison_sociale_has_errors = form.raison_sociale.vars.errors|length > 0 %}
+            <div class="field-wrapper field-full">
+                <div class="field-row {{ raison_sociale_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-building"></i></span>
+                    <div class="field-input">{{ form_widget(form.raison_sociale) }}</div>
+                </div>
+                {% if raison_sociale_has_errors %}
+                    <div class="field-error">{{ form_errors(form.raison_sociale) }}</div>
+                {% endif %}
+            </div>
 
-          {# Global errors #}
-          {% if form.vars.errors|length > 0 %}
-          <div class="form-errors">
-              <ul>
-              {% for error in form.vars.errors %}
-                  <li>
-                      <span class="form-error-icon">⚠️</span>
-                      {{ error.message }}
-                  </li>
-              {% endfor %}
-              </ul>
-          </div>
-          {% endif %}
+            {% if showActivity %}
+                {% set activite_has_errors = form.activite.vars.errors|length > 0 %}
+                <div class="field-wrapper field-full">
+                    <div class="field-row {{ activite_has_errors ? 'has-error' : '' }}">
+                        <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-briefcase"></i></span>
+                        <div class="field-input">{{ form_widget(form.activite) }}</div>
+                    </div>
+                    {% if activite_has_errors %}
+                        <div class="field-error">{{ form_errors(form.activite) }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
 
-          {{ form_start(form, {
-              'attr': {
-                  'novalidate': 'novalidate',
-                  'data-turbo': 'false',
-                  'class': 'form-body'
-              }
-          }) }}
+            {% set demarrage_has_errors = form.demarrage.vars.errors|length > 0 %}
+            <div class="field-wrapper field-full">
+                <div class="field-row {{ demarrage_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-clock"></i></span>
+                    <div class="field-input">{{ form_widget(form.demarrage) }}</div>
+                </div>
+                {% if demarrage_has_errors %}
+                    <div class="field-error">{{ form_errors(form.demarrage) }}</div>
+                {% endif %}
+            </div>
 
-         <div class="form-grid">
+            {% set assure_has_errors = form.assure.vars.errors|length > 0 %}
+            <div class="field-wrapper field-full">
+                <div class="field-row {{ assure_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-shield-alt"></i></span>
+                    <div class="field-input">{{ form_widget(form.assure) }}</div>
+                </div>
+                {% if assure_has_errors %}
+                    <div class="field-error">{{ form_errors(form.assure) }}</div>
+                {% endif %}
+            </div>
 
-             {# RAISON SOCIALE #}
-             <div class="field-row field-full">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-building"></i></span>
-                 <div class="field-input">{{ form_row(form.raison_sociale) }}</div>
-             </div>
+            {% set ancienne_has_errors = form.ancienne.vars.errors|length > 0 %}
+            <div class="field-wrapper field-full">
+                <div class="field-row {{ ancienne_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-history"></i></span>
+                    <div class="field-input">{{ form_widget(form.ancienne) }}</div>
+                </div>
+                {% if ancienne_has_errors %}
+                    <div class="field-error">{{ form_errors(form.ancienne) }}</div>
+                {% endif %}
+            </div>
 
-             {% if showActivity %}
-             <div class="field-row field-full">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-briefcase"></i></span>
-                 <div class="field-input">{{ form_row(form.activite) }}</div>
-             </div>
-             {% endif %}
+            {% set motif_has_errors = form.motif.vars.errors|length > 0 %}
+            <div class="field-wrapper field-full" id="motif-wrapper">
+                <div class="field-row {{ motif_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-exclamation-circle"></i></span>
+                    <div class="field-input">{{ form_widget(form.motif) }}</div>
+                </div>
+                {% if motif_has_errors %}
+                    <div class="field-error">{{ form_errors(form.motif) }}</div>
+                {% endif %}
+            </div>
 
-             <div class="field-row field-full">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-clock"></i></span>
-                 <div class="field-input">{{ form_row(form.demarrage) }}</div>
-             </div>
+            {% set nom_has_errors = form.nom.vars.errors|length > 0 %}
+            <div class="field-wrapper">
+                <div class="field-row {{ nom_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-user"></i></span>
+                    <div class="field-input">{{ form_widget(form.nom) }}</div>
+                </div>
+                {% if nom_has_errors %}
+                    <div class="field-error">{{ form_errors(form.nom) }}</div>
+                {% endif %}
+            </div>
 
-             <div class="field-row field-full">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-shield-alt"></i></span>
-                 <div class="field-input">{{ form_row(form.assure) }}</div>
-             </div>
+            {% set prenom_has_errors = form.prenom.vars.errors|length > 0 %}
+            <div class="field-wrapper">
+                <div class="field-row {{ prenom_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-user"></i></span>
+                    <div class="field-input">{{ form_widget(form.prenom) }}</div>
+                </div>
+                {% if prenom_has_errors %}
+                    <div class="field-error">{{ form_errors(form.prenom) }}</div>
+                {% endif %}
+            </div>
 
-             <div class="field-row field-full">
-<span class="field-icon" style="color: #D17B43;"><i class="fas fa-history"></i></span>
-                  <div class="field-input">{{ form_row(form.ancienne) }}</div>
-              </div>
+            {% set tele_has_errors = form.tele.vars.errors|length > 0 %}
+            <div class="field-wrapper">
+                <div class="field-row {{ tele_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-phone"></i></span>
+                    <div class="field-input">{{ form_widget(form.tele) }}</div>
+                </div>
+                {% if tele_has_errors %}
+                    <div class="field-error">{{ form_errors(form.tele) }}</div>
+                {% endif %}
+            </div>
 
-              <div class="field-row field-full" id="motif-wrapper">
-                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-exclamation-circle"></i></span>
-                  <div class="field-input">{{ form_row(form.motif) }}</div>
-              </div>
+            {% if showPostalCode %}
+                {% set code_postal_has_errors = form.code_postal.vars.errors|length > 0 %}
+                <div class="field-wrapper">
+                    <div class="field-row {{ code_postal_has_errors ? 'has-error' : '' }}">
+                        <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span>
+                        <div class="field-input">{{ form_widget(form.code_postal) }}</div>
+                    </div>
+                    {% if code_postal_has_errors %}
+                        <div class="field-error">{{ form_errors(form.code_postal) }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
 
-              <div class="field-row">
-                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-user"></i></span>
-                  <div class="field-input">{{ form_row(form.nom) }}</div>
-              </div>
+            {% set email_has_errors = form.email.vars.errors|length > 0 %}
+            <div class="field-wrapper field-full">
+                <div class="field-row {{ email_has_errors ? 'has-error' : '' }}">
+                    <span class="field-icon" style="color: #D17B43;" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+                    <div class="field-input">{{ form_widget(form.email) }}</div>
+                </div>
+                {% if email_has_errors %}
+                    <div class="field-error">{{ form_errors(form.email) }}</div>
+                {% endif %}
+            </div>
+        </div>
 
-              <div class="field-row">
-                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-user"></i></span>
-                  <div class="field-input">{{ form_row(form.prenom) }}</div>
-              </div>
-
-              <div class="field-row">
-                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-phone"></i></span>
-                  <div class="field-input">{{ form_row(form.tele) }}</div>
-              </div>
-
-              {% if showPostalCode %}
-              <div class="field-row">
-                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-map-marker-alt"></i></span>
-                  <div class="field-input">{{ form_row(form.code_postal) }}</div>
-              </div>
-              {% endif %}
-
-              <div class="field-row field-full">
-                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-envelope"></i></span>
-                  <div class="field-input">{{ form_row(form.email) }}</div>
-              </div>
-
-         </div>
-
-<div class="form-footer">
-    {{ form_row(form.save) }}
-</div>
+        <div class="form-footer">
+            {{ form_row(form.save) }}
+        </div>
 
         {{ form_end(form) }}
     </div>
 </div>
-
-<style>
-.quote-form-wrapper .form-footer button,
-.quote-form-wrapper .form-footer input[type="submit"] {
-    background: #D17B43 !important;
-    box-shadow: 0 4px 14px rgba(209, 123, 67, 0.35) !important;
-}
-.quote-form-wrapper .form-footer button:hover {
-    background: #b86535 !important;
-}
-.quote-form-wrapper .field-row:focus-within {
-    border-color: #D17B43 !important;
-    box-shadow: 0 0 0 3px rgba(209, 123, 67, 0.2) !important;
-}
-</style>
 
 <script>
 function initToggleMotif() {
@@ -152,7 +199,3 @@ function initToggleMotif() {
 document.addEventListener('DOMContentLoaded', initToggleMotif);
 document.addEventListener('turbo:load', initToggleMotif);
 </script>
-
-
-{# Cookie banner script #}
-

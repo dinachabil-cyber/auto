@@ -42,7 +42,6 @@ class DevisService
         }
 
         if (count($spamViolations) > 0) {
-            $form->addError(new \Symfony\Component\Form\FormError('Contenu suspect détecté. Merci de corriger votre saisie.'));
             throw new \RuntimeException('SPAM_DETECTED');
         }
 

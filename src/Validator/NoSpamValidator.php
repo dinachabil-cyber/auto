@@ -8,6 +8,19 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class NoSpamValidator extends ConstraintValidator
 {
+    private array $violationMessages = [];
+
+    private function addViolationOnce(string $message): void
+    {
+        if (in_array($message, $this->violationMessages, true)) {
+            return;
+        }
+
+        $this->violationMessages[] = $message;
+        $this->context->buildViolation($message)
+            ->addViolation();
+    }
+
     public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof NoSpam) {
@@ -40,8 +53,7 @@ class NoSpamValidator extends ConstraintValidator
     private function checkUrl(string $value, NoSpam $constraint): void
     {
         if (preg_match('#https?://#i', $value) || preg_match('#www\.#i', $value)) {
-            $this->context->buildViolation($constraint->messageUrl)
-                ->addViolation();
+            $this->addViolationOnce($constraint->messageUrl);
         }
     }
 
@@ -51,8 +63,7 @@ class NoSpamValidator extends ConstraintValidator
 
         foreach ($domains as $domain) {
             if (str_contains($lower, mb_strtolower($domain))) {
-                $this->context->buildViolation($constraint->messageDomain)
-                    ->addViolation();
+                $this->addViolationOnce($constraint->messageDomain);
 
                 return;
             }
@@ -78,13 +89,11 @@ class NoSpamValidator extends ConstraintValidator
     private function checkPatterns(string $value, NoSpam $constraint): void
     {
         if (preg_match('#([\$\>\|\!\.\,\;\:\-\_ ])\1{4,}#', $value)) {
-            $this->context->buildViolation($constraint->messagePattern)
-                ->addViolation();
+            $this->addViolationOnce($constraint->messagePattern);
         }
 
         if (preg_match('#(.)\1\1#u', $value)) {
-            $this->context->buildViolation($constraint->messagePattern)
-                ->addViolation();
+            $this->addViolationOnce($constraint->messagePattern);
         }
     }
 
@@ -97,29 +106,25 @@ class NoSpamValidator extends ConstraintValidator
         $letters = preg_replace('#[^a-zA-ZàâäéèêëïîôùûüÿçÀÂÄÉÈÊËÏÎÔÙÛÜŸÇ]#u', '', $value);
 
         if ($letters === '' || preg_match('#^([a-zA-ZàâäéèêëïîôùûüÿçÀÂÄÉÈÊËÏÎÔÙÛÜŸÇ])\1{3,}$#u', $letters)) {
-            $this->context->buildViolation($constraint->messagePattern)
-                ->addViolation();
+            $this->addViolationOnce($constraint->messagePattern);
         }
     }
 
     private function checkRepeatedLetters(string $value, NoSpam $constraint): void
     {
         if (preg_match('#[a-zA-ZàâäéèêëïîôùûüÿçÀÂÄÉÈÊËÏÎÔÙÛÜŸÇ]([a-zA-ZàâäéèêëïîôùûüÿçÀÂÄÉÈÊËÏÎÔÙÛÜŸÇ])\1{2,}#u', $value)) {
-            $this->context->buildViolation('Séquences de lettres répétées non autorisées (ex: aaaa, pppp).')
-                ->addViolation();
+            $this->addViolationOnce('Séquences de lettres répétées non autorisées (ex: aaaa, pppp).');
         }
     }
 
     private function checkEmojis(string $value, array $emojis, NoSpam $constraint): void
     {
-        $emojiCount = 0;
         $emojiList = implode('', array_map('preg_quote', $emojis, array_fill(0, count($emojis), '#')));
 
         preg_match_all('#' . $emojiList . '#u', $value, $matches);
 
         if (!empty($matches[0]) && count($matches[0]) >= 2) {
-            $this->context->buildViolation($constraint->messageEmoji)
-                ->addViolation();
+            $this->addViolationOnce($constraint->messageEmoji);
         }
     }
 }

@@ -22,8 +22,22 @@ class NoSpam extends Constraint
         'earn money',
         'bitcoin',
         'crypto',
+        'cripton',
+        'crypton',
         'wallet',
         'account verified',
+        'dollar',
+        'usdt',
+        'usdc',
+        'binance',
+        'forex',
+        'trading',
+        'investissement',
+        'gain quotidien',
+        'profit',
+        'return',
+        'roi',
+        'passive income',
     ];
 
     public array $suspiciousDomains = [
