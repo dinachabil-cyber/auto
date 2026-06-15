@@ -31,7 +31,7 @@ class ProfessionelType extends AbstractType
 
         $builder
             ->add('nom', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new NotBlank(message: 'Le nom est obligatoire.'),
                     new Length(max: 255),
@@ -45,7 +45,7 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('prenom', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new NotBlank(message: 'Le prénom est obligatoire.'),
                     new Length(max: 255),
@@ -93,7 +93,7 @@ class ProfessionelType extends AbstractType
             ])
             ->add('code_postal', TextType::class, [
                 'required' => false,
-                'constraints' => [new Length(max: 10), new NoSpam()],
+                'constraints' => [new Length(max: 10)],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
                     'maxlength' => 10,
@@ -134,7 +134,7 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('email', EmailType::class, [
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new NotBlank(message: 'L\'email est obligatoire.'),
                     new Email(message: 'Email invalide.'),
@@ -147,7 +147,7 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('tele', TelType::class, [
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new NotBlank(message: 'Le téléphone est obligatoire.'),
                     new Regex(pattern: '/^0[1-9]([0-9]{2} ?){4}$/', message: 'Téléphone invalide (ex: 0612345678 ou 06 12 34 56 78).'),

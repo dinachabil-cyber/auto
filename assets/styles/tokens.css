@@ -11,7 +11,8 @@
    --border:       #e4e7f0;
    --white:        #ffffff;
    --black:        #000000;
+   --radius-sm:    8px;
    --radius-md:    16px;
    --radius-lg:    24px;
    --radius-xl:    32px;
- }
+  }
