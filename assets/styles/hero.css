@@ -105,9 +105,9 @@
    line-height: 1.1;
  }
 
- .hero h1 em {
-   font-style: italic;
-   color: var(--brand);
+.hero h1 em {
+    font-style: italic;
+    color: var(--brand);
  }
 
  .hero-lead {

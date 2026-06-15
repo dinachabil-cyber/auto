@@ -18,17 +18,27 @@
              <p class="text-sm text-gray-500 mb-6">{{ subtitle }}</p>
          {% endif %}
 
-         {# Global errors #}
-         <div class="form-errors">
-             {{ form_errors(form) }}
-         </div>
+          {# Global errors #}
+          {% if form.vars.errors|length > 0 %}
+          <div class="form-errors">
+              <ul>
+              {% for error in form.vars.errors %}
+                  <li>
+                      <span class="form-error-icon">⚠️</span>
+                      {{ error.message }}
+                  </li>
+              {% endfor %}
+              </ul>
+          </div>
+          {% endif %}
 
-         {{ form_start(form, {
-             'attr': {
-                 'novalidate': 'novalidate',
-                 'class': 'form-body'
-             }
-         }) }}
+          {{ form_start(form, {
+              'attr': {
+                  'novalidate': 'novalidate',
+                  'data-turbo': 'false',
+                  'class': 'form-body'
+              }
+          }) }}
 
          <div class="form-grid">
 
@@ -56,41 +66,41 @@
              </div>
 
              <div class="field-row field-full">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-history"></i></span>
-                 <div class="field-input">{{ form_row(form.ancienne) }}</div>
-             </div>
+<span class="field-icon" style="color: #D17B43;"><i class="fas fa-history"></i></span>
+                  <div class="field-input">{{ form_row(form.ancienne) }}</div>
+              </div>
 
-             <div class="field-row field-full" id="motif-wrapper">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-exclamation-circle"></i></span>
-                 <div class="field-input">{{ form_row(form.motif) }}</div>
-             </div>
+              <div class="field-row field-full" id="motif-wrapper">
+                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-exclamation-circle"></i></span>
+                  <div class="field-input">{{ form_row(form.motif) }}</div>
+              </div>
 
-             <div class="field-row">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-user"></i></span>
-                 <div class="field-input">{{ form_row(form.nom) }}</div>
-             </div>
+              <div class="field-row">
+                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-user"></i></span>
+                  <div class="field-input">{{ form_row(form.nom) }}</div>
+              </div>
 
-             <div class="field-row">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-user"></i></span>
-                 <div class="field-input">{{ form_row(form.prenom) }}</div>
-             </div>
+              <div class="field-row">
+                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-user"></i></span>
+                  <div class="field-input">{{ form_row(form.prenom) }}</div>
+              </div>
 
-             <div class="field-row">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-phone"></i></span>
-                 <div class="field-input">{{ form_row(form.tele) }}</div>
-             </div>
+              <div class="field-row">
+                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-phone"></i></span>
+                  <div class="field-input">{{ form_row(form.tele) }}</div>
+              </div>
 
-             {% if showPostalCode %}
-             <div class="field-row">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-map-marker-alt"></i></span>
-                 <div class="field-input">{{ form_row(form.code_postal) }}</div>
-             </div>
-             {% endif %}
+              {% if showPostalCode %}
+              <div class="field-row">
+                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-map-marker-alt"></i></span>
+                  <div class="field-input">{{ form_row(form.code_postal) }}</div>
+              </div>
+              {% endif %}
 
-             <div class="field-row field-full">
-                 <span class="field-icon" style="color: #D17B43;"><i class="fas fa-envelope"></i></span>
-                 <div class="field-input">{{ form_row(form.email) }}</div>
-             </div>
+              <div class="field-row field-full">
+                  <span class="field-icon" style="color: #D17B43;"><i class="fas fa-envelope"></i></span>
+                  <div class="field-input">{{ form_row(form.email) }}</div>
+              </div>
 
          </div>
 

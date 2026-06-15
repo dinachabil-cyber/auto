@@ -23,12 +23,16 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entity = $devisService->createProfessionel($form);
-            $this->addFlash('success', 'Demande envoyée avec succès');
+            try {
+                $entity = $devisService->createProfessionel($form);
+                $this->addFlash('success', 'Demande envoyée avec succès');
 
-            return $this->redirectToRoute('app_confirmation', [
-                'id' => $entity->getId()
-            ]);
+                return $this->redirectToRoute('app_confirmation', [
+                    'id' => $entity->getId()
+                ]);
+            } catch (\RuntimeException $e) {
+                $form->addError(new \Symfony\Component\Form\FormError('Contenu suspect détecté. Merci de corriger votre saisie.'));
+            }
         }
 
         $response = $this->render('home/index.html.twig', [
@@ -55,12 +59,16 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entity = $devisService->createProfessionel($form);
-            $this->addFlash('success', 'Demande négociant envoyée');
+            try {
+                $entity = $devisService->createProfessionel($form);
+                $this->addFlash('success', 'Demande négociant envoyée');
 
-            return $this->redirectToRoute('app_confirmation', [
-                'id' => $entity->getId()
-            ]);
+                return $this->redirectToRoute('app_confirmation', [
+                    'id' => $entity->getId()
+                ]);
+            } catch (\RuntimeException $e) {
+                $form->addError(new \Symfony\Component\Form\FormError('Contenu suspect détecté. Merci de corriger votre saisie.'));
+            }
         }
 
         $response = $this->render('negociants/index.html.twig', [
@@ -86,12 +94,16 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entity = $devisService->createProfessionel($form);
-            $this->addFlash('success', 'Demande auto-école envoyée');
+            try {
+                $entity = $devisService->createProfessionel($form);
+                $this->addFlash('success', 'Demande auto-école envoyée');
 
-            return $this->redirectToRoute('app_confirmation', [
-                'id' => $entity->getId()
-            ]);
+                return $this->redirectToRoute('app_confirmation', [
+                    'id' => $entity->getId()
+                ]);
+            } catch (\RuntimeException $e) {
+                $form->addError(new \Symfony\Component\Form\FormError('Contenu suspect détecté. Merci de corriger votre saisie.'));
+            }
         }
 
         $response = $this->render('autoecole/index.html.twig', [
@@ -117,12 +129,16 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entity = $devisService->createProfessionel($form);
-            $this->addFlash('success', 'Demande loueur envoyée');
+            try {
+                $entity = $devisService->createProfessionel($form);
+                $this->addFlash('success', 'Demande loueur envoyée');
 
-            return $this->redirectToRoute('app_confirmation', [
-                'id' => $entity->getId()
-            ]);
+                return $this->redirectToRoute('app_confirmation', [
+                    'id' => $entity->getId()
+                ]);
+            } catch (\RuntimeException $e) {
+                $form->addError(new \Symfony\Component\Form\FormError('Contenu suspect détecté. Merci de corriger votre saisie.'));
+            }
         }
 
         $response = $this->render('loueur/index.html.twig', [
@@ -148,12 +164,16 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entity = $devisService->createProfessionel($form);
-            $this->addFlash('success', 'Demande garage envoyée');
+            try {
+                $entity = $devisService->createProfessionel($form);
+                $this->addFlash('success', 'Demande garage envoyée');
 
-            return $this->redirectToRoute('app_confirmation', [
-                'id' => $entity->getId()
-            ]);
+                return $this->redirectToRoute('app_confirmation', [
+                    'id' => $entity->getId()
+                ]);
+            } catch (\RuntimeException $e) {
+                $form->addError(new \Symfony\Component\Form\FormError('Contenu suspect détecté. Merci de corriger votre saisie.'));
+            }
         }
 
         $response = $this->render('garage/index.html.twig', [
