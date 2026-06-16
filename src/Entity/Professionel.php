@@ -6,6 +6,7 @@ use App\Repository\ProfessionelRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: ProfessionelRepository::class)]
 #[ORM\Table(name: 'professionel')]
@@ -35,29 +36,33 @@ class Professionel
     private ?string $demarrage = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'La raison sociale est obligatoire.')]
     #[Assert\NoSpam(messageKeyword: 'La raison sociale contient des mots ou contenus interdits.')]
     private ?string $raison_sociale = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NoSpam(messageKeyword: 'L\'activité contient des mots ou contenus interdits.')]
+    #[Assert\NotBlank(message: 'L activité est obligatoire.')]
+    #[Assert\NoSpam(messageKeyword: 'L activité contient des mots ou contenus interdits.')]
     private ?string $activite = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'L activité assurée est obligatoire.')]
     private ?string $assure = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $code_postal = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'L ancienne assurance est obligatoire.')]
     private ?string $ancienne = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $motif = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'L\'email est obligatoire.')]
+    #[Assert\NotBlank(message: 'L email est obligatoire.')]
     #[Assert\Email(message: 'Veuillez saisir un email valide.')]
-    #[Assert\NoSpam(messageUrl: 'Les emails ne doivent pas contenir de lien.', messageKeyword: 'L\'email contient des mots interdits.')]
+    #[Assert\NoSpam(messageUrl: 'Les emails ne doivent pas contenir de lien.', messageKeyword: 'L email contient des mots interdits.')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
@@ -214,6 +219,16 @@ class Professionel
     {
         $this->created_at = $created_at;
         return $this;
+    }
+
+    #[Assert\Callback]
+    public function validateMotif(ExecutionContextInterface $context): void
+    {
+        if ($this->ancienne === 'OUI' && (null === $this->motif || '' === $this->motif)) {
+            $context->buildViolation('Le motif est obligatoire quand l ancienne assurance est résiliée.')
+                ->atPath('motif')
+                ->addViolation();
+        }
     }
 
     #[ORM\PrePersist]
