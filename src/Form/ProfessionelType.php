@@ -31,7 +31,7 @@ class ProfessionelType extends AbstractType
 
         $builder
             ->add('nom', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new NotBlank(message: 'Le nom est obligatoire.'),
                     new Length(max: 255),
@@ -45,7 +45,7 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('prenom', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new NotBlank(message: 'Le prénom est obligatoire.'),
                     new Length(max: 255),
@@ -59,32 +59,37 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('raison_sociale', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'constraints' => [
+                    new NotBlank(message: 'La raison sociale est obligatoire.'),
                     new Length(max: 255),
                     new NoSpam(),
                 ],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
-                    'placeholder' => 'Raison sociale'
+                    'placeholder' => 'Raison sociale *'
                 ],
                 'label' => false,
             ])
             ->add('activite', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'constraints' => [
+                    new NotBlank(message: 'L activité est obligatoire.'),
                     new Length(max: 255),
                     new NoSpam(),
                 ],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none',
-                    'placeholder' => 'Activité'
+                    'placeholder' => 'Activité *'
                 ],
                 'label' => false,
             ])
             ->add('assure', ChoiceType::class, [
-                'required' => false,
-                'placeholder' => 'Activité assurée actuellement',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'L activité assurée est obligatoire.'),
+                ],
+                'placeholder' => 'Activité assurée actuellement *',
                 'choices' => ['Oui' => 'OUI', 'Non' => 'NON'],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'
@@ -102,8 +107,11 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('demarrage', ChoiceType::class, [
-                'required' => false,
-                'placeholder' => 'Démarrage activité',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Le démarrage d activité est obligatoire.'),
+                ],
+                'placeholder' => 'Démarrage activité *',
                 'choices' => ['Oui' => 'OUI', 'Non' => 'NON'],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'
@@ -111,8 +119,11 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('ancienne', ChoiceType::class, [
-                'required' => false,
-                'placeholder' => 'Ancienne Assurance résilié',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'L ancienne assurance est obligatoire.'),
+                ],
+                'placeholder' => 'Ancienne Assurance résilié *',
                 'choices' => ['Oui' => 'OUI', 'Non' => 'NON'],
                 'attr' => [
                     'class' => 'w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer'
@@ -134,9 +145,9 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('email', EmailType::class, [
-                'required' => false,
+                'required' => true,
                 'constraints' => [
-                    new NotBlank(message: 'L\'email est obligatoire.'),
+                    new NotBlank(message: 'L email est obligatoire.'),
                     new Email(message: 'Email invalide.'),
                     new NoSpam(),
                 ],
@@ -147,7 +158,7 @@ class ProfessionelType extends AbstractType
                 'label' => false,
             ])
             ->add('tele', TelType::class, [
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new NotBlank(message: 'Le téléphone est obligatoire.'),
                     new Regex(pattern: '/^0[1-9]([0-9]{2} ?){4}$/', message: 'Téléphone invalide (ex: 0612345678 ou 06 12 34 56 78).'),
@@ -169,7 +180,7 @@ class ProfessionelType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Professionel::class,
             'product_type' => '',
-            'attr' => ['novalidate' => 'novalidate', 'class' => 'space-y-4 flex-1 flex flex-col'],
+            'attr' => ['novalidate' => 'novalidate', 'data-turbo' => 'false', 'class' => 'space-y-4 flex-1 flex flex-col'],
         ]);
     }
 }
