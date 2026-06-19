@@ -119,11 +119,12 @@ class NoSpamValidator extends ConstraintValidator
 
     private function checkEmojis(string $value, array $emojis, NoSpam $constraint): void
     {
-        $emojiList = implode('', array_map('preg_quote', $emojis, array_fill(0, count($emojis), '#')));
+        $escapedEmojis = array_map(fn($emoji) => preg_quote($emoji, '#'), $emojis);
+        $emojiList = implode('|', $escapedEmojis);
 
         preg_match_all('#' . $emojiList . '#u', $value, $matches);
 
-        if (!empty($matches[0]) && count($matches[0]) >= 2) {
+        if (!empty($matches[0])) {
             $this->addViolationOnce($constraint->messageEmoji);
         }
     }
